@@ -9,11 +9,7 @@
                         <div class="flex md:absolute md:left-0 md:inset-y-0 lg:static xl:col-span-2">
                             <div class="flex-shrink-0 flex items-center">
                                 <a href="#">
-                                    <img
-                                        class="block h-8 w-auto"
-                                        src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600"
-                                        alt="Workflow"
-                                    />
+                                    <CubeTransparentIcon class="h-12 w-12 text-rose-600" aria-hidden="true" />
                                 </a>
                             </div>
                         </div>
@@ -148,7 +144,7 @@
 <script>
 import {Menu, MenuButton, MenuItem, MenuItems, Popover, PopoverButton, PopoverPanel} from '@headlessui/vue'
 import {SearchIcon} from '@heroicons/vue/solid'
-import {BellIcon, MenuIcon, XIcon} from '@heroicons/vue/outline'
+import {BellIcon, MenuIcon, XIcon, CubeTransparentIcon} from '@heroicons/vue/outline'
 
 const user = {
     name: 'Chelsea Hagon',
@@ -185,6 +181,7 @@ export default {
         MenuIcon,
         SearchIcon,
         XIcon,
+        CubeTransparentIcon
     },
 
     setup() {
