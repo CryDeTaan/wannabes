@@ -1,15 +1,15 @@
 <template>
-    <div class="min-h-screen bg-gray-100 flex flex-col h-screen">
+    <div class="min-h-screen bg-neutral-100 dark:bg-dark-800 flex flex-col h-screen">
         <Popover as="template" v-slot="{ open }">
             <header
-                :class="[open ? 'fixed inset-0 z-40 overflow-y-auto' : '', 'bg-white shadow-sm lg:static lg:overflow-y-visible']"
+                :class="[open ? 'fixed inset-0 z-40 overflow-y-auto' : '', 'bg-white dark:bg-dark-800 shadow-sm lg:static lg:overflow-y-visible']"
             >
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="relative flex justify-between xl:grid xl:grid-cols-12 lg:gap-8">
                         <div class="flex md:absolute md:left-0 md:inset-y-0 lg:static xl:col-span-2">
                             <div class="flex-shrink-0 flex items-center">
                                 <a href="#">
-                                    <CubeTransparentIcon class="h-12 w-12 text-rose-600" aria-hidden="true" />
+                                    <CubeTransparentIcon class="h-12 w-12 text-primary-600" aria-hidden="true" />
                                 </a>
                             </div>
                         </div>
@@ -23,11 +23,11 @@
                                         <div
                                             class="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center"
                                         >
-                                            <SearchIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                            <SearchIcon class="h-5 w-5 text-neutral-400" aria-hidden="true" />
                                         </div>
                                         <input
                                             id="search" name="search"
-                                            class="block w-full bg-white border border-gray-300 rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                            class="block w-full bg-white dark:bg-dark-700 border border-neutral-300 dark:border-dark-700 rounded-md py-2 pl-10 pr-3 text-sm placeholder-neutral-500 dark:placeholder-dark-400 dark:text-dark-400 focus:outline-none focus:text-neutral-900 dark:focus:text-neutral-400 focus:placeholder-neutral-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                                             placeholder="Search" type="search"
                                         />
                                     </div>
@@ -37,7 +37,7 @@
                         <div class="flex items-center md:absolute md:right-0 md:inset-y-0 lg:hidden">
                             <!-- Mobile menu button -->
                             <PopoverButton
-                                class="-mx-2 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                                class="-mx-2 rounded-md p-2 inline-flex items-center justify-center text-neutral-400 dark:bg-dark-800 hover:bg-neutral-100 dark:hover:bg-dark-700 hover:text-neutral-500 dark:hover:text-dark-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
                             >
                                 <span class="sr-only">Open menu</span>
                                 <MenuIcon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
@@ -47,13 +47,13 @@
                         <div class="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
                             <a
                                 href="#"
-                                class="ml-6 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                class="ml-6 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white dark:text-dark-200 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500"
                             >
                                 New Snippet
                             </a>
                             <a
                                 href="#"
-                                class="ml-5 flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                class="ml-5 flex-shrink-0 bg-white dark:bg-dark-800 rounded-full p-1 text-neutral-400 hover:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500"
                             >
                                 <span class="sr-only">View notifications</span>
                                 <BellIcon class="h-6 w-6" aria-hidden="true" />
@@ -63,7 +63,7 @@
                             <Menu as="div" class="flex-shrink-0 relative ml-5">
                                 <div>
                                     <MenuButton
-                                        class="bg-white rounded-full flex focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        class="bg-white dark:bg-dark-800 rounded-full flex focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500"
                                     >
                                         <span class="sr-only">Open user menu</span>
                                         <img class="h-8 w-8 rounded-full" :src="user.imageUrl" alt="" />
@@ -78,12 +78,12 @@
                                     leave-to-class="transform opacity-0 scale-95"
                                 >
                                     <MenuItems
-                                        class="origin-top-right absolute z-10 right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 py-1 focus:outline-none"
+                                        class="origin-top-right absolute z-10 right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-dark-700 dark:text-dark-400 ring-1 ring-black ring-opacity-5 py-1 focus:outline-none"
                                     >
                                         <MenuItem v-for="item in userNavigation" :key="item.name" v-slot="{ active }">
                                             <a
                                                 :href="item.href"
-                                                :class="[active ? 'bg-gray-100' : '', 'block py-2 px-4 text-sm text-gray-700']"
+                                                :class="[active ? 'bg-neutral-100 dark:bg-dark-600' : '', 'block py-2 px-4 text-sm text-neutral-700 dark:text-dark-300']"
                                             >{{ item.name }}</a>
                                         </MenuItem>
                                     </MenuItems>
@@ -99,21 +99,21 @@
                         <a
                             v-for="item in navigation" :key="item.name" :href="item.href"
                             :aria-current="item.current ? 'page' : undefined"
-                            :class="[item.current ? 'bg-gray-100 text-gray-900' : 'hover:bg-gray-50', 'block rounded-md py-2 px-3 text-base font-medium']"
+                            :class="[item.current ? 'bg-neutral-100 dark:bg-dark-700 text-neutral-900 dark:text-dark-300' : 'hover:bg-neutral-50 dark:hover:bg-dark-600 dark:text-dark-400', 'block rounded-md py-2 px-3 text-base font-medium']"
                         >{{ item.name }}</a>
                     </div>
-                    <div class="border-t border-gray-200 pt-4 pb-3">
+                    <div class="border-t border-neutral-300 pt-4 pb-3">
                         <div class="max-w-3xl mx-auto px-4 flex items-center sm:px-6">
                             <div class="flex-shrink-0">
                                 <img class="h-10 w-10 rounded-full" :src="user.imageUrl" alt="" />
                             </div>
                             <div class="ml-3">
-                                <div class="text-base font-medium text-gray-800">{{ user.name }}</div>
-                                <div class="text-sm font-medium text-gray-500">{{ user.email }}</div>
+                                <div class="text-base font-medium text-neutral-800 dark:text-dark-400">{{ user.name }}</div>
+                                <div class="text-sm font-medium text-neutral-500 dark:text-dark-300">{{ user.email }}</div>
                             </div>
                             <button
                                 type="button"
-                                class="ml-auto flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                class="ml-auto flex-shrink-0 bg-white dark:bg-dark-800 rounded-full p-1 text-neutral-400 hover:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500"
                             >
                                 <span class="sr-only">View notifications</span>
                                 <BellIcon class="h-6 w-6" aria-hidden="true" />
@@ -122,7 +122,7 @@
                         <div class="mt-3 max-w-3xl mx-auto px-2 space-y-1 sm:px-4">
                             <a
                                 v-for="item in userNavigation" :key="item.name" :href="item.href"
-                                class="block rounded-md py-2 px-3 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                                class="block rounded-md py-2 px-3 text-base font-medium text-neutral-500 hover:bg-neutral-50 dark:hover:bg-dark-600 hover:text-neutral-900 dark:hover:text-dark-400"
                             >{{ item.name }}</a>
                         </div>
                     </div>

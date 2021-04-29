@@ -10,6 +10,8 @@ module.exports = {
         './resources/js/**/*.vue',
     ],
 
+    darkMode: 'media',
+
     theme: {
         extend: {
             fontFamily: {
@@ -18,6 +20,7 @@ module.exports = {
             colors: {
                 primary: colors.rose,
                 neutral: colors.gray,
+                dark: colors.gray,
             },
         },
     },
