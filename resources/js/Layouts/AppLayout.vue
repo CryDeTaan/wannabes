@@ -13,7 +13,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="min-w-0 flex-1 md:px-8 lg:px-0 xl:col-span-6">
+                        <div class="min-w-0 flex-1 md:px-8 lg:px-0 xl:col-span-5">
                             <div
                                 class="flex items-center px-6 py-4 md:max-w-3xl md:mx-auto lg:max-w-none lg:mx-0 xl:px-0"
                             >
@@ -32,6 +32,19 @@
                                         />
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="hidden lg:flex lg:items-center xl:col-span-1">
+                            <div
+                                class="flex items-center px-6 py-4 md:max-w-3xl md:mx-auto lg:max-w-none lg:mx-0 xl:px-0"
+                            >
+                                <a
+                                    href="#"
+                                    class="flex-shrink-0 bg-white dark:bg-dark-800 rounded-full p-1 text-neutral-400 hover:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500"
+                                >
+                                    <span class="sr-only">Help</span>
+                                    <QuestionMarkCircleIcon class="h-6 w-6" aria-hidden="true" />
+                                </a>
                             </div>
                         </div>
                         <div class="flex items-center md:absolute md:right-0 md:inset-y-0 lg:hidden">
@@ -143,7 +156,7 @@
 
 <script>
 import {Menu, MenuButton, MenuItem, MenuItems, Popover, PopoverButton, PopoverPanel} from '@headlessui/vue'
-import {SearchIcon} from '@heroicons/vue/solid'
+import {SearchIcon, QuestionMarkCircleIcon} from '@heroicons/vue/solid'
 import {BellIcon, MenuIcon, XIcon, CubeTransparentIcon} from '@heroicons/vue/outline'
 
 const user = {
@@ -181,7 +194,8 @@ export default {
         MenuIcon,
         SearchIcon,
         XIcon,
-        CubeTransparentIcon
+        CubeTransparentIcon,
+        QuestionMarkCircleIcon
     },
 
     setup() {
