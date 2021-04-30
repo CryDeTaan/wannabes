@@ -3,6 +3,9 @@
         <div class="max-w-3xl mx-auto px-6 md:max-w-7xl md:px-8 md:grid md:grid-cols-12 lg:gap-8">
             <main class="md:col-span-12 lg:col-span-9">
                 <cards-grid :snippets="snippets"/>
+                <div class="mt-6">
+                    <pagination />
+                </div>
             </main>
             <aside class="hidden lg:block lg:col-span-3">
                 <div class="sticky space-y-4">
@@ -24,6 +27,7 @@
 import AppLayout from '@/Layouts/AppLayout'
 import CardsGrid from "@/Components/CardsGrid";
 import UserBlock from "@/Components/UserBlock";
+import Pagination from "@/Components/Pagination";
 
 const snippets = [
     {
@@ -238,6 +242,7 @@ const leaderBoard = [
 
 export default {
     components: {
+        Pagination,
         UserBlock,
         CardsGrid,
         AppLayout,
