@@ -6,9 +6,9 @@
             </main>
             <aside class="hidden lg:block lg:col-span-3">
                 <div class="sticky space-y-4">
-                    <div class="px-4 pt-2 bg-white rounded-lg shadow">
-                        <div class="text-gray-700 text-md font-medium">Leader Board:</div>
-                        <div class="grid grid-cols-1 divide-y divide-gray-200">
+                    <div class="px-4 pt-2 bg-white dark:bg-dark-700 rounded-lg shadow">
+                        <div class="text-gray-700 dark:text-dark-400 text-md font-medium">Leader Board:</div>
+                        <div class="grid grid-cols-1 divide-y divide-gray-200 dark:divide-dark-500">
                             <div v-for="user in leaderBoard">
                                 <user-block :user="user" />
                             </div>
