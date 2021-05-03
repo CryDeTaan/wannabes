@@ -2,7 +2,7 @@
     <div class="flex py-2">
         <a
             :href="`users/${ user.handle }`"
-            class="flex flex-1 inline-flex justify-between dark:bg-dark-700 text-xs text-gray-700 dark:text-dark-400 font-medium hover:text-gray-500 dark:hover:text-dark-300"
+            class="flex flex-1 inline-flex justify-between text-xs text-gray-700 dark:text-dark-400 font-medium hover:text-gray-500 dark:hover:text-dark-300"
         >
             <span class="flex items-center">
                 <img class="h-6 w-6 rounded-full" :src="user.imageUrl" alt="" />
