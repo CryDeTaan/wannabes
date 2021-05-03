@@ -9,15 +9,15 @@
         </template>
 
         <template #content>
-            <h3 class="text-lg font-medium text-gray-900" v-if="twoFactorEnabled">
+            <h3 class="text-lg font-medium text-gray-900 dark:text-dark-200" v-if="twoFactorEnabled">
                 You have enabled two factor authentication.
             </h3>
 
-            <h3 class="text-lg font-medium text-gray-900" v-else>
+            <h3 class="text-lg font-medium text-gray-900 dark:text-dark-200" v-else>
                 You have not enabled two factor authentication.
             </h3>
 
-            <div class="mt-3 max-w-xl text-sm text-gray-600">
+            <div class="mt-3 max-w-xl text-sm text-gray-600 dark:text-dark-300">
                 <p>
                     When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone's Google Authenticator application.
                 </p>
