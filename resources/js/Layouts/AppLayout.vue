@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen bg-neutral-100 dark:bg-dark-800 flex flex-col h-screen">
+    <div class="min-h-screen bg-neutral-100 dark:bg-dark-800">
         <Popover as="template" v-slot="{ open }">
             <header
                 :class="[open ? 'fixed inset-0 z-40 overflow-y-auto' : '', 'bg-white dark:bg-dark-800 shadow-sm lg:static lg:overflow-y-visible']"
@@ -142,14 +142,8 @@
                 </PopoverPanel>
             </header>
         </Popover>
-
-        <div class="flex-1 overflow-y-auto">
-
-            <div class="py-6">
-
-                <slot></slot>
-            </div>
-
+        <div class="py-6">
+            <slot></slot>
         </div>
     </div>
 </template>
