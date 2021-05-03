@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "@headlessui/vue": "^1.1.1",
-        "@heroicons/vue": "^1.0.1"
+        "@heroicons/vue": "^1.0.1",
+        "highlight.js": "^10.7.2"
     }
 }
