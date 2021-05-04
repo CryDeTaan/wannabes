@@ -29,7 +29,16 @@
                         </div>
 
                         <div class="sm:col-span-3">
-                            <tag-select />
+                            <!--<tag-select />-->
+                            <div>
+                                <label for="tags" class="block text-sm font-medium text-gray-700 dark:text-dark-400">Tags</label>
+                                <select id="tags" name="tags"
+                                        class="mt-1 block w-full pl-3 pr-10 py-2 shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md dark:text-dark-300 dark:focus:text-neutral-300">
+                                    <option selected disabled>Select tags...</option>
+                                    <option v-for="tag in tags" :key="tag.name"
+                                    >{{ tag.name }}</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="sm:col-span-6">
@@ -85,7 +94,7 @@
                         <ul class="mt-2 leading-8">
                             <li class="inline">
                                 <a href="#" class="flex flex-wrap place-content-start mt-3">
-                                    <span v-for="tag in tags" :key="tag.name"
+                                    <span v-for="tag in selectedTags" :key="tag.name"
                                           class="m-1 px-2 py-1 text-xs font-semiabold rounded-full"
                                           :class="`text-${tag.color}-800 bg-${tag.color}-100 dark:text-${tag.color}-200 dark:bg-${tag.color}-800`"
                                     >{{ tag.name }}</span>
@@ -119,6 +128,14 @@ const user = {
 }
 
 const tags = [
+    {id: 1, name: 'PowerShell'},
+    {id: 2, name: 'SSH'},
+    {id: 3, name: 'Lateral Movement'},
+    {id: 4, name: 'C2'},
+    {id: 5, name: 'Windows'},
+]
+
+const selectedTags = [
         {
             'name' : 'PowerShell',
             'color' : 'blue'
@@ -141,7 +158,8 @@ export default {
     setup() {
         return {
             user,
-            tags
+            tags,
+            selectedTags
         }
     }
 
