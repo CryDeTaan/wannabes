@@ -36,15 +36,14 @@
                         </div>
                         <div class="hidden lg:flex lg:items-center xl:col-span-1">
                             <div
-                                class="flex items-center px-6 py-4 md:max-w-3xl md:mx-auto lg:max-w-none lg:mx-0 xl:px-0"
+                                class="flex items-center px-2 py-4 md:max-w-3xl md:mx-auto lg:max-w-none lg:mx-0 xl:px-0"
                             >
-                                <a
-                                    href="#"
+                                <button
                                     class="flex-shrink-0 bg-white dark:bg-dark-800 rounded-full p-1 text-neutral-400 hover:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500"
                                 >
                                     <span class="sr-only">Help</span>
                                     <QuestionMarkCircleIcon class="h-6 w-6" aria-hidden="true" />
-                                </a>
+                                </button>
                             </div>
                         </div>
                         <div class="flex items-center md:absolute md:right-0 md:inset-y-0 lg:hidden">
