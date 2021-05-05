@@ -36,10 +36,10 @@
                         </div>
                         <div class="hidden lg:flex lg:items-center xl:col-span-1">
                             <div
-                                class="flex items-center px-2 py-4 md:max-w-3xl md:mx-auto lg:max-w-none lg:mx-0 xl:px-0"
+                                class="flex items-center py-4 md:max-w-3xl md:mx-auto lg:max-w-none lg:mx-0 xl:px-0"
                             >
                                 <button
-                                    class="flex-shrink-0 bg-white dark:bg-dark-800 rounded-full p-1 text-neutral-400 hover:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500"
+                                    class="flex-shrink-0 bg-white dark:bg-dark-800 rounded-full text-neutral-400 hover:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500"
                                 >
                                     <span class="sr-only">Help</span>
                                     <QuestionMarkCircleIcon class="h-6 w-6" aria-hidden="true" />
