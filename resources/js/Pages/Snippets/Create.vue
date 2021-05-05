@@ -1,5 +1,52 @@
 <template>
-    <div class="max-w-3xl mx-auto px-6 md:max-w-7xl md:px-8 md:grid md:grid-cols-12 lg:gap-8">
+    <div class="items-start max-w-3xl mx-auto px-6 md:max-w-7xl md:px-8 md:grid md:grid-cols-12 lg:gap-8">
+
+        <aside class="sticky top-0 lg:hidden col-span-12">
+            <div class="pb-4 w-full max-w-3xl mx-auto px-6 md:max-w-4xl md:px-8 bg-dark-800">
+                <h2 class="sr-only">Details</h2>
+                <div class="flex justify-between w-full pb-2 border-b border-neutral-200 dark:border-dark-500">
+                    <div class="space-y-2">
+                        <div class="items-center">
+                            <span class="text-primary-600 text-sm font-medium">V-model the title</span>
+                        </div>
+                        <div class="items-center">
+                            <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">V-model the description.</span>
+                        </div>
+                    </div>
+
+                    <div class="flex-col">
+                        <p class="ml-1 inline-block align-middle text-sm font-medium text-neutral-500">Tagged:</p>
+                        <ul class="leading-8">
+                            <li class="inline">
+                                <a href="#" class="flex flex-wrap place-content-start">
+                                    <span v-for="tag in selectedTags" :key="tag.name"
+                                          class="m-1 px-2 py-1 text-xs font-semiabold rounded-full"
+                                          :class="`text-${tag.color}-800 bg-${tag.color}-100 dark:text-${tag.color}-200 dark:bg-${tag.color}-800`"
+                                    >{{ tag.name }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center">
+                    <div class="flex flex-col sm:flex-row sm:space-x-2 max-w-2xl">
+                        <div class="flex items-center pt-2 sm:pt-0">
+                            <CalendarIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+                            <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">Drafting on <time datetime="2020-12-02">Dec 2, 2020</time> by:</span>
+                        </div>
+                        <div class="sm:w-40">
+                            <user-block :user="user" />
+                        </div>
+                    </div>
+                    <div class="flex items-center my-2">
+                        <jet-button class="ml-4">
+                            Save
+                        </jet-button>
+                    </div>
+                </div>
+            </div>
+
+        </aside>
 
         <main class="md:col-span-12 lg:col-span-9 lg:border-r lg:border-neutral-200 lg:dark:border-dark-500">
             <form class="max-w-3xl mx-auto px-6 md:max-w-4xl md:px-8 space-y-8 divide-y divide-gray-200 dark:divide-dark-500">
@@ -58,7 +105,7 @@
                             </label>
                             <div class="mt-1">
                                     <textarea
-                                        id="snippet" name="snippet" rows="25"
+                                        id="snippet" name="snippet" rows="45"
                                         class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-lg border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md dark:text-dark-300 dark:focus:text-neutral-300"
                                     />
                             </div>
@@ -119,6 +166,7 @@ import AppLayout from "@/Layouts/AppLayout";
 import TagSelect from "@/Pages/Snippets/TagSelect";
 import UserBlock from "@/Components/UserBlock";
 import { CalendarIcon } from '@heroicons/vue/outline'
+import JetButton from '@/Jetstream/Button'
 
 const user = {
     handle: 'CryDeTaan',
@@ -153,6 +201,7 @@ export default {
         UserBlock,
         TagSelect,
         CalendarIcon,
+        JetButton
     },
 
     setup() {
