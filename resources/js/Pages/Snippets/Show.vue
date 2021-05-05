@@ -6,12 +6,12 @@
                 <div class="flex justify-between w-full pb-2 border-b border-neutral-200 dark:border-dark-500">
                     <div class="space-y-2">
                         <div class="items-center">
-                            <span class="text-primary-600 text-sm font-medium">V-model the title</span>
+                            <span class="text-primary-600 text-sm font-medium">{{ snippet.title }}</span>
                         </div>
                         <div class="items-center">
                             <span
                                 class="text-gray-900 dark:text-dark-400 text-sm font-medium"
-                            >V-model the description.</span>
+                            >{{ snippet.description }}</span>
                         </div>
                     </div>
 
