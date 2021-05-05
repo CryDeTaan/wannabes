@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import {ref, watch} from 'vue'
 import { Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions } from '@headlessui/vue'
 import { CheckIcon, SelectorIcon } from '@heroicons/vue/solid'
 
@@ -71,6 +71,13 @@ export default {
 
     setup() {
         const selected = ref(tags[0])
+
+        watch(
+            () => selected.value,
+            () => {
+                console.log(selected.value)
+            }
+        )
 
         return {
             tags,
