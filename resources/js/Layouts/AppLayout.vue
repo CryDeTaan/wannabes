@@ -163,14 +163,12 @@ const user = {
 }
 
 const navigation = [
-    {name: 'Dashboard', href: '#', current: true},
-    {name: 'Calendar', href: '#', current: false},
-    {name: 'Teams', href: '#', current: false},
-    {name: 'Directory', href: '#', current: false},
+    {name: 'New Snippet', href: '#', current: true},
+    {name: 'Leaderboard', href: '#', current: false},
+    {name: 'About', href: '#', current: false},
 ]
 const userNavigation = [
     {name: 'Your Profile', href: '#'},
-    {name: 'Settings', href: '#'},
     {name: 'Sign out', href: '#'},
 ]
 
