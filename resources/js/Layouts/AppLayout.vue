@@ -8,9 +8,9 @@
                     <div class="relative flex justify-between xl:grid xl:grid-cols-12 lg:gap-8">
                         <div class="flex md:absolute md:left-0 md:inset-y-0 lg:static xl:col-span-2">
                             <div class="flex-shrink-0 flex items-center">
-                                <a href="#">
+                                <inertia-link :href="route('home')">
                                     <CubeTransparentIcon class="h-12 w-12 text-primary-600" aria-hidden="true" />
-                                </a>
+                                </inertia-link>
                             </div>
                         </div>
                         <div class="min-w-0 flex-1 md:px-8 lg:px-0 xl:col-span-5">

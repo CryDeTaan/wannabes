@@ -16,8 +16,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Home');
-
-});
+})->name('home');
 
 Route::get('snippets', fn() => Inertia::render('Snippets/Create'));
 
