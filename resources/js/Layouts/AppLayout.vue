@@ -1,6 +1,6 @@
 <template>
     <div class="min-h-screen bg-neutral-100 dark:bg-dark-800">
-        <over-lay :showOverlay="showOverlay" @close="showOverlay = false"/>
+
         <Popover as="template" v-slot="{ open }">
             <header
                 :class="[open ? 'fixed inset-0 z-40 overflow-y-auto' : '', 'bg-white dark:bg-dark-800 shadow-sm lg:static lg:overflow-y-visible']"
@@ -153,8 +153,6 @@
 import {Menu, MenuButton, MenuItem, MenuItems, Popover, PopoverButton, PopoverPanel} from '@headlessui/vue'
 import {SearchIcon, QuestionMarkCircleIcon} from '@heroicons/vue/solid'
 import {BellIcon, MenuIcon, XIcon, CubeTransparentIcon} from '@heroicons/vue/outline'
-import OverLay from "@/Components/OverLay";
-import {ref} from "vue";
 
 const user = {
     name: 'Chelsea Hagon',
@@ -178,7 +176,6 @@ const userNavigation = [
 
 export default {
     components: {
-        OverLay,
         Menu,
         MenuButton,
         MenuItem,
@@ -195,10 +192,8 @@ export default {
     },
 
     setup() {
-        const showOverlay = ref(false)
 
         return {
-            showOverlay,
             user,
             navigation,
             userNavigation,

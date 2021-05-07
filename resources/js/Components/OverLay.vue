@@ -1,4 +1,24 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
+<!--
+    To use this component include it like this
+    <template>
+        ....
+        <over-lay :showOverlay="showOverlay" @close="showOverlay = false"/>
+        ....
+    </template>
+
+    <script>
+    import OverLay from "@/Components/OverLay";
+    import {ref} from "vue";
+
+    export default {
+        setup() {
+            const showOverlay = ref(false)
+
+            return {
+                showOverlay,
+            },
+    </script>
+ -->
 <template>
     <TransitionRoot as="template" :show="open">
         <Dialog as="section" static class="fixed inset-0 overflow-hidden" @close="close" :open="open">
