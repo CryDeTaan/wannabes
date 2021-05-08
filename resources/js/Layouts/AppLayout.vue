@@ -128,6 +128,8 @@
                                 <div class="text-base font-medium text-neutral-800 dark:text-dark-400">{{ $page.props.user.name }}</div>
                                 <div class="text-sm font-medium text-neutral-500 dark:text-dark-300">{{ $page.props.user.email }}</div>
                             </div>
+                            <!--
+                            Once notifications are ready I will add this again
                             <button
                                 type="button"
                                 class="ml-auto flex-shrink-0 bg-white dark:bg-dark-800 rounded-full p-1 text-neutral-400 hover:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500"
@@ -135,6 +137,7 @@
                                 <span class="sr-only">View notifications</span>
                                 <BellIcon class="h-6 w-6" aria-hidden="true" />
                             </button>
+                            -->
                         </div>
                         <div class="mt-3 max-w-3xl mx-auto px-2 space-y-1 sm:px-4">
                             <inertia-link
