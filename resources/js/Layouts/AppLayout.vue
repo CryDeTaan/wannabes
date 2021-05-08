@@ -100,6 +100,8 @@
                                         <MenuItem v-for="item in userNavigation" :key="item.name" v-slot="{ active }">
                                             <inertia-link
                                                 :href="item.href"
+                                                :method="item.method ? item.method : 'GET'"
+                                                as="span"
                                                 :class="[active ? 'bg-neutral-100 dark:bg-dark-600' : '', 'block py-2 px-4 text-sm text-neutral-700 dark:text-dark-300']"
                                             >{{ item.name }}</inertia-link>
                                         </MenuItem>
@@ -142,6 +144,8 @@
                         <div class="mt-3 max-w-3xl mx-auto px-2 space-y-1 sm:px-4">
                             <inertia-link
                                 v-for="item in userNavigation" :key="item.name" :href="item.href"
+                                :method="item.method ? item.method : 'GET'"
+                                as="span"
                                 class="block rounded-md py-2 px-3 text-base font-medium text-neutral-500 hover:bg-neutral-50 dark:hover:bg-dark-600 hover:text-neutral-900 dark:hover:text-dark-400"
                             >{{ item.name }}</inertia-link>
                         </div>
@@ -167,7 +171,7 @@ const navigation = [
 ]
 const userNavigation = [
     {name: 'Your Profile', href: '/user/profile'},
-    {name: 'Sign out', href: '#'},
+    {name: 'Sign out', href: '/logout', method: 'post'},
 ]
 
 export default {
