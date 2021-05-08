@@ -80,11 +80,20 @@
                             <Menu as="div" class="flex-shrink-0 relative ml-5">
                                 <div>
                                     <MenuButton
+                                        v-if="$page.props.user"
                                         class="bg-white dark:bg-dark-800 rounded-full flex focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500"
                                     >
                                         <span class="sr-only">Open user menu</span>
                                         <img class="h-8 w-8 rounded-full" :src="$page.props.user.profile_photo_url" alt="" />
                                     </MenuButton>
+                                    <inertia-link
+                                        v-else
+                                        :href="route('login')"
+                                        class="bg-white dark:bg-dark-800 rounded-full text-neutral-500 hover:text-neutral-600 "
+                                    >
+                                        <span class="sr-only">Login</span>
+                                        <UserCircleIcon class="h-9 w-9" aria-hidden="true" />
+                                    </inertia-link>
                                 </div>
                                 <transition
                                     enter-active-class="transition ease-out duration-100"
@@ -121,7 +130,7 @@
                             :class="[item.current ? 'bg-neutral-100 dark:bg-dark-700 text-neutral-900 dark:text-dark-300' : 'hover:bg-neutral-50 dark:hover:bg-dark-600 dark:text-dark-400', 'block rounded-md py-2 px-3 text-base font-medium']"
                         >{{ item.name }}</a>
                     </div>
-                    <div class="border-t border-neutral-300 pt-4 pb-3">
+                    <div v-if="$page.props.user" class="border-t border-neutral-300 pt-4 pb-3">
                         <div class="max-w-3xl mx-auto px-4 flex items-center sm:px-6">
                             <div class="flex-shrink-0">
                                 <img class="h-10 w-10 rounded-full" :src="$page.props.user.profile_photo_url" alt="" />
@@ -150,6 +159,18 @@
                             >{{ item.name }}</inertia-link>
                         </div>
                     </div>
+                    <div v-else class="border-t border-neutral-300 pt-4 pb-3">
+                        <div class="mt-3 max-w-3xl mx-auto px-2 space-y-1 sm:px-4">
+                            <inertia-link
+                                :href="route('login')"
+                                class="block rounded-md py-2 px-3 text-base font-medium text-neutral-500 hover:bg-neutral-50 dark:hover:bg-dark-600 hover:text-neutral-900 dark:hover:text-dark-400"
+                            >Login</inertia-link>
+                            <inertia-link
+                                :href="route('register')"
+                                class="block rounded-md py-2 px-3 text-base font-medium text-neutral-500 hover:bg-neutral-50 dark:hover:bg-dark-600 hover:text-neutral-900 dark:hover:text-dark-400"
+                            >Register</inertia-link>
+                        </div>
+                    </div>
                 </PopoverPanel>
             </header>
         </Popover>
@@ -162,7 +183,7 @@
 <script>
 import {Menu, MenuButton, MenuItem, MenuItems, Popover, PopoverButton, PopoverPanel} from '@headlessui/vue'
 import {SearchIcon, QuestionMarkCircleIcon} from '@heroicons/vue/solid'
-import {BellIcon, MenuIcon, XIcon, CubeTransparentIcon} from '@heroicons/vue/outline'
+import {BellIcon, MenuIcon, XIcon, CubeTransparentIcon, UserCircleIcon} from '@heroicons/vue/outline'
 
 const navigation = [
     {name: 'New Snippet', href: '#', current: true},
@@ -188,7 +209,8 @@ export default {
         SearchIcon,
         XIcon,
         CubeTransparentIcon,
-        QuestionMarkCircleIcon
+        QuestionMarkCircleIcon,
+        UserCircleIcon
     },
 
     setup() {
