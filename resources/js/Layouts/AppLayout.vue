@@ -39,13 +39,13 @@
                             <div
                                 class="flex items-center py-4 md:max-w-3xl md:mx-auto lg:max-w-none lg:mx-0 xl:px-0"
                             >
-                                <button
-                                    @click="showOverlay = true"
+                                <inertia-link
+                                    :href="route('about')"
                                     class="flex-shrink-0 bg-white dark:bg-dark-800 rounded-full text-neutral-400 hover:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500"
                                 >
                                     <span class="sr-only">Help</span>
                                     <QuestionMarkCircleIcon class="h-6 w-6" aria-hidden="true" />
-                                </button>
+                                </inertia-link>
                             </div>
                         </div>
                         <div class="flex items-center md:absolute md:right-0 md:inset-y-0 lg:hidden">

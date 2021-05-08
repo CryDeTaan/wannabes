@@ -32,6 +32,18 @@ Route::get('snippets/1', function () {
     ]);
 });
 
+Route::get('about', function () {
+
+    $aboutMarkdown = Laravel\Jetstream\Jetstream::localizedMarkdownPath('about.md');
+
+    $environment = League\CommonMark\Environment::createCommonMarkEnvironment();
+    $environment->addExtension(new League\CommonMark\Extension\GithubFlavoredMarkdownExtension());
+
+    return Inertia::render('About', [
+        'aboutMarkdown' => (new League\CommonMark\CommonMarkConverter([], $environment))->convertToHtml(file_get_contents($aboutMarkdown)),
+    ]);
+})->name('about');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
