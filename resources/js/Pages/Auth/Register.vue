@@ -8,7 +8,7 @@
 
         <form @submit.prevent="submit">
             <div>
-                <jet-label for="name" value="Name" />
+                <jet-label for="name" value="Username" />
                 <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
             </div>
 
