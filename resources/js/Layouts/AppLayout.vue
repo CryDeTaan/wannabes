@@ -59,12 +59,12 @@
                             </PopoverButton>
                         </div>
                         <div class="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
-                            <a
-                                href="#"
+                            <inertia-link
+                                href="/snippets"
                                 class="ml-6 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white dark:text-dark-200 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500"
                             >
                                 New Snippet
-                            </a>
+                            </inertia-link>
                             <a
                                 href="#"
                                 class="ml-5 flex-shrink-0 bg-white dark:bg-dark-800 rounded-full p-1 text-neutral-400 hover:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500"
