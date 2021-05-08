@@ -83,7 +83,7 @@
                                         class="bg-white dark:bg-dark-800 rounded-full flex focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500"
                                     >
                                         <span class="sr-only">Open user menu</span>
-                                        <img class="h-8 w-8 rounded-full" :src="user.imageUrl" alt="" />
+                                        <img class="h-8 w-8 rounded-full" :src="$page.props.user.profile_photo_url" alt="" />
                                     </MenuButton>
                                 </div>
                                 <transition
@@ -122,11 +122,11 @@
                     <div class="border-t border-neutral-300 pt-4 pb-3">
                         <div class="max-w-3xl mx-auto px-4 flex items-center sm:px-6">
                             <div class="flex-shrink-0">
-                                <img class="h-10 w-10 rounded-full" :src="user.imageUrl" alt="" />
+                                <img class="h-10 w-10 rounded-full" :src="$page.props.user.profile_photo_url" alt="" />
                             </div>
                             <div class="ml-3">
-                                <div class="text-base font-medium text-neutral-800 dark:text-dark-400">{{ user.name }}</div>
-                                <div class="text-sm font-medium text-neutral-500 dark:text-dark-300">{{ user.email }}</div>
+                                <div class="text-base font-medium text-neutral-800 dark:text-dark-400">{{ $page.props.user.name }}</div>
+                                <div class="text-sm font-medium text-neutral-500 dark:text-dark-300">{{ $page.props.user.email }}</div>
                             </div>
                             <button
                                 type="button"
@@ -156,16 +156,6 @@
 import {Menu, MenuButton, MenuItem, MenuItems, Popover, PopoverButton, PopoverPanel} from '@headlessui/vue'
 import {SearchIcon, QuestionMarkCircleIcon} from '@heroicons/vue/solid'
 import {BellIcon, MenuIcon, XIcon, CubeTransparentIcon} from '@heroicons/vue/outline'
-
-const user = {
-    name: 'Chelsea Hagon',
-    handle: 'chelseahagon',
-    email: 'chelseahagon@example.com',
-    role: 'Human Resources Manager',
-    imageId: '1550525811-e5869dd03032',
-    imageUrl:
-        'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
 
 const navigation = [
     {name: 'New Snippet', href: '#', current: true},
@@ -197,7 +187,6 @@ export default {
     setup() {
 
         return {
-            user,
             navigation,
             userNavigation,
         }
