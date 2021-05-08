@@ -65,6 +65,8 @@
                             >
                                 New Snippet
                             </inertia-link>
+                            <!--
+                             Once notifications are ready I will add this again
                             <a
                                 href="#"
                                 class="ml-5 flex-shrink-0 bg-white dark:bg-dark-800 rounded-full p-1 text-neutral-400 hover:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500"
@@ -72,6 +74,7 @@
                                 <span class="sr-only">View notifications</span>
                                 <BellIcon class="h-6 w-6" aria-hidden="true" />
                             </a>
+                            -->
 
                             <!-- Profile dropdown -->
                             <Menu as="div" class="flex-shrink-0 relative ml-5">
