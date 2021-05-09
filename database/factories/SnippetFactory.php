@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Snippet;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class SnippetFactory extends Factory
 {
@@ -21,8 +22,18 @@ class SnippetFactory extends Factory
      */
     public function definition()
     {
+        $title = Str::title($this->faker->sentence(2));
+        $excerpt = Str::ucfirst($this->faker->sentence(3));
+
+        $markdown =
+            "# {$title} \n" .
+            "## {$excerpt} \n\n" .
+            $this->faker->paragraph();
+
         return [
-            //
+            'title'     => $title,
+            'excerpt'   => $excerpt,
+            'markdown'  => $markdown,
         ];
     }
 }
