@@ -1,7 +1,10 @@
 <template>
     <jet-authentication-card>
         <template #logo>
-            <jet-authentication-card-logo />
+            <jet-authentication-card-logo class="flex justify-center"/>
+            <h2 class="mt-4 text-center text-3xl font-extrabold text-gray-900 dark:text-dark-400">
+                Create your account
+            </h2>
         </template>
 
         <jet-validation-errors class="mb-4" />

@@ -1,7 +1,16 @@
 <template>
     <jet-authentication-card>
         <template #logo>
-            <jet-authentication-card-logo />
+            <jet-authentication-card-logo class="flex justify-center"/>
+            <h2 class="mt-4 text-center text-3xl font-extrabold text-gray-900 dark:text-dark-400">
+                Sign in to your account
+            </h2>
+            <p class="mt-2 text-center text-sm text-gray-600 dark:text-dark-500">
+                Or
+                <inertia-link :href="route('register')" class="font-medium text-primary-600 hover:text-primary-500">
+                    register an account here
+                </inertia-link>
+            </p>
         </template>
 
         <jet-validation-errors class="mb-4" />
