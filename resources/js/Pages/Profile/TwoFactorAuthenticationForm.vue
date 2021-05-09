@@ -25,24 +25,25 @@
 
             <div v-if="twoFactorEnabled">
                 <div v-if="qrCode">
-                    <div class="mt-4 max-w-xl text-sm text-gray-600">
+                    <div class="mt-4 max-w-xl text-sm text-gray-600 dark:text-dark-400">
                         <p class="font-semibold">
                             Two factor authentication is now enabled. Scan the following QR code using your phone's authenticator application.
                         </p>
                     </div>
-
-                    <div class="mt-4 dark:p-4 dark:w-56 dark:bg-white" v-html="qrCode">
+                    <div class="flex items-center w-56 h-56 bg-white rounded-md">
+                        <div class="mx-auto" v-html="qrCode">
+                        </div>
                     </div>
                 </div>
 
                 <div v-if="recoveryCodes.length > 0">
-                    <div class="mt-4 max-w-xl text-sm text-gray-600">
+                    <div class="mt-4 max-w-xl text-sm text-gray-600 dark:text-dark-400">
                         <p class="font-semibold">
                             Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.
                         </p>
                     </div>
 
-                    <div class="grid gap-1 max-w-xl mt-4 px-4 py-4 font-mono text-sm bg-gray-100 rounded-lg">
+                    <div class="grid gap-1 max-w-xl mt-4 px-4 py-4 font-mono text-sm bg-gray-100 rounded-lg dark:text-dark-300 dark:bg-dark-600">
                         <div v-for="code in recoveryCodes" :key="code">
                             {{ code }}
                         </div>
