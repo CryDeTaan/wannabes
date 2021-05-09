@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Sluggable\SlugOptions;
+use Spatie\Sluggable\HasSlug;
 
 class Snippet extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory, HasSlug;
 
     /**
      * The attributes that are mass assignable.
@@ -23,17 +24,14 @@ class Snippet extends Model
     ];
 
     /**
-     * Return the sluggable configuration array for this model.
-     *
-     * @return array
+     * Options for generating a slug for this model.
      */
-    public function sluggable(): array
+    public function getSlugOptions() : SlugOptions
     {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug')
+            ->slugsShouldBeNoLongerThan(40);
     }
 
     /**
