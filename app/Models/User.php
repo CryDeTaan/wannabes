@@ -58,4 +58,13 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Get the snippets for the user.
+     */
+    public function snippets()
+    {
+        return $this->hasMany(Snippet::class);
+    }
+
 }
