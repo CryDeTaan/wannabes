@@ -74,7 +74,6 @@ export default {
 
     setup(props) {
         const snippets = props.snippets
-        console.log(snippets)
         return {
             snippets
         }
