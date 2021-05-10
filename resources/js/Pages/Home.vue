@@ -4,7 +4,7 @@
             <main class="md:col-span-12 lg:col-span-9">
                 <cards-grid :snippets="snippets"/>
                 <div class="mt-6">
-                    <pagination />
+                    <pagination :next_page="snippets.next_page_url" :prev_page="snippets.prev_page_url"/>
                 </div>
             </main>
             <aside class="hidden lg:block lg:col-span-3">

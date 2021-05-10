@@ -1,13 +1,13 @@
 <template>
     <nav class="border-t border-gray-200 dark:border-dark-500 px-4 flex items-center justify-between sm:px-0">
         <div class="-mt-px w-0 flex-1 flex">
-            <a
-                href="#"
+            <inertia-link
+                :href="prev_page"
                 class="border-t-2 border-transparent pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 hover:border-gray-300"
             >
                 <ArrowNarrowLeftIcon class="mr-3 h-5 w-5 text-gray-400 dark:text-dark-500" aria-hidden="true" />
                 Previous
-            </a>
+            </inertia-link>
         </div>
         <div class="hidden md:-mt-px md:flex">
             <a
@@ -55,13 +55,13 @@
             </a>
         </div>
         <div class="-mt-px w-0 flex-1 flex justify-end">
-            <a
-                href="#"
+            <inertia-link
+                :href="next_page"
                 class="border-t-2 border-transparent pt-4 pl-1 inline-flex items-center text-sm font-medium text-gray-500 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 hover:border-gray-300"
             >
                 Next
                 <ArrowNarrowRightIcon class="ml-3 h-5 w-5 text-gray-400 dark:text-dark-500" aria-hidden="true" />
-            </a>
+            </inertia-link>
         </div>
     </nav>
 </template>
@@ -75,6 +75,21 @@ export default {
     components: {
         ArrowNarrowLeftIcon,
         ArrowNarrowRightIcon,
+    },
+
+    props: {
+        next_page: String,
+        prev_page: String,
+    },
+
+    setup(props) {
+        const next_page = props.next_page
+        const prev_page = props.prev_page
+
+        return {
+            next_page,
+            prev_page,
+        }
     },
 }
 </script>
