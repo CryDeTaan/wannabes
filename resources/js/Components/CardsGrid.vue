@@ -1,7 +1,7 @@
 <template>
     <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
         <li
-            v-for="snippet in snippets" :key="snippet.slug"
+            v-for="snippet in snippets.data" :key="snippet.slug"
             class="col-span-1 flex flex-col text-center bg-white dark:bg-dark-700 rounded-lg shadow divide-y divide-gray-200 dark:divide-dark-500"
         >
 
@@ -10,8 +10,8 @@
                     <h3 class="text-gray-900 dark:text-dark-300 text-sm font-medium">{{ snippet.title }}</h3>
                 </a>
                 <dl class="mt-1 flex-grow flex flex-col justify-between">
-                    <dt class="sr-only">Description</dt>
-                    <dd class="text-gray-500 dark:text-dark-400 text-sm">{{ snippet.description }}</dd>
+                    <dt class="sr-only">Excerpt</dt>
+                    <dd class="text-gray-500 dark:text-dark-400 text-sm">{{ snippet.excerpt }}</dd>
                     <dt class="sr-only">Tags</dt>
                     <dd class="flex flex-wrap justify-center place-content-start mt-3">
                         <span v-for="tag in snippet.tags" :key="tag.name"
@@ -44,7 +44,8 @@
                             class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 dark:text-dark-400 font-medium border border-transparent rounded-br-lg"
                         >
                             <FireIcon class="w-5 h-5 text-gray-400" aria-hidden="true" />
-                            <span class="ml-3">{{ snippet.likes }}</span>
+                            <!-- TODO: Add dynamic snippet likes -->
+                            <span class="ml-3">324</span>
                         </div>
                     </div>
                 </div>
@@ -73,6 +74,7 @@ export default {
 
     setup(props) {
         const snippets = props.snippets
+        console.log(snippets)
         return {
             snippets
         }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Snippet;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -16,6 +17,11 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return Inertia::render('Home');
+        return Inertia::render('Home',[
+            'snippets' => Snippet::with('user:id,name,profile_photo_path')
+                ->select(['user_id', 'slug', 'title', 'excerpt'])
+                ->paginate(),
+            'leaderBoard' => User::take(10)->select(['name', 'profile_photo_path'])->get()
+        ]);
     }
 }
