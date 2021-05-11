@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\SlugOptions;
@@ -42,6 +43,20 @@ class Snippet extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    /**
+     * Scoped Query to include streetcred for the snippet:
+     * Snippet::withStreetcred->get()
+     * @param Builder $query
+     */
+    public function scopeWithStreetcred(Builder $query)
+    {
+        $query->leftJoinSub(
+            'SELECT snippet_id, SUM(streetcred) streetcred from streetcreds GROUP BY snippet_id',
+            'streetcreds',
+            'streetcreds.snippet_id', 'snippets.id'
+        );
     }
 
     /**
