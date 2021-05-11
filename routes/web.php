@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StreetcredController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -42,3 +43,6 @@ Route::get('about', function () {
         'aboutMarkdown' => (new League\CommonMark\CommonMarkConverter([], $environment))->convertToHtml(file_get_contents($aboutMarkdown)),
     ]);
 })->name('about');
+
+Route::post('/snippets/{snippet}/streetcred', [StreetcredController::class, 'store']);
+Route::delete('/snippets/{snippet}/streetcred', [StreetcredController::class, 'destroy']);

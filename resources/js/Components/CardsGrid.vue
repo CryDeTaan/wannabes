@@ -31,23 +31,22 @@
             <div>
                 <div class="-mt-px flex divide-x divide-gray-200 dark:divide-dark-500">
                     <div class="w-0 flex-1 flex">
-                        <a
-                            :href="snippet.slug"
+                        <button
+                            @click="toggleStreetcred(snippet.slug, snippet.gaveStreetcred)"
                             :class="snippet.gaveStreetcred
                                 ? 'text-primary-600 hover:text-primary-700'
                                 : 'text-gray-700 dark:text-dark-400 hover:text-gray-500 dark:hover:text-dark-300' "
-                            class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent rounded-bl-lg"
+                            class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent rounded-bl-lg focus:outline-none"
                         >
                             <PlusCircleIcon class="w-5 h-5" aria-hidden="true" />
                             <span class="ml-3">Street Cred</span>
-                        </a>
+                        </button>
                     </div>
                     <div class="-ml-px w-0 flex-1 flex">
                         <div
                             class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 dark:text-dark-400 font-medium border border-transparent rounded-br-lg"
                         >
                             <FireIcon class="w-5 h-5 text-gray-400" aria-hidden="true" />
-                            <!-- TODO: Add dynamic snippet likes -->
                             <span class="ml-3">{{ snippet.streetcred ? snippet.streetcred : 0}}</span>
                         </div>
                     </div>
@@ -58,6 +57,8 @@
 </template>
 
 <script>
+import { Inertia } from '@inertiajs/inertia'
+
 import { PlusCircleIcon } from '@heroicons/vue/outline'
 import { FireIcon } from '@heroicons/vue/solid'
 import UserBlock from "@/Components/UserBlock";
@@ -66,6 +67,7 @@ export default {
     name: "CardsGrid",
 
     components: {
+        Inertia,
         UserBlock,
         PlusCircleIcon,
         FireIcon,
@@ -77,8 +79,24 @@ export default {
 
     setup(props) {
         const snippets = props.snippets
+
+        const toggleStreetcred = (slug, deleteStreetcred) => {
+            if (deleteStreetcred) {
+                Inertia.delete(`/snippets/${slug}/streetcred`, {
+                    preserveState: false,
+                    preserveScroll: true
+                })
+            } else {
+                Inertia.post(`/snippets/${slug}/streetcred`, {}, {
+                    preserveState: false,
+                    preserveScroll: true
+                })
+            }
+        }
+
         return {
-            snippets
+            snippets,
+            toggleStreetcred
         }
     },
 }
