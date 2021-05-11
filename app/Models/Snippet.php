@@ -51,4 +51,12 @@ class Snippet extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the user who gave streetcred to snippet.
+     */
+    public function streetcred()
+    {
+        return $this->hasMany(StreetCred::class);
+    }
 }
