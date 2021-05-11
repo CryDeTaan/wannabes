@@ -75,6 +75,19 @@ class Snippet extends Model
     }
 
     /**
+     * Check if a user gave a specific snippet some streetcred
+     * @param User $user
+     * @return bool
+     */
+    public function gotStreetcredFrom(User $user)
+    {
+        return (bool)$user->streetcred
+            ->where('snippet_id', $this->id)
+            ->where('streetcred', 1)
+            ->count();
+    }
+
+    /**
      * Get the user who gave streetcred to snippet.
      */
     public function streetcred()
