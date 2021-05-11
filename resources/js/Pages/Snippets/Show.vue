@@ -41,6 +41,10 @@
                         </div>
                     </div>
                     <div class="flex items-center my-2">
+                        <button v-if="can_edit" type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white dark:text-dark-200 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500">
+                            <PencilAltIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+                            Edit
+                        </button>
                         <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white dark:text-dark-200 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500">
                             <PlusCircleIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
                             Street Cred
@@ -92,7 +96,11 @@
                     </div>
                 </div>
                 <div>
-                    <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white dark:text-dark-200 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500">
+                    <button v-if="can_edit" type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white dark:text-dark-200 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500">
+                        <PencilAltIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+                        Edit
+                    </button>
+                    <button v-else type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white dark:text-dark-200 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500">
                         <PlusCircleIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
                         Street Cred
                     </button>
@@ -105,11 +113,13 @@
 </template>
 
 <script>
+import { computed } from "vue";
+import { usePage } from '@inertiajs/inertia-vue3'
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-dark.css';
 import AppLayout from "@/Layouts/AppLayout";
 import UserBlock from "@/Components/UserBlock";
-import {CalendarIcon, PlusCircleIcon} from '@heroicons/vue/outline'
+import {CalendarIcon, PlusCircleIcon, PencilAltIcon} from '@heroicons/vue/outline'
 import JetButton from '@/Jetstream/Button'
 
 
@@ -143,6 +153,7 @@ export default {
         UserBlock,
         CalendarIcon,
         PlusCircleIcon,
+        PencilAltIcon,
         JetButton
     },
 
@@ -153,7 +164,13 @@ export default {
     setup(props) {
         const snippet = props.snippet
 
+        const can_edit = computed(() =>
+            usePage().props.value.user &&
+            snippet.user.name === usePage().props.value.user.name
+        )
+
         return {
+            can_edit,
             snippet
         }
     },
