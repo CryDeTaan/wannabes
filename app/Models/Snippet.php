@@ -24,6 +24,13 @@ class Snippet extends Model
     ];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['gaveStreetcred'];
+
+    /**
      * Options for generating a slug for this model.
      */
     public function getSlugOptions() : SlugOptions

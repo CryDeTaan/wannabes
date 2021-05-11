@@ -23,6 +23,16 @@ trait Streetcredable
     }
 
     /**
+     * Determine if the user gave the snippet streetcred.
+     *
+     * @return bool
+     */
+    public function getGaveStreetcredAttribute(): bool
+    {
+        return $this->gotStreetcredFromUser();
+    }
+
+    /**
      * Add streetcred to a snippet from user
      */
     public function giveStreetcred()
@@ -46,15 +56,16 @@ trait Streetcredable
 
     /**
      * Check if a user gave a specific snippet some streetcred
-     * @param User $user
      * @return bool
      */
-    public function gotStreetcredFrom(User $user)
+    public function gotStreetcredFromUser()
     {
-        return (bool)$user->streetcred
-            ->where('snippet_id', $this->id)
-            ->where('streetcred', 1)
-            ->count();
+        if ($user = auth()->user()) {
+            return (bool)$user->streetcred
+                ->firstWhere('snippet_id', $this->id);
+        }
+
+        return false;
     }
 
     /**
