@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\SlugOptions;
@@ -10,7 +9,7 @@ use Spatie\Sluggable\HasSlug;
 
 class Snippet extends Model
 {
-    use HasFactory, HasSlug;
+    use Streetcredable, HasFactory, HasSlug;
 
     /**
      * The attributes that are mass assignable.
@@ -46,42 +45,6 @@ class Snippet extends Model
     }
 
     /**
-     * Scoped Query to include streetcred for the snippet:
-     * Snippet::withStreetcred->get()
-     * @param Builder $query
-     */
-    public function scopeWithStreetcred(Builder $query)
-    {
-        $query->leftJoinSub(
-            'SELECT snippet_id, SUM(streetcred) streetcred from streetcreds GROUP BY snippet_id',
-            'streetcreds',
-            'streetcreds.snippet_id', 'snippets.id'
-        );
-    }
-
-    /**
-     * Add streetcred to a snippet from user
-     */
-    public function giveStreetcred()
-    {
-        $this->streetcred()->updateOrCreate([
-            'user_id' => auth()->id(),
-        ], [
-            'streetcred' => 1
-        ]);
-    }
-
-    /**
-     * Remove streetcred from a snippet from user
-     */
-    public function removeStreetcred()
-    {
-        $this->streetcred()->where(
-            'user_id', auth()->id()
-        )->delete();
-    }
-
-    /**
      * Get the post that owns the comment.
      */
     public function user()
@@ -89,24 +52,4 @@ class Snippet extends Model
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * Check if a user gave a specific snippet some streetcred
-     * @param User $user
-     * @return bool
-     */
-    public function gotStreetcredFrom(User $user)
-    {
-        return (bool)$user->streetcred
-            ->where('snippet_id', $this->id)
-            ->where('streetcred', 1)
-            ->count();
-    }
-
-    /**
-     * Get the user who gave streetcred to snippet.
-     */
-    public function streetcred()
-    {
-        return $this->hasMany(StreetCred::class);
-    }
 }
