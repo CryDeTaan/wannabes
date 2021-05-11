@@ -33,9 +33,12 @@
                     <div class="w-0 flex-1 flex">
                         <a
                             :href="snippet.slug"
-                            class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 dark:text-dark-400 font-medium border border-transparent rounded-bl-lg hover:text-gray-500 dark:hover:text-dark-300"
+                            :class="snippet.gaveStreetcred
+                                ? 'text-primary-600 hover:text-primary-700'
+                                : 'text-gray-700 dark:text-dark-400 hover:text-gray-500 dark:hover:text-dark-300' "
+                            class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent rounded-bl-lg"
                         >
-                            <PlusCircleIcon class="w-5 h-5 text-gray-400" aria-hidden="true" />
+                            <PlusCircleIcon class="w-5 h-5" aria-hidden="true" />
                             <span class="ml-3">Street Cred</span>
                         </a>
                     </div>
