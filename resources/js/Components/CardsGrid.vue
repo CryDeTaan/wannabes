@@ -45,7 +45,7 @@
                         >
                             <FireIcon class="w-5 h-5 text-gray-400" aria-hidden="true" />
                             <!-- TODO: Add dynamic snippet likes -->
-                            <span class="ml-3">324</span>
+                            <span class="ml-3">{{ snippet.streetcred ? snippet.streetcred : 0}}</span>
                         </div>
                     </div>
                 </div>
