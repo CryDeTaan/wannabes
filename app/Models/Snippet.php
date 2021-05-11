@@ -45,6 +45,28 @@ class Snippet extends Model
     }
 
     /**
+     * Add streetcred to a snippet from user
+     */
+    public function giveStreetcred()
+    {
+        $this->streetcred()->updateOrCreate([
+            'user_id' => auth()->id(),
+        ], [
+            'streetcred' => 1
+        ]);
+    }
+
+    /**
+     * Remove streetcred from a snippet from user
+     */
+    public function removeStreetcred()
+    {
+        $this->streetcred()->where(
+            'user_id', auth()->id()
+        )->delete();
+    }
+
+    /**
      * Get the post that owns the comment.
      */
     public function user()
