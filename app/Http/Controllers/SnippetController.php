@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Snippet;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use League\CommonMark\CommonMarkConverter;
+use League\CommonMark\Environment;
+use League\CommonMark\Extension\GithubFlavoredMarkdownExtension;
 
 class SnippetController extends Controller
 {
@@ -42,11 +46,26 @@ class SnippetController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Snippet  $snippet
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function show(Snippet $snippet)
     {
-        //
+        // Convert markdown to HTML
+        $environment = Environment::createCommonMarkEnvironment();
+        $environment->addExtension(new GithubFlavoredMarkdownExtension());
+        $markdown = (new CommonMarkConverter([], $environment))->convertToHtml($snippet->markdown);
+
+        return Inertia::render('Snippets/Show', [
+            'snippet' => [
+                'slug'      => $snippet->slug,
+                'title'      => $snippet->title,
+                'excerpt'    => $snippet->excerpt,
+                'created_at' => $snippet->created_at->toFormattedDateString(),
+                'markdown'   => $markdown,
+                'streetcred' => $snippet->streetcred->count(),
+                'user'       => $snippet->user->only('name', 'profile_photo_url'),
+            ],
+        ]);
     }
 
     /**

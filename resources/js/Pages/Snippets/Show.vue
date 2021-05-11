@@ -9,9 +9,7 @@
                             <span class="text-primary-600 text-sm font-medium">{{ snippet.title }}</span>
                         </div>
                         <div class="items-center">
-                            <span
-                                class="text-gray-900 dark:text-dark-400 text-sm font-medium"
-                            >{{ snippet.description }}</span>
+                            <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">{{ snippet.excerpt }}</span>
                         </div>
                     </div>
 
@@ -36,7 +34,7 @@
                             <CalendarIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
                             <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">Drafting on <time
                                 datetime="2020-12-02"
-                            >Dec 2, 2020</time> by:</span>
+                            >{{ snippet.created_at}}</time> by:</span>
                         </div>
                         <div class="sm:w-40">
                             <user-block :user="snippet.user" />
@@ -56,7 +54,7 @@
         <main class="md:col-span-12 lg:col-span-9 lg:border-r lg:border-neutral-200 lg:dark:border-dark-500">
             <div
                 class="max-w-3xl mx-auto px-6 md:max-w-4xl md:px-8 prose dark:prose-dark"
-                v-html="markdown"
+                v-html="snippet.markdown"
             ></div>
         </main>
 
@@ -68,14 +66,14 @@
                         <span class="text-primary-600 text-sm font-medium">{{ snippet.title }}</span>
                     </div>
                     <div class="flex items-center space-x-2">
-                        <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">{{ snippet.description }}</span>
+                        <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">{{ snippet.excerpt }}</span>
                     </div>
                 </div>
                 <div class="mt-6 border-t border-b border-gray-200 dark:border-dark-500 py-7 space-y-8">
                     <div>
                         <div class="flex items-center space-x-2">
                             <CalendarIcon class="h-6 w-6 text-gray-400" aria-hidden="true" />
-                            <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">Created on <time datetime="2020-12-02">Dec 2, 2020</time> by:</span>
+                            <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">Created on <time datetime="2020-12-02">{{ snippet.created_at}}</time> by:</span>
                         </div>
                         <user-block :user="snippet.user" />
                     </div>
@@ -149,10 +147,12 @@ export default {
     },
 
     props: {
-        markdown: String,
+        snippet: Object,
     },
 
-    setup() {
+    setup(props) {
+        const snippet = props.snippet
+
         return {
             snippet
         }

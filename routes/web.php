@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SnippetController;
 use App\Http\Controllers\StreetcredController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -18,19 +19,9 @@ use Inertia\Inertia;
 
 Route::get('/', HomeController::class)->name('home');
 
+Route::resource('snippets', SnippetController::class);
+
 Route::get('snippets', fn() => Inertia::render('Snippets/Create'));
-
-Route::get('snippets/1', function () {
-
-    $snippetFile = Laravel\Jetstream\Jetstream::localizedMarkdownPath('snippet.md');
-
-    $environment = League\CommonMark\Environment::createCommonMarkEnvironment();
-    $environment->addExtension(new League\CommonMark\Extension\GithubFlavoredMarkdownExtension());
-
-    return Inertia::render('Snippets/Show', [
-        'markdown' => (new League\CommonMark\CommonMarkConverter([], $environment))->convertToHtml(file_get_contents($snippetFile)),
-    ]);
-});
 
 Route::get('about', function () {
 
