@@ -6,9 +6,9 @@
         >
 
             <div class="flex-1 flex flex-col p-4">
-                <a href="">
+                <inertia-link :href="route('snippets.show', snippet.slug)">
                     <h3 class="text-gray-900 dark:text-dark-300 text-sm font-medium">{{ snippet.title }}</h3>
-                </a>
+                </inertia-link>
                 <dl class="mt-1 flex-grow flex flex-col justify-between">
                     <dt class="sr-only">Excerpt</dt>
                     <dd class="text-gray-500 dark:text-dark-400 text-sm">{{ snippet.excerpt }}</dd>
