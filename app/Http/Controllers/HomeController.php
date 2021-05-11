@@ -18,8 +18,10 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
         return Inertia::render('Home',[
-            'snippets' => Snippet::with('user:id,name,profile_photo_path')
-                ->select(['user_id', 'slug', 'title', 'excerpt'])
+            'snippets' => Snippet::withStreetcred()
+                ->orderBy('streetcred', 'DESC')
+                ->with('user:id,name,profile_photo_path')
+                ->select(['user_id', 'slug', 'title', 'excerpt', 'streetcred'])
                 ->paginate(),
             'leaderBoard' => User::take(10)->select(['name', 'profile_photo_path'])->get()
         ]);
