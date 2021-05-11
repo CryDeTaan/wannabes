@@ -122,28 +122,6 @@ import UserBlock from "@/Components/UserBlock";
 import {CalendarIcon, PlusCircleIcon, PencilAltIcon} from '@heroicons/vue/outline'
 import JetButton from '@/Jetstream/Button'
 
-
-const snippet = {
-        slug: 'invoke-mimikatz',
-        title: 'Invoke-Mimikatz',
-        description: 'Dump Credentials and Secretes',
-        tags: [
-            {
-                'name' : 'PowerShell',
-                'color' : 'blue'
-            }
-        ],
-        likes: '192',
-        user: {
-            handle: 'CryDeTaan',
-            streetCred: 123,
-            imageUrl:
-                'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        },
-        imageUrl:
-            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-    }
-
 export default {
     name: "Show",
     layout: AppLayout,
