@@ -1,7 +1,7 @@
 <template>
     <div class="max-w-3xl mx-auto px-6 md:max-w-7xl md:px-8 md:grid md:grid-cols-12 lg:gap-8">
         <aside class="sticky top-0 z-30 lg:hidden col-span-12">
-            <div class="pb-4 w-full max-w-3xl mx-auto px-6 md:max-w-4xl md:px-8 bg-dark-800">
+            <div class="pb-4 w-full max-w-3xl mx-auto px-6 md:max-w-4xl md:px-8">
                 <h2 class="sr-only">Details</h2>
                 <div class="flex justify-between w-full pb-2 border-b border-neutral-200 dark:border-dark-500">
                     <div class="space-y-2">
