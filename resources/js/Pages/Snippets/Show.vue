@@ -65,13 +65,21 @@
         <aside class="hidden lg:block lg:col-span-3">
             <div class="sticky top-6 space-y-4">
                 <h2 class="sr-only">Details</h2>
-                <div class="space-y-5">
-                    <div class="flex items-center space-x-2">
-                        <span class="text-primary-600 text-sm font-medium">{{ snippet.title }}</span>
+                <div class="flex">
+                    <div class="flex-1 space-y-5">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-primary-600 text-sm font-medium">{{ snippet.title }}</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">{{
+                                    snippet.excerpt
+                                }}</span>
+                        </div>
                     </div>
-                    <div class="flex items-center space-x-2">
-                        <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">{{ snippet.excerpt }}</span>
-                    </div>
+                    <span class="flex items-center">
+                        <FireIcon class="w-5 h-5 text-gray-400 dark:text-dark-500" aria-hidden="true" />
+                        <span class="ml-2 text-gray-700 dark:text-dark-400">{{ snippet.streetcred }}</span>
+                    </span>
                 </div>
                 <div class="mt-6 border-t border-b border-gray-200 dark:border-dark-500 py-7 space-y-8">
                     <div>
@@ -119,7 +127,8 @@ import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-dark.css';
 import AppLayout from "@/Layouts/AppLayout";
 import UserBlock from "@/Components/UserBlock";
-import {CalendarIcon, PlusCircleIcon, PencilAltIcon} from '@heroicons/vue/outline'
+import { CalendarIcon, PlusCircleIcon, PencilAltIcon } from '@heroicons/vue/outline'
+import { FireIcon } from '@heroicons/vue/solid'
 import JetButton from '@/Jetstream/Button'
 
 export default {
@@ -132,6 +141,7 @@ export default {
         CalendarIcon,
         PlusCircleIcon,
         PencilAltIcon,
+        FireIcon,
         JetButton
     },
 
