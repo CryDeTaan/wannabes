@@ -76,7 +76,7 @@ class SnippetController extends Controller
      */
     public function edit(Snippet $snippet)
     {
-        //
+        dd($snippet);
     }
 
     /**

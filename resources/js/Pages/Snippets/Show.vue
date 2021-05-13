@@ -104,10 +104,10 @@
                     </div>
                 </div>
                 <div>
-                    <button v-if="can_edit" type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white dark:text-dark-200 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500">
+                    <inertia-link v-if="can_edit" :href="route('snippets.edit', snippet.slug)" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white dark:text-dark-200 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500">
                         <PencilAltIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
                         Edit
-                    </button>
+                    </inertia-link>
                     <button v-else type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white dark:text-dark-200 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500">
                         <PlusCircleIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
                         Street Cred
