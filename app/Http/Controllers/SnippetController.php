@@ -72,11 +72,22 @@ class SnippetController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Snippet  $snippet
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function edit(Snippet $snippet)
     {
-        dd($snippet);
+
+        return Inertia::render('Snippets/Edit', [
+            'snippet' => [
+                'slug'      => $snippet->slug,
+                'title'      => $snippet->title,
+                'excerpt'    => $snippet->excerpt,
+                'created_at' => $snippet->created_at->toFormattedDateString(),
+                'markdown'   => $snippet->markdown,
+                'streetcred' => $snippet->streetcred->count(),
+                'user'       => $snippet->user->only('name', 'profile_photo_url'),
+            ],
+        ]);
     }
 
     /**
