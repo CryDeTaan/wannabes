@@ -105,7 +105,7 @@
                             </label>
                             <div class="mt-1">
                                     <textarea
-                                        id="snippet" name="snippet" rows="45"
+                                        id="snippet" name="snippet" rows="30"
                                         class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-lg border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md dark:text-dark-300 dark:focus:text-neutral-300"
                                     />
                             </div>
