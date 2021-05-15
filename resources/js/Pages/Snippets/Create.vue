@@ -7,10 +7,10 @@
                 <div class="flex justify-between w-full pb-2 border-b border-neutral-200 dark:border-dark-500">
                     <div class="space-y-2">
                         <div class="items-center">
-                            <span class="text-primary-600 text-sm font-medium">V-model the title</span>
+                            <span class="text-primary-600 text-sm font-medium">{{ form.title }}</span>
                         </div>
                         <div class="items-center">
-                            <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">V-model the description.</span>
+                            <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">{{ form.excerpt }}</span>
                         </div>
                     </div>
 
@@ -69,7 +69,7 @@
                             </label>
                             <div class="mt-1">
                                 <input
-                                    type="text" name="title" id="title"
+                                    type="text" name="title" id="title" v-model="form.title"
                                     class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md dark:text-dark-300 dark:focus:text-neutral-300"
                                 />
                             </div>
@@ -94,7 +94,7 @@
                             </label>
                             <div class="mt-1">
                                 <input
-                                    type="text" name="excerpt" id="excerpt"
+                                    type="text" name="excerpt" id="excerpt" v-model="form.excerpt"
                                     class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md dark:text-dark-300 dark:focus:text-neutral-300"
                                 />
                             </div>
@@ -105,7 +105,7 @@
                             </label>
                             <div class="mt-1">
                                     <textarea
-                                        id="snippet" name="snippet" rows="30"
+                                        id="snippet" name="snippet" rows="30" v-model="form.markdown"
                                         class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-lg border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md dark:text-dark-300 dark:focus:text-neutral-300"
                                     />
                             </div>
@@ -122,10 +122,10 @@
                 <h2 class="sr-only">Details</h2>
                 <div class="space-y-5">
                     <div class="flex items-center space-x-2">
-                        <span class="text-primary-600 text-sm font-medium">V-model the title</span>
+                        <span class="text-primary-600 text-sm font-medium">{{ form.title }}</span>
                     </div>
                     <div class="flex items-center space-x-2">
-                        <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">V-model the description.</span>
+                        <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">{{ form.excerpt }}</span>
                     </div>
                 </div>
                 <div class="mt-6 border-t border-b border-gray-200 dark:border-dark-500 py-7 space-y-8">
@@ -151,7 +151,7 @@
                     </div>
                 </div>
                 <div>
-                    <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white dark:text-dark-200 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500">
+                    <button @click="sumbitForm" type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white dark:text-dark-200 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500">
                         Save
                     </button>
                 </div>
@@ -162,6 +162,8 @@
 </template>
 
 <script>
+import { reactive } from 'vue'
+import { useForm } from '@inertiajs/inertia-vue3'
 import AppLayout from "@/Layouts/AppLayout";
 import TagSelect from "@/Pages/Snippets/TagSelect";
 import UserBlock from "@/Components/UserBlock";
@@ -205,7 +207,22 @@ export default {
     },
 
     setup() {
+        const form = useForm({
+            title: null,
+            excerpt: null,
+            markdown: null,
+        })
+
+        function sumbitForm(){
+            form.post(route('snippets.store'), {
+                preserveScroll: true,
+                // TODO: Catch errors
+            })
+        }
+
         return {
+            sumbitForm,
+            form,
             user,
             tags,
             selectedTags

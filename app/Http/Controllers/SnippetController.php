@@ -35,11 +35,22 @@ class SnippetController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+
+        $validatedAttributes = $request->validate([
+            'title'      => ['required', 'string', 'max:30'],
+            'excerpt'     => ['required', 'string', 'max:35'],
+            'markdown'     => ['required', 'string', 'max:4094'],
+        ]);
+
+        $snippet = auth()->user()->snippets()->create($validatedAttributes);
+
+        return redirect(
+            route('snippets.show', $snippet->slug)
+        )->with('success', 'Snippet created.');
     }
 
     /**
