@@ -21,8 +21,6 @@ Route::get('/', HomeController::class)->name('home');
 
 Route::resource('snippets', SnippetController::class);
 
-Route::get('snippets', fn() => Inertia::render('Snippets/Create'));
-
 Route::get('about', function () {
 
     $aboutMarkdown = Laravel\Jetstream\Jetstream::localizedMarkdownPath('about.md');
