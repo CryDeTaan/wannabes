@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Sluggable\HasSlug;
 
+/**
+ * @mixin IdeHelperSnippet
+ */
 class Snippet extends Model
 {
     use Streetcredable, HasFactory, HasSlug;
