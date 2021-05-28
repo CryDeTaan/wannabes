@@ -64,7 +64,10 @@ class SnippetController extends Controller
         // Convert markdown to HTML
         $environment = Environment::createCommonMarkEnvironment();
         $environment->addExtension(new GithubFlavoredMarkdownExtension());
-        $markdown = (new CommonMarkConverter([], $environment))->convertToHtml($snippet->markdown);
+        $markdown = (new CommonMarkConverter([
+            'html_input' => 'escape',
+            'allow_unsafe_links' => false
+        ], $environment))->convertToHtml($snippet->markdown);
 
         return Inertia::render('Snippets/Show', [
             'snippet' => [
