@@ -188,11 +188,13 @@ const tags = [
 const selectedTags = [
         {
             'name' : 'PowerShell',
-            'color' : 'blue'
+            'color' : 'blue',
+            'tw': 'text-blue-800 bg-blue-100 dark:text-blue-200 dark:bg-blue-800'
         },
         {
             'name' : 'SSH',
-            'color' : 'red'
+            'color' : 'red',
+            'tw': 'text-red-800 bg-red-100 dark:text-red-200 dark:bg-red-800'
         }
 ]
 export default {
