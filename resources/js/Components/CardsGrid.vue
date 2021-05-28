@@ -11,7 +11,9 @@
                 </inertia-link>
                 <dl class="mt-1 flex-grow flex flex-col justify-between">
                     <dt class="sr-only">Excerpt</dt>
-                    <dd class="text-gray-500 dark:text-dark-400 text-sm">{{ snippet.excerpt }}</dd>
+                    <inertia-link :href="route('snippets.show', snippet.slug)">
+                        <dd class="text-gray-500 dark:text-dark-400 text-sm">{{ snippet.excerpt }}</dd>
+                    </inertia-link>
                     <dt class="sr-only">Tags</dt>
                     <dd class="flex flex-wrap justify-center place-content-start mt-3">
                         <span v-for="tag in snippet.tags" :key="tag.name"
