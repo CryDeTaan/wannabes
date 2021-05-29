@@ -18,12 +18,10 @@
                         <p class="ml-1 inline-block align-middle text-sm font-medium text-neutral-500">Tagged:</p>
                         <ul class="leading-8">
                             <li class="inline">
-                                <a href="#" class="flex flex-wrap place-content-start">
-                                    <span v-for="tag in selectedTags" :key="tag.name"
-                                          class="m-1 px-2 py-1 text-xs font-semiabold rounded-full"
-                                          :class="`text-${tag.color}-800 bg-${tag.color}-100 dark:text-${tag.color}-200 dark:bg-${tag.color}-800`"
-                                    >{{ tag.name }}</span>
-                                </a>
+                                <base-tag-close
+                                    v-for="tag in form.tags" :key="tag" :tag="tag"
+                                    @remove-tag="removeTag"
+                                />
                             </li>
                         </ul>
                     </div>
@@ -79,10 +77,10 @@
                             <!--<tag-select />-->
                             <div>
                                 <label for="tags" class="block text-sm font-medium text-gray-700 dark:text-dark-400">Tags</label>
-                                <select id="tags" name="tags"
+                                <select id="tags" name="tags" @change="addTag"
                                         class="mt-1 block w-full pl-3 pr-10 py-2 shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md dark:text-dark-300 dark:focus:text-neutral-300">
-                                    <option selected disabled>Select tags...</option>
-                                    <option v-for="tag in tags" :key="tag.name"
+                                    <option selected>Select tags...</option>
+                                    <option v-for="tag in tags" :key="tag.slug" :value="tag.slug"
                                     >{{ tag.name }}</option>
                                 </select>
                             </div>
@@ -140,12 +138,12 @@
                         <h2 class="text-sm font-medium text-neutral-500">Tagged:</h2>
                         <ul class="mt-2 leading-8">
                             <li class="inline">
-                                <a href="#" class="flex flex-wrap place-content-start mt-3">
-                                    <span v-for="tag in selectedTags" :key="tag.name"
-                                          class="m-1 px-2 py-1 text-xs font-semiabold rounded-full"
-                                          :class="`text-${tag.color}-800 bg-${tag.color}-100 dark:text-${tag.color}-200 dark:bg-${tag.color}-800`"
-                                    >{{ tag.name }}</span>
-                                </a>
+                                <div class="flex flex-wrap place-content-start">
+                                    <base-tag-close
+                                        v-for="tag in form.tags" :key="tag" :tag="tag"
+                                        @remove-tag="removeTag"
+                                    />
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -169,6 +167,7 @@ import TagSelect from "@/Pages/Snippets/TagSelect";
 import UserBlock from "@/Components/UserBlock";
 import { CalendarIcon } from '@heroicons/vue/outline'
 import JetButton from '@/Jetstream/Button'
+import BaseTagClose from "@/Components/BaseTagClose";
 
 const user = {
     handle: 'CryDeTaan',
@@ -177,31 +176,20 @@ const user = {
         'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 
-const tags = [
-    {id: 1, name: 'PowerShell'},
-    {id: 2, name: 'SSH'},
-    {id: 3, name: 'Lateral Movement'},
-    {id: 4, name: 'C2'},
-    {id: 5, name: 'Windows'},
+const propTags = [
+    {slug: 'powershell', name: 'PowerShell', color: 'blue'},
+    {slug: 'ssh', name: 'SSH', color: 'red'},
+    {slug: 'lateral-movement', name: 'Lateral Movement', color: 'green'},
+    {slug: 'c2', name: 'C2', color: 'pink'},
+    {slug: 'windows', name: 'Windows', color: 'yellow'},
 ]
 
-const selectedTags = [
-        {
-            'name' : 'PowerShell',
-            'color' : 'blue',
-            'tw': 'text-blue-800 bg-blue-100 dark:text-blue-200 dark:bg-blue-800'
-        },
-        {
-            'name' : 'SSH',
-            'color' : 'red',
-            'tw': 'text-red-800 bg-red-100 dark:text-red-200 dark:bg-red-800'
-        }
-]
 export default {
     name: "Create",
     layout: AppLayout,
 
     components: {
+        BaseTagClose,
         UserBlock,
         TagSelect,
         CalendarIcon,
@@ -213,6 +201,7 @@ export default {
             title: null,
             excerpt: null,
             markdown: null,
+            tags: [],
         })
 
         function sumbitForm(){
@@ -222,7 +211,26 @@ export default {
             })
         }
 
+        const tags = reactive(propTags);
+        const selectedTags = reactive([])
+
+        function addTag(event) {
+            const index = tags.findIndex((tag) => tag.slug === event.target.value);
+            const selectedTag = tags.splice(index, 1);
+
+            form.tags.push(selectedTag[0])
+        }
+
+        function removeTag(slug) {
+            const index = form.tags.findIndex((tag) => tag.slug === slug);
+            const selectedTag = form.tags.splice(index, 1);
+
+            tags.push(selectedTag[0])
+        }
+
         return {
+            addTag,
+            removeTag,
             sumbitForm,
             form,
             user,
