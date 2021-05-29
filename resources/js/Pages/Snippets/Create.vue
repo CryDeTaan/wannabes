@@ -149,7 +149,7 @@
                     </div>
                 </div>
                 <div>
-                    <button @click="sumbitForm" type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white dark:text-dark-200 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500">
+                    <button @click="submitForm" type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white dark:text-dark-200 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500">
                         Save
                     </button>
                 </div>
@@ -204,7 +204,7 @@ export default {
             tags: [],
         })
 
-        function sumbitForm(){
+        function submitForm(){
             form.post(route('snippets.store'), {
                 preserveScroll: true,
                 // TODO: Catch errors
@@ -231,7 +231,7 @@ export default {
         return {
             addTag,
             removeTag,
-            sumbitForm,
+            submitForm,
             form,
             user,
             tags,
