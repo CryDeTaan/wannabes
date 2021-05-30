@@ -62,4 +62,12 @@ class Snippet extends Model
         return $this->belongsTo(User::class);
     }
 
+   /**
+    * Get all the tag associated with the snippet
+   */
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+   }
+
 }
