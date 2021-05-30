@@ -33,7 +33,7 @@
                             <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">Drafting on <time datetime="2020-12-02">Dec 2, 2020</time> by:</span>
                         </div>
                         <div class="sm:w-40">
-                            <user-block :user="user" />
+                            <user-block :user="$page.props.user" />
                         </div>
                     </div>
                     <div class="flex items-center my-2">
@@ -132,7 +132,7 @@
                             <CalendarIcon class="h-6 w-6 text-gray-400" aria-hidden="true" />
                             <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">Drafting on <time datetime="2020-12-02">Dec 2, 2020</time> by:</span>
                         </div>
-                        <user-block :user="user" />
+                        <user-block :user="$page.props.user" />
                     </div>
                     <div>
                         <h2 class="text-sm font-medium text-neutral-500">Tagged:</h2>
@@ -168,13 +168,6 @@ import UserBlock from "@/Components/UserBlock";
 import { CalendarIcon } from '@heroicons/vue/outline'
 import JetButton from '@/Jetstream/Button'
 import BaseTagClose from "@/Components/BaseTagClose";
-
-const user = {
-    handle: 'CryDeTaan',
-    streetCred: 123,
-    imageUrl:
-        'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
 
 export default {
     name: "Create",
@@ -233,7 +226,6 @@ export default {
             removeTag,
             submitForm,
             form,
-            user,
             tags,
             selectedTags
         }
