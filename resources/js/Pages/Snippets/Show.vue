@@ -17,13 +17,9 @@
                         <p class="ml-1 inline-block align-middle text-sm font-medium text-neutral-500">Tagged:</p>
                         <ul class="leading-8">
                             <li class="inline">
-                                <a href="#" class="flex flex-wrap place-content-start">
-                                     <span
-                                         v-for="tag in snippet.tags" :key="tag.name"
-                                         class="m-1 px-2 py-1 text-xs font-semiabold rounded-full"
-                                         :class="`text-${tag.color}-800 bg-${tag.color}-100 dark:text-${tag.color}-200 dark:bg-${tag.color}-800`"
-                                     >{{ tag.name }}</span>
-                                </a>
+                                <base-tag
+                                    v-for="tag in snippet.tags" :key="tag" :tag="tag"
+                                />
                             </li>
                         </ul>
                     </div>
@@ -93,11 +89,9 @@
                         <h2 class="text-sm font-medium text-neutral-500">Tagged:</h2>
                         <ul class="mt-2 leading-8">
                             <li class="inline">
-                                <a href="#" class="flex flex-wrap place-content-start mt-3">
-                                    <base-tag
-                                        v-for="tag in snippet.tags" :key="tag" :tag="tag"
-                                    />
-                                </a>
+                                <base-tag
+                                    v-for="tag in snippet.tags" :key="tag" :tag="tag"
+                                />
                             </li>
                         </ul>
                     </div>
