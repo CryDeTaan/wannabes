@@ -39,14 +39,10 @@ class SnippetController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validateSnippet();
 
-        $validatedAttributes = $request->validate([
-            'title'      => ['required', 'string', 'max:30'],
-            'excerpt'     => ['required', 'string', 'max:35'],
-            'markdown'     => ['required', 'string', 'max:4094'],
-        ]);
-
-        $snippet = auth()->user()->snippets()->create($validatedAttributes);
+        $snippet = auth()->user()->snippets()->create(request(['title', 'excerpt', 'markdown']));
+        $snippet->tags()->attach(request('tags'));
 
         return redirect(
             route('snippets.show', $snippet->slug)
@@ -125,5 +121,15 @@ class SnippetController extends Controller
     public function destroy(Snippet $snippet)
     {
         //
+    }
+
+    protected function validateSnippet()
+    {
+        return request()->validate([
+            'title'     => ['required', 'string', 'max:30'],
+            'excerpt'   => ['required', 'string', 'max:35'],
+            'markdown'  => ['required', 'string', 'max:4094'],
+            'tags'      => ['exists:tags,id'],
+        ]);
     }
 }
