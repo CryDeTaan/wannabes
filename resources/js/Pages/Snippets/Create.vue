@@ -177,11 +177,11 @@ const user = {
 }
 
 const propTags = [
-    {slug: 'powershell', name: 'PowerShell', color: 'blue'},
-    {slug: 'ssh', name: 'SSH', color: 'red'},
-    {slug: 'lateral-movement', name: 'Lateral Movement', color: 'green'},
-    {slug: 'c2', name: 'C2', color: 'pink'},
-    {slug: 'windows', name: 'Windows', color: 'yellow'},
+    {id: 1, slug: 'powershell', name: 'PowerShell', color: 'blue'},
+    {id: 2, slug: 'ssh', name: 'SSH', color: 'red'},
+    {id: 3, slug: 'lateral-movement', name: 'Lateral Movement', color: 'green'},
+    {id: 4, slug: 'c2', name: 'C2', color: 'pink'},
+    {id: 5, slug: 'windows', name: 'Windows', color: 'yellow'},
 ]
 
 export default {
@@ -205,7 +205,12 @@ export default {
         })
 
         function submitForm(){
-            form.post(route('snippets.store'), {
+            form
+                .transform((data) => ({
+                    ...data,
+                    tags: data.tags.map(tag => tag.id),
+                }))
+                .post(route('snippets.store'), {
                 preserveScroll: true,
                 // TODO: Catch errors
             })
