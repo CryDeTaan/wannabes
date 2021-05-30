@@ -176,14 +176,6 @@ const user = {
         'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 
-const propTags = [
-    {id: 1, slug: 'powershell', name: 'PowerShell', color: 'blue'},
-    {id: 2, slug: 'ssh', name: 'SSH', color: 'red'},
-    {id: 3, slug: 'lateral-movement', name: 'Lateral Movement', color: 'green'},
-    {id: 4, slug: 'c2', name: 'C2', color: 'pink'},
-    {id: 5, slug: 'windows', name: 'Windows', color: 'yellow'},
-]
-
 export default {
     name: "Create",
     layout: AppLayout,
@@ -195,8 +187,11 @@ export default {
         CalendarIcon,
         JetButton
     },
+    props: {
+        tags: Object,
+    },
 
-    setup() {
+    setup(props) {
         const form = useForm({
             title: null,
             excerpt: null,
@@ -216,7 +211,7 @@ export default {
             })
         }
 
-        const tags = reactive(propTags);
+        const tags = reactive(props.tags);
         const selectedTags = reactive([])
 
         function addTag(event) {

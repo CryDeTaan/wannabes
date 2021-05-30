@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Snippet;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use League\CommonMark\CommonMarkConverter;
@@ -28,7 +29,9 @@ class SnippetController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Snippets/Create');
+        return Inertia::render('Snippets/Create', [
+            'tags' => Tag::all(['id', 'slug', 'name', 'color']),
+        ]);
     }
 
     /**
