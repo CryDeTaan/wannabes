@@ -73,6 +73,7 @@ class SnippetController extends Controller
                 'slug'      => $snippet->slug,
                 'title'      => $snippet->title,
                 'excerpt'    => $snippet->excerpt,
+                'tags'       => $snippet->tags,
                 'created_at' => $snippet->created_at->toFormattedDateString(),
                 'markdown'   => $markdown,
                 'streetcred' => $snippet->streetcred->count(),
