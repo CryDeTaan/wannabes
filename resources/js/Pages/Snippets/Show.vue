@@ -94,10 +94,9 @@
                         <ul class="mt-2 leading-8">
                             <li class="inline">
                                 <a href="#" class="flex flex-wrap place-content-start mt-3">
-                                    <span v-for="tag in snippet.tags" :key="tag.name"
-                                          class="m-1 px-2 py-1 text-xs font-semiabold rounded-full"
-                                          :class="`text-${tag.color}-800 bg-${tag.color}-100 dark:text-${tag.color}-200 dark:bg-${tag.color}-800`"
-                                    >{{ tag.name }}</span>
+                                    <base-tag
+                                        v-for="tag in snippet.tags" :key="tag" :tag="tag"
+                                    />
                                 </a>
                             </li>
                         </ul>
@@ -130,12 +129,14 @@ import UserBlock from "@/Components/UserBlock";
 import { CalendarIcon, PlusCircleIcon, PencilAltIcon } from '@heroicons/vue/outline'
 import { FireIcon } from '@heroicons/vue/solid'
 import JetButton from '@/Jetstream/Button'
+import BaseTag from "@/Components/BaseTag";
 
 export default {
     name: "Show",
     layout: AppLayout,
 
     components: {
+        BaseTag,
         hljs,
         UserBlock,
         CalendarIcon,
