@@ -188,7 +188,7 @@ const selectedTags = [
     }
 ]
 export default {
-    name: "Create",
+    name: "Edit",
     layout: AppLayout,
 
     components: {
