@@ -18,12 +18,10 @@
                         <p class="ml-1 inline-block align-middle text-sm font-medium text-neutral-500">Tagged:</p>
                         <ul class="leading-8">
                             <li class="inline">
-                                <a href="#" class="flex flex-wrap place-content-start">
-                                    <span v-for="tag in selectedTags" :key="tag.name"
-                                          class="m-1 px-2 py-1 text-xs font-semiabold rounded-full"
-                                          :class="`text-${tag.color}-800 bg-${tag.color}-100 dark:text-${tag.color}-200 dark:bg-${tag.color}-800`"
-                                    >{{ tag.name }}</span>
-                                </a>
+                                <base-tag-close
+                                    v-for="tag in selectedTags" :key="tag" :tag="tag"
+                                    @remove-tag="removeTag"
+                                />
                             </li>
                         </ul>
                     </div>
@@ -79,10 +77,10 @@
                             <!--<tag-select />-->
                             <div>
                                 <label for="tags" class="block text-sm font-medium text-gray-700 dark:text-dark-400">Tags</label>
-                                <select id="tags" name="tags"
+                                <select id="tags" name="tags" @change="addTag"
                                         class="mt-1 block w-full pl-3 pr-10 py-2 shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md dark:text-dark-300 dark:focus:text-neutral-300">
-                                    <option selected disabled>Select tags...</option>
-                                    <option v-for="tag in tags" :key="tag.name"
+                                    <option selected>Select tags...</option>
+                                    <option v-for="tag in availableTags" :key="tag.slug" :value="tag.slug"
                                     >{{ tag.name }}</option>
                                 </select>
                             </div>
@@ -140,12 +138,10 @@
                         <h2 class="text-sm font-medium text-neutral-500">Tagged:</h2>
                         <ul class="mt-2 leading-8">
                             <li class="inline">
-                                <a href="#" class="flex flex-wrap place-content-start mt-3">
-                                    <span v-for="tag in selectedTags" :key="tag.name"
-                                          class="m-1 px-2 py-1 text-xs font-semiabold rounded-full"
-                                          :class="`text-${tag.color}-800 bg-${tag.color}-100 dark:text-${tag.color}-200 dark:bg-${tag.color}-800`"
-                                    >{{ tag.name }}</span>
-                                </a>
+                                <base-tag-close
+                                    v-for="tag in selectedTags" :key="tag" :tag="tag"
+                                    @remove-tag="removeTag"
+                                />
                             </li>
                         </ul>
                     </div>
@@ -167,45 +163,54 @@ import TagSelect from "@/Pages/Snippets/TagSelect";
 import UserBlock from "@/Components/UserBlock";
 import { CalendarIcon } from '@heroicons/vue/outline'
 import JetButton from '@/Jetstream/Button'
-import {ref} from "vue";
+import {reactive, ref} from "vue";
+import BaseTagClose from "@/Components/BaseTagClose";
 
-const tags = [
-    {id: 1, name: 'PowerShell'},
-    {id: 2, name: 'SSH'},
-    {id: 3, name: 'Lateral Movement'},
-    {id: 4, name: 'C2'},
-    {id: 5, name: 'Windows'},
-]
-
-const selectedTags = [
-    {
-        'name' : 'PowerShell',
-        'color' : 'blue'
-    },
-    {
-        'name' : 'SSH',
-        'color' : 'red'
-    }
-]
 export default {
     name: "Edit",
     layout: AppLayout,
 
     components: {
+        BaseTagClose,
         UserBlock,
         TagSelect,
         CalendarIcon,
         JetButton
     },
 
-    props: ['snippet'],
+    props: {
+        snippet: Object,
+        allTags: Array,
+    },
 
     setup(props) {
-        const snippet =  ref(props.snippet)
+        const selectedTags = reactive(props.snippet.tags);
+
+        // Preparing available tags mean to remove already selected tags.
+        // https://stackoverflow.com/a/20690490/15658552
+        // ^^^ Reference "Removing multiple items (ECMAScript 7 code)" section
+        const selectedTagIds =  selectedTags.map(tag => tag.id);
+        const availableTags = reactive(
+            props.allTags.filter(tag => !selectedTagIds.includes(tag.id))
+        )
+
+        function removeTag(slug) {
+            const index = selectedTags.findIndex((tag) => tag.slug === slug);
+            const selectedTag = selectedTags.splice(index, 1);
+            availableTags.push(selectedTag[0])
+        }
+
+        function addTag(event) {
+            const index = availableTags.findIndex((tag) => tag.slug === event.target.value);
+            const selectedTag = availableTags.splice(index, 1);
+            selectedTags.push(selectedTag[0])
+        }
+
         return {
-            snippet,
-            tags,
-            selectedTags
+            availableTags,
+            selectedTags,
+            removeTag,
+            addTag,
         }
     }
 

@@ -96,11 +96,13 @@ class SnippetController extends Controller
                 'slug'      => $snippet->slug,
                 'title'      => $snippet->title,
                 'excerpt'    => $snippet->excerpt,
+                'tags'       => $snippet->tags,
                 'created_at' => $snippet->created_at->toFormattedDateString(),
                 'markdown'   => $snippet->markdown,
                 'streetcred' => $snippet->streetcred->count(),
                 'user'       => $snippet->user->only('name', 'profile_photo_url'),
             ],
+            'allTags' => Tag::all(['id', 'slug', 'name', 'color']),
         ]);
     }
 
