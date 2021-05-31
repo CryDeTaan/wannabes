@@ -80,8 +80,7 @@ export default {
         snippets: Object,
     },
 
-    setup(props) {
-        const snippets = props.snippets
+    setup() {
 
         const toggleStreetcred = (slug, deleteStreetcred) => {
             if (deleteStreetcred) {
@@ -98,7 +97,6 @@ export default {
         }
 
         return {
-            snippets,
             toggleStreetcred
         }
     },
