@@ -19,7 +19,7 @@
                         <ul class="leading-8">
                             <li class="inline">
                                 <base-tag-close
-                                    v-for="tag in selectedTags" :key="tag" :tag="tag"
+                                    v-for="tag in form.tags" :key="tag" :tag="tag"
                                     @remove-tag="removeTag"
                                 />
                             </li>
@@ -67,7 +67,7 @@
                             </label>
                             <div class="mt-1">
                                 <input
-                                    type="text" name="title" id="title" v-model="snippet.title"
+                                    type="text" name="title" id="title" v-model="form.title"
                                     class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md dark:text-dark-300 dark:focus:text-neutral-300"
                                 />
                             </div>
@@ -92,7 +92,7 @@
                             </label>
                             <div class="mt-1">
                                 <input
-                                    type="text" name="excerpt" id="excerpt" v-model="snippet.excerpt"
+                                    type="text" name="excerpt" id="excerpt" v-model="form.excerpt"
                                     class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md dark:text-dark-300 dark:focus:text-neutral-300"
                                 />
                             </div>
@@ -103,7 +103,7 @@
                             </label>
                             <div class="mt-1">
                                     <textarea
-                                        id="snippet" name="snippet" rows="30" v-model="snippet.markdown"
+                                        id="snippet" name="snippet" rows="30" v-model="form.markdown"
                                         class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-lg border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md dark:text-dark-300 dark:focus:text-neutral-300"
                                     />
                             </div>
@@ -139,7 +139,7 @@
                         <ul class="mt-2 leading-8">
                             <li class="inline">
                                 <base-tag-close
-                                    v-for="tag in selectedTags" :key="tag" :tag="tag"
+                                    v-for="tag in form.tags" :key="tag" :tag="tag"
                                     @remove-tag="removeTag"
                                 />
                             </li>
@@ -147,7 +147,7 @@
                     </div>
                 </div>
                 <div>
-                    <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white dark:text-dark-200 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500">
+                    <button @click="submitForm" type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white dark:text-dark-200 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500">
                         Save
                     </button>
                 </div>
@@ -165,6 +165,7 @@ import { CalendarIcon } from '@heroicons/vue/outline'
 import JetButton from '@/Jetstream/Button'
 import {reactive, ref} from "vue";
 import BaseTagClose from "@/Components/BaseTagClose";
+import {useForm} from "@inertiajs/inertia-vue3";
 
 export default {
     name: "Edit",
@@ -184,31 +185,50 @@ export default {
     },
 
     setup(props) {
-        const selectedTags = reactive(props.snippet.tags);
+
+        const form = useForm({
+            title: props.snippet.title,
+            excerpt: props.snippet.excerpt,
+            markdown: props.snippet.markdown,
+            tags: props.snippet.tags
+        })
+
+        function submitForm(){
+            form
+                .transform((data) => ({
+                    ...data,
+                    tags: data.tags.map(tag => tag.id),
+                }))
+                .put(route('snippets.update', props.snippet.slug), {
+                    preserveScroll: true,
+                    // TODO: Catch errors
+                })
+        }
 
         // Preparing available tags mean to remove already selected tags.
         // https://stackoverflow.com/a/20690490/15658552
         // ^^^ Reference "Removing multiple items (ECMAScript 7 code)" section
-        const selectedTagIds =  selectedTags.map(tag => tag.id);
+        const selectedTagIds =  form.tags.map(tag => tag.id);
         const availableTags = reactive(
             props.allTags.filter(tag => !selectedTagIds.includes(tag.id))
         )
 
         function removeTag(slug) {
-            const index = selectedTags.findIndex((tag) => tag.slug === slug);
-            const selectedTag = selectedTags.splice(index, 1);
+            const index = form.tags.findIndex((tag) => tag.slug === slug);
+            const selectedTag = form.tags.splice(index, 1);
             availableTags.push(selectedTag[0])
         }
 
         function addTag(event) {
             const index = availableTags.findIndex((tag) => tag.slug === event.target.value);
             const selectedTag = availableTags.splice(index, 1);
-            selectedTags.push(selectedTag[0])
+            form.tags.push(selectedTag[0])
         }
 
         return {
             availableTags,
-            selectedTags,
+            form,
+            submitForm,
             removeTag,
             addTag,
         }
