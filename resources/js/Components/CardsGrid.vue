@@ -16,10 +16,9 @@
                     </inertia-link>
                     <dt class="sr-only">Tags</dt>
                     <dd class="flex flex-wrap justify-center place-content-start mt-3">
-                        <span v-for="tag in snippet.tags" :key="tag.name"
-                              class="m-1 px-2 py-1 text-xs font-semiabold rounded-full"
-                              :class="`text-${tag.color}-800 bg-${tag.color}-100 dark:text-${tag.color}-200 dark:bg-${tag.color}-800`"
-                        >{{ tag.name }}</span>
+                        <base-tag-small
+                            v-for="tag in snippet.tags" :key="tag" :tag="tag"
+                        />
                     </dd>
                     <dt class="sr-only">Creator</dt>
                     <dd class="mt-4">
@@ -64,11 +63,13 @@ import { Inertia } from '@inertiajs/inertia'
 import { PlusCircleIcon } from '@heroicons/vue/outline'
 import { FireIcon } from '@heroicons/vue/solid'
 import UserBlock from "@/Components/UserBlock";
+import BaseTagSmall from "@/Components/BaseTagSmall";
 
 export default {
     name: "CardsGrid",
 
     components: {
+        BaseTagSmall,
         Inertia,
         UserBlock,
         PlusCircleIcon,
