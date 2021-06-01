@@ -94,7 +94,7 @@ class User extends Authenticatable
     /**
      * Get the snippets the user gave streetcred for.
      */
-    public function streetcred()
+    public function gaveStreetcred()
     {
         return $this->hasMany(Streetcred::class);
     }

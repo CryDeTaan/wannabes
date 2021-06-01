@@ -61,7 +61,7 @@ trait Streetcredable
     public function gotStreetcredFromUser()
     {
         if ($user = auth()->user()) {
-            return (bool)$user->streetcred
+            return (bool)$user->gaveStreetcred
                 ->firstWhere('snippet_id', $this->id);
         }
 
