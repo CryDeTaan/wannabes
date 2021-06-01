@@ -24,7 +24,10 @@ class HomeController extends Controller
                 ->with('tags:id,name,slug,color')
                 ->select(['id', 'user_id', 'slug', 'title', 'excerpt', 'streetcred'])
                 ->paginate(),
-            'leaderBoard' => User::take(10)->select(['name', 'profile_photo_path'])->get()
+            'leaderBoard' => User::all()
+                ->where('streetcred', '>', 0)
+                ->sortByDesc('streetcred')
+                ->take(10)
         ]);
     }
 }
