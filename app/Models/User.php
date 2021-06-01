@@ -54,12 +54,23 @@ class User extends Authenticatable
     ];
 
     /**
+     * Get the user's total streetcred.
+     *
+     * @return string
+     */
+    public function getStreetcredAttribute()
+    {
+        return $this->snippets()->withStreetcred()->whereNotNull('streetcred')->sum('streetcred') ;
+    }
+
+    /**
      * The accessors to append to the model's array form.
      *
      * @var array
      */
     protected $appends = [
         'profile_photo_url',
+        'streetcred'
     ];
 
     /**
