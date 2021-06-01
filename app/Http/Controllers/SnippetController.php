@@ -12,6 +12,12 @@ use League\CommonMark\Extension\GithubFlavoredMarkdownExtension;
 
 class SnippetController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Snippet::class, 'snippet');
+    }
+
     /**
      * Display a listing of the resource.
      *
