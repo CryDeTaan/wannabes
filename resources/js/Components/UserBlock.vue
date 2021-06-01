@@ -11,7 +11,7 @@
             <span class="flex items-center">
                 <FireIcon class="w-5 h-5 text-gray-400 dark:text-dark-500" aria-hidden="true" />
                 <!-- TODO: Add dynamic street cred -->
-                <span class="ml-2">123</span>
+                <span class="ml-2">{{ user.streetcred }}</span>
             </span>
         </a>
     </div>
