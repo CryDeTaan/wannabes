@@ -111,11 +111,18 @@ class SnippetController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Snippet  $snippet
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Snippet $snippet)
     {
-        //
+        $this->validateSnippet();
+
+        $snippet->update(request(['title', 'excerpt', 'markdown']));
+        $snippet->tags()->sync(request('tags'));
+
+        return redirect(
+            route('snippets.show', $snippet->slug)
+        )->with('success', 'Snippet created.');
     }
 
     /**
