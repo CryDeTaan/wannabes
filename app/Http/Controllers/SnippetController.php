@@ -55,6 +55,7 @@ class SnippetController extends Controller
 
         $snippet = auth()->user()->snippets()->create(request(['title', 'excerpt', 'markdown']));
         $snippet->tags()->attach(request('tags'));
+        $snippet->giveStreetcred();
 
         return redirect(
             route('snippets.show', $snippet->slug)
