@@ -87,7 +87,7 @@ class SnippetController extends Controller
                 'created_at' => $snippet->created_at->toFormattedDateString(),
                 'markdown'   => $markdown,
                 'streetcred' => $snippet->streetcred->count(),
-                'user'       => $snippet->user->only('name', 'profile_photo_url'),
+                'user'       => $snippet->user->only('name', 'profile_photo_url', 'streetcred'),
             ],
         ]);
     }
