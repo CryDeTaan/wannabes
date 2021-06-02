@@ -33,5 +33,7 @@ Route::get('about', function () {
     ]);
 })->name('about');
 
-Route::post('/snippets/{snippet}/streetcred', [StreetcredController::class, 'store']);
-Route::delete('/snippets/{snippet}/streetcred', [StreetcredController::class, 'destroy']);
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::delete('/snippets/{snippet}/streetcred', [StreetcredController::class, 'destroy']);
+    Route::post('/snippets/{snippet}/streetcred', [StreetcredController::class, 'store']);
+});
