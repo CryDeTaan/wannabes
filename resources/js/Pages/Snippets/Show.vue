@@ -97,14 +97,18 @@
                     </div>
                 </div>
                 <div>
-                    <inertia-link v-if="can_edit" :href="route('snippets.edit', snippet.slug)" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white dark:text-dark-200 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500">
+                    <base-button v-if="can_edit" class="w-full" as="link" :href="route('snippets.edit', snippet.slug)">
                         <PencilAltIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
                         Edit
-                    </inertia-link>
-                    <button v-else type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white dark:text-dark-200 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500">
+                    </base-button>
+                    <base-button v-else-if="snippet.gaveStreetcred" class="w-full" @click="toggleStreetcred"  secondary>
+                        <MinusCircleIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+                        Remove Street Cred
+                    </base-button>
+                    <base-button v-else @click="toggleStreetcred" class="w-full">
                         <PlusCircleIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
                         Street Cred
-                    </button>
+                    </base-button>
                 </div>
             </div>
         </aside>
@@ -115,12 +119,13 @@
 
 <script>
 import { computed } from "vue";
+import { Inertia } from '@inertiajs/inertia'
 import { usePage } from '@inertiajs/inertia-vue3'
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-dark.css';
 import AppLayout from "@/Layouts/AppLayout";
 import UserBlock from "@/Components/UserBlock";
-import { CalendarIcon, PlusCircleIcon, PencilAltIcon } from '@heroicons/vue/outline'
+import { CalendarIcon, MinusCircleIcon, PlusCircleIcon, PencilAltIcon } from '@heroicons/vue/outline'
 import { FireIcon } from '@heroicons/vue/solid'
 import JetButton from '@/Jetstream/Button'
 import BaseTag from "@/Components/BaseTag";
@@ -135,6 +140,7 @@ export default {
         UserBlock,
         CalendarIcon,
         PlusCircleIcon,
+        MinusCircleIcon,
         PencilAltIcon,
         FireIcon,
         JetButton
@@ -152,7 +158,22 @@ export default {
             snippet.user.name === usePage().props.value.user.name
         )
 
+        const toggleStreetcred = function () {
+            if (snippet.gaveStreetcred) {
+                Inertia.delete(`/snippets/${snippet.slug}/streetcred`, {
+                    preserveState: false,
+                    preserveScroll: true
+                })
+            } else {
+                Inertia.post(`/snippets/${snippet.slug}/streetcred`, {}, {
+                    preserveState: false,
+                    preserveScroll: true
+                })
+            }
+        }
+
         return {
+            toggleStreetcred,
             can_edit,
             snippet
         }
