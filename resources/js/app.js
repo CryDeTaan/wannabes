@@ -4,6 +4,7 @@ require('./bootstrap');
 import { createApp, h } from 'vue';
 import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
+import BaseButton from '@/components/UI/BaseButton';
 
 const el = document.getElementById('app');
 
@@ -16,6 +17,7 @@ createApp({
 })
     .mixin({ methods: { route } })
     .use(InertiaPlugin)
+    .component('base-button', BaseButton)
     .mount(el);
 
 InertiaProgress.init({color: '#E11D48' });
