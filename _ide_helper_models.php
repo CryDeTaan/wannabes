@@ -14,6 +14,7 @@ namespace App\Models{
 /**
  * App\Models\Snippet
  *
+ * @mixin IdeHelperSnippet
  * @property int $id
  * @property int $user_id
  * @property string $title
@@ -25,6 +26,8 @@ namespace App\Models{
  * @property-read bool $gave_streetcred
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Streetcred[] $streetcred
  * @property-read int|null $streetcred_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $tags
+ * @property-read int|null $tags_count
  * @property-read \App\Models\User $user
  * @method static \Database\Factories\SnippetFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Snippet newModelQuery()
@@ -39,7 +42,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Snippet whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Snippet whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Snippet withStreetcred()
- * @mixin \Eloquent
  */
 	class IdeHelperSnippet extends \Eloquent {}
 }
@@ -48,6 +50,7 @@ namespace App\Models{
 /**
  * App\Models\Streetcred
  *
+ * @mixin IdeHelperStreetcred
  * @property int $id
  * @property int $user_id
  * @property int $snippet_id
@@ -63,15 +66,42 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Streetcred whereStreetcred($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Streetcred whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Streetcred whereUserId($value)
- * @mixin \Eloquent
  */
 	class IdeHelperStreetcred extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
+ * App\Models\Tag
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $slug
+ * @property string $color
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Snippet[] $snippets
+ * @property-read int|null $snippets_count
+ * @method static \Database\Factories\TagFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tag newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Tag newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Tag query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Tag whereColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tag whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tag whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tag whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tag whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tag whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
+	class IdeHelperTag extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
+ * @mixin IdeHelperUser
  * @property int $id
  * @property string $name
  * @property string $email
@@ -84,13 +114,14 @@ namespace App\Models{
  * @property string|null $profile_photo_path
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Streetcred[] $gaveStreetcred
+ * @property-read int|null $gave_streetcred_count
  * @property-read string $profile_photo_url
+ * @property-read string $streetcred
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Snippet[] $snippets
  * @property-read int|null $snippets_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Streetcred[] $streetcred
- * @property-read int|null $streetcred_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
  * @method static \Database\Factories\UserFactory factory(...$parameters)
@@ -109,7 +140,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
- * @mixin \Eloquent
  */
 	class IdeHelperUser extends \Eloquent {}
 }

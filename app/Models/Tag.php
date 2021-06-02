@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Sluggable\HasSlug;
 
+/**
+ * @mixin IdeHelperTag
+ */
 class Tag extends Model
 {
     use HasFactory, HasSlug;
