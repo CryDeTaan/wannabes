@@ -147,9 +147,10 @@
                     </div>
                 </div>
                 <div>
-                    <button @click="submitForm" type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white dark:text-dark-200 bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500">
+                    <base-button @click="submitForm" class="w-full">
+                        <SaveIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
                         Save
-                    </button>
+                    </base-button>
                 </div>
             </div>
         </aside>
@@ -161,7 +162,7 @@
 import AppLayout from "@/Layouts/AppLayout";
 import TagSelect from "@/Pages/Snippets/TagSelect";
 import UserBlock from "@/Components/UserBlock";
-import { CalendarIcon } from '@heroicons/vue/outline'
+import { CalendarIcon, SaveIcon } from '@heroicons/vue/outline'
 import JetButton from '@/Jetstream/Button'
 import {reactive, ref} from "vue";
 import BaseTagClose from "@/Components/BaseTagClose";
@@ -176,6 +177,7 @@ export default {
         UserBlock,
         TagSelect,
         CalendarIcon,
+        SaveIcon,
         JetButton
     },
 
