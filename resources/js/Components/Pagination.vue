@@ -14,7 +14,7 @@
             <inertia-link
                 v-for="(link, index) in links.slice(1,-1)"
                 :key="index"
-                :href="link.url"
+                :href="link.url ? link.url : ''"
                 class="border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
                 :class="activeClasses(link.active)"
 
