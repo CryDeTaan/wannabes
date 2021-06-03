@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SnippetController;
 use App\Http\Controllers\StreetcredController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -37,3 +38,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/snippets/{snippet}/streetcred', [StreetcredController::class, 'destroy']);
     Route::post('/snippets/{snippet}/streetcred', [StreetcredController::class, 'store']);
 });
+
+Route::get('/users/{user}/', [UserController::class, 'show']);
