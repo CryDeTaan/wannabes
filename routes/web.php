@@ -19,7 +19,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', HomeController::class)->name('home');
+Route::get('/', HomeController::class)->name('home')->middleware('remember');
 
 Route::resource('snippets', SnippetController::class);
 
