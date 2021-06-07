@@ -2,7 +2,8 @@
     <nav class="border-t border-gray-200 dark:border-dark-500 px-4 flex items-center justify-between sm:px-0">
         <div class="-mt-px w-0 flex-1 flex">
             <inertia-link
-                :href="prev_page ? prev_page : ''"
+                v-if="prev_page !== null"
+                :href="prev_page"
                 :class="arrowClasses"
             >
                 <ArrowNarrowLeftIcon class="mr-3 h-5 w-5 text-gray-400 dark:text-dark-500" aria-hidden="true" />
@@ -24,7 +25,8 @@
         </div>
         <div class="-mt-px w-0 flex-1 flex justify-end">
             <inertia-link
-                :href="next_page ? next_page : ''"
+                v-if="next_page !== null"
+                :href="next_page"
                 :class="arrowClasses"
             >
                 Next
