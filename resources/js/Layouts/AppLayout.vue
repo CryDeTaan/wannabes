@@ -19,19 +19,7 @@
                                 class="flex items-center px-6 py-4 md:max-w-3xl md:mx-auto lg:max-w-none lg:mx-0 xl:px-0"
                             >
                                 <div class="w-full">
-                                    <label for="search" class="sr-only">Search</label>
-                                    <div class="relative">
-                                        <div
-                                            class="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center"
-                                        >
-                                            <SearchIcon class="h-5 w-5 text-neutral-400" aria-hidden="true" />
-                                        </div>
-                                        <input
-                                            id="search" name="search"
-                                            class="block w-full bg-white dark:bg-dark-700 border border-neutral-300 dark:border-dark-600 rounded-md py-2 pl-10 pr-3 text-sm placeholder-neutral-500 dark:placeholder-dark-400 dark:text-dark-400 focus:outline-none focus:text-neutral-900 dark:focus:text-neutral-400 focus:placeholder-neutral-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-                                            placeholder="Search"
-                                        />
-                                    </div>
+                                    <search-input />
                                 </div>
                             </div>
                         </div>
@@ -179,8 +167,9 @@
 
 <script>
 import {Menu, MenuButton, MenuItem, MenuItems, Popover, PopoverButton, PopoverPanel} from '@headlessui/vue'
-import {SearchIcon, QuestionMarkCircleIcon} from '@heroicons/vue/solid'
+import {QuestionMarkCircleIcon} from '@heroicons/vue/solid'
 import {BellIcon, MenuIcon, XIcon, CubeTransparentIcon, UserCircleIcon} from '@heroicons/vue/outline'
+import SearchInput from "@/Components/SearchInput";
 
 const navigation = [
     {name: 'New Snippet', href: '#', current: true},
@@ -194,6 +183,7 @@ const userNavigation = [
 
 export default {
     components: {
+        SearchInput,
         Menu,
         MenuButton,
         MenuItem,
@@ -203,7 +193,6 @@ export default {
         PopoverPanel,
         BellIcon,
         MenuIcon,
-        SearchIcon,
         XIcon,
         CubeTransparentIcon,
         QuestionMarkCircleIcon,

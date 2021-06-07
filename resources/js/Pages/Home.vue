@@ -28,7 +28,8 @@ import AppLayout from '@/Layouts/AppLayout'
 import CardsGrid from "@/Components/CardsGrid";
 import UserBlock from "@/Components/UserBlock";
 import Pagination from "@/Components/Pagination";
-import { ref } from "vue";
+import { provide } from "vue";
+import {SearchIcon} from '@heroicons/vue/solid'
 
 export default {
     components: {
@@ -36,21 +37,17 @@ export default {
         UserBlock,
         CardsGrid,
         AppLayout,
+        SearchIcon,
     },
 
     props: {
         snippets: Object,
         leaderBoard: Array,
+        filters: Object,
     },
 
     setup(props) {
-        const snippets = ref(props.snippets);
-        const leaderBoard = ref(props.leaderBoard);
-
-        return {
-            snippets,
-            leaderBoard,
-        }
+        provide('search', props.filters)
     },
 }
 </script>
