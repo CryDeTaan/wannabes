@@ -12,16 +12,21 @@
         </div>
         <div class="hidden md:-mt-px md:flex">
 
-            <inertia-link
-                v-for="(link, index) in links.slice(1,-1)"
-                :key="index"
-                :href="link.url ? link.url : ''"
-                class="border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
-                :class="activeClasses(link.active)"
-
-            >
-                {{ link.label }}
-            </inertia-link>
+            <template v-for="(link, index) in links.slice(1,-1)" :key="index">
+                <span
+                    v-if="!link.url"
+                    class="border-transparent text-gray-500 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
+                >{{ link.label }}
+                </span>
+                <inertia-link
+                    v-else
+                    :href="link.url ? link.url : ''"
+                    class="border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
+                    :class="activeClasses(link.active)"
+                >
+                    {{ link.label }}
+                </inertia-link>
+            </template>
         </div>
         <div class="-mt-px w-0 flex-1 flex justify-end">
             <inertia-link
