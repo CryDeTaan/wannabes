@@ -28,7 +28,6 @@ import AppLayout from '@/Layouts/AppLayout'
 import CardsGrid from "@/Components/CardsGrid";
 import UserBlock from "@/Components/UserBlock";
 import Pagination from "@/Components/Pagination";
-import { provide } from "vue";
 import {SearchIcon} from '@heroicons/vue/solid'
 
 export default {
