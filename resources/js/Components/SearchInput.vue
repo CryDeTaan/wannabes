@@ -20,7 +20,6 @@ import {watch} from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 import { usePage } from '@inertiajs/inertia-vue3'
 import {SearchIcon} from '@heroicons/vue/solid'
-import _ from 'lodash'
 
 export default {
     name: "SearchInput",
