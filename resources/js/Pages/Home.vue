@@ -47,7 +47,7 @@ export default {
     },
 
     setup(props) {
-        provide('search', props.filters)
+        //
     },
 }
 </script>

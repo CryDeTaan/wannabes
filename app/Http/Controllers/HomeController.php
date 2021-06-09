@@ -18,7 +18,6 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
         return Inertia::render('Home',[
-            'filters' => $request->all(['search']),
             'snippets' => Snippet::filter($request->all(['search']))
                 ->withStreetcred()
                 ->orderBy('streetcred', 'DESC')

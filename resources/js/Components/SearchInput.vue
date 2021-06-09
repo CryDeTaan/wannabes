@@ -16,8 +16,9 @@
 </template>
 
 <script>
-import {reactive, inject, watch, ref} from 'vue'
+import {watch} from 'vue'
 import { Inertia } from '@inertiajs/inertia'
+import { usePage } from '@inertiajs/inertia-vue3'
 import {SearchIcon} from '@heroicons/vue/solid'
 import _ from 'lodash'
 
@@ -28,7 +29,7 @@ export default {
     },
 
     setup() {
-        const form = inject('search')
+        const form = usePage().props.value.filters
 
         watch(form,
             _.throttle(function(value) {
