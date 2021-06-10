@@ -8,6 +8,7 @@ import { InertiaProgress } from '@inertiajs/progress';
 // Global components
 import BaseButton from '@/components/UI/BaseButton';
 import BaseInput from "@/Components/UI/BaseInput";
+import BaseTextArea from "@/Components/UI/BaseTextArea";
 
 const el = document.getElementById('app');
 
@@ -22,6 +23,7 @@ createApp({
     .use(InertiaPlugin)
     .component('base-button', BaseButton)
     .component('base-input', BaseInput)
+    .component('base-text-area', BaseTextArea)
     .mount(el);
 
 InertiaProgress.init({color: '#E11D48' });
