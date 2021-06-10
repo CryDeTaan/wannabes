@@ -63,15 +63,12 @@
                     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
 
                         <div class="sm:col-span-3">
-                            <label for="title" class="block text-sm font-medium text-gray-700 dark:text-dark-400">
-                                Title
-                            </label>
-                            <div class="mt-1">
-                                <input
-                                    type="text" name="title" id="title" v-model="form.title"
-                                    class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md dark:text-dark-300 dark:focus:text-neutral-300"
-                                />
-                            </div>
+                            <base-input
+                                v-model="form.title"
+                                label="Title"
+                                id="title"
+                                :error="form.errors.title"
+                            />
                         </div>
 
                         <div class="sm:col-span-3">
@@ -88,27 +85,26 @@
                         </div>
 
                         <div class="sm:col-span-6">
-                            <label for="excerpt" class="block text-sm font-medium text-gray-700 dark:text-dark-400">
-                                Excerpt
-                            </label>
-                            <div class="mt-1">
-                                <input
-                                    type="text" name="excerpt" id="excerpt" v-model="form.excerpt"
-                                    class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md dark:text-dark-300 dark:focus:text-neutral-300"
-                                />
-                            </div>
+                            <base-input
+                                v-model="form.excerpt"
+                                label="Excerpt"
+                                id="excerpt"
+                                :error="form.errors.excerpt"
+                            />
                         </div>
                         <div class="sm:col-span-6">
-                            <label for="snippet" class="block text-sm font-medium text-gray-700 dark:text-dark-400">
-                                Snippet
-                            </label>
-                            <div class="mt-1">
-                                    <textarea
-                                        id="snippet" name="snippet" rows="30" v-model="form.markdown"
-                                        class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-lg border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md dark:text-dark-300 dark:focus:text-neutral-300"
-                                    />
-                            </div>
-                            <p class="mt-2 text-sm text-gray-500 dark:text-dark-400">Write your snippet in markdown.</p>
+                            <base-text-area
+                                v-model="form.markdown"
+                                label="Snippet"
+                                id="snippet"
+                                rows="35"
+                                :error="form.errors.markdown"
+                            />
+                            <p v-if="!form.errors.markdown"
+                               class="mt-2 text-sm text-gray-500 dark:text-dark-400"
+                            >
+                                Write your snippet in markdown.
+                            </p>
                         </div>
                     </div>
                 </div>
