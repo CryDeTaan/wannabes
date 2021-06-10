@@ -4,7 +4,10 @@ require('./bootstrap');
 import { createApp, h } from 'vue';
 import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
+
+// Global components
 import BaseButton from '@/components/UI/BaseButton';
+import BaseInput from "@/Components/UI/BaseInput";
 
 const el = document.getElementById('app');
 
@@ -18,6 +21,7 @@ createApp({
     .mixin({ methods: { route } })
     .use(InertiaPlugin)
     .component('base-button', BaseButton)
+    .component('base-input', BaseInput)
     .mount(el);
 
 InertiaProgress.init({color: '#E11D48' });
