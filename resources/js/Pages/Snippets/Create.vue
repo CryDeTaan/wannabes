@@ -30,7 +30,9 @@
                     <div class="flex flex-col sm:flex-row sm:space-x-2 max-w-2xl">
                         <div class="flex items-center pt-2 sm:pt-0">
                             <CalendarIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
-                            <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">Drafting on <time :datetime="now">{{ now }}</time> by:</span>
+                            <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">Drafting on <time
+                                :datetime="now"
+                            >{{ now }}</time> by:</span>
                         </div>
                         <div class="sm:w-40">
                             <user-block :user="$page.props.user" />
@@ -48,7 +50,9 @@
         </aside>
 
         <main class="md:col-span-12 lg:col-span-9 lg:border-r lg:border-neutral-200 lg:dark:border-dark-500">
-            <form class="max-w-3xl mx-auto px-6 md:max-w-4xl md:px-8 space-y-8 divide-y divide-gray-200 dark:divide-dark-500">
+            <form
+                class="max-w-3xl mx-auto px-6 md:max-w-4xl md:px-8 space-y-8 divide-y divide-gray-200 dark:divide-dark-500"
+            >
 
                 <div>
                     <div>
@@ -56,7 +60,8 @@
                             New Snippet
                         </h3>
                         <p class="mt-1 text-sm text-gray-500 dark:text-dark-400">
-                            Help others be a better wannabe pentester by sharing your knowledge in the form of a snippet.
+                            Help others be a better wannabe pentester by sharing your knowledge in the form of a
+                            snippet.
                         </p>
                     </div>
 
@@ -75,11 +80,15 @@
                             <!--<tag-select />-->
                             <div>
                                 <label for="tags" class="block text-sm font-medium text-gray-700 dark:text-dark-400">Tags</label>
-                                <select id="tags" name="tags" @change="addTag"
-                                        class="mt-1 block w-full pl-3 pr-10 py-2 shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md dark:text-dark-300 dark:focus:text-neutral-300">
+                                <select
+                                    id="tags" name="tags" @change="addTag"
+                                    class="mt-1 block w-full pl-3 pr-10 py-2 shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md dark:text-dark-300 dark:focus:text-neutral-300"
+                                >
                                     <option selected>Select tags...</option>
-                                    <option v-for="tag in tags" :key="tag.slug" :value="tag.slug"
-                                    >{{ tag.name }}</option>
+                                    <option
+                                        v-for="tag in tags" :key="tag.slug" :value="tag.slug"
+                                    >{{ tag.name }}
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -93,16 +102,16 @@
                             />
                         </div>
                         <div class="sm:col-span-6">
-                            <label for="snippet" class="block text-sm font-medium text-gray-700 dark:text-dark-400">
-                                Snippet
-                            </label>
-                            <div class="mt-1">
-                                    <textarea
-                                        id="snippet" name="snippet" rows="30" v-model="form.markdown"
-                                        class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-lg border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md dark:text-dark-300 dark:focus:text-neutral-300"
-                                    />
-                            </div>
-                            <p class="mt-2 text-sm text-gray-500 dark:text-dark-400">Write your snippet in markdown.</p>
+
+                            <base-text-area
+                                v-model="form.markdown"
+                                label="Snippet"
+                                id="snippet"
+                                :rows="45"
+                                :error="form.errors.markdown"
+                            />
+                            <p v-if="!form.errors.markdown" class="mt-2 text-sm text-gray-500 dark:text-dark-400">Write
+                                your snippet in markdown.</p>
                         </div>
                     </div>
                 </div>
@@ -125,7 +134,9 @@
                     <div>
                         <div class="flex items-center space-x-2">
                             <CalendarIcon class="h-6 w-6 text-gray-400" aria-hidden="true" />
-                            <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">Drafting on <time :datetime="now">{{ now }}</time> by:</span>
+                            <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">Drafting on <time
+                                :datetime="now"
+                            >{{ now }}</time> by:</span>
                         </div>
                         <user-block :user="$page.props.user" />
                     </div>
@@ -157,18 +168,20 @@
 
 <script>
 import {computed, reactive} from 'vue'
-import { useForm } from '@inertiajs/inertia-vue3'
+import {useForm} from '@inertiajs/inertia-vue3'
 import AppLayout from "@/Layouts/AppLayout";
 import TagSelect from "@/Pages/Snippets/TagSelect";
 import UserBlock from "@/Components/UserBlock";
-import { CalendarIcon, SaveIcon } from '@heroicons/vue/outline'
+import {CalendarIcon, SaveIcon} from '@heroicons/vue/outline'
 import BaseTagClose from "@/Components/BaseTagClose";
+import BaseTextArea from "@/Components/UI/BaseTextArea";
 
 export default {
     name: "Create",
     layout: AppLayout,
 
     components: {
+        BaseTextArea,
         BaseTagClose,
         UserBlock,
         TagSelect,
@@ -187,16 +200,16 @@ export default {
             tags: [],
         })
 
-        function submitForm(){
+        function submitForm() {
             form
                 .transform((data) => ({
                     ...data,
                     tags: data.tags.map(tag => tag.id),
                 }))
                 .post(route('snippets.store'), {
-                preserveScroll: true,
-                // TODO: Catch errors
-            })
+                    preserveScroll: true,
+                    // TODO: Catch errors
+                })
         }
 
         const tags = reactive(props.tags);
