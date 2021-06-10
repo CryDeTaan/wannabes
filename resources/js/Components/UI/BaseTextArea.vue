@@ -1,6 +1,4 @@
 --
-Based of Input with validation error
-https://tailwindui.com/components/application-ui/forms/input-groups#component-7a5297f99a5ed22df80939dd1986de5f
 Usage:
 <base-text-area
     v-model="form.text"
