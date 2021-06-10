@@ -61,7 +61,7 @@ export default {
             default: null,
         },
         rows: {
-            type: Number,
+            type: String,
             default: 15,
         }
     },
