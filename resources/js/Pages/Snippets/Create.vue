@@ -53,7 +53,6 @@
             <form
                 class="max-w-3xl mx-auto px-6 md:max-w-4xl md:px-8 space-y-8 divide-y divide-gray-200 dark:divide-dark-500"
             >
-
                 <div>
                     <div>
                         <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-dark-300">
@@ -66,7 +65,6 @@
                     </div>
 
                     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-
                         <div class="sm:col-span-3">
                             <base-input
                                 v-model="form.title"
@@ -92,7 +90,6 @@
                                 </select>
                             </div>
                         </div>
-
                         <div class="sm:col-span-6">
                             <base-input
                                 v-model="form.excerpt"
@@ -102,12 +99,11 @@
                             />
                         </div>
                         <div class="sm:col-span-6">
-
                             <base-text-area
                                 v-model="form.markdown"
                                 label="Snippet"
                                 id="snippet"
-                                :rows="45"
+                                rows="35"
                                 :error="form.errors.markdown"
                             />
                             <p v-if="!form.errors.markdown" class="mt-2 text-sm text-gray-500 dark:text-dark-400">Write
@@ -174,14 +170,12 @@ import TagSelect from "@/Pages/Snippets/TagSelect";
 import UserBlock from "@/Components/UserBlock";
 import {CalendarIcon, SaveIcon} from '@heroicons/vue/outline'
 import BaseTagClose from "@/Components/BaseTagClose";
-import BaseTextArea from "@/Components/UI/BaseTextArea";
 
 export default {
     name: "Create",
     layout: AppLayout,
 
     components: {
-        BaseTextArea,
         BaseTagClose,
         UserBlock,
         TagSelect,
