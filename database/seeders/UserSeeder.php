@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::factory()
-            ->hasSnippets(50)
+            ->hasSnippets(10)
             ->create([
                 'name' => 'CryDeTaan',
                 'email' => 'CryDeTaan@wannabe.test',
@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
         ]);
 
         User::factory(10)
-            ->hasSnippets(50)
+            ->hasSnippets(10)
             ->create();
     }
 }

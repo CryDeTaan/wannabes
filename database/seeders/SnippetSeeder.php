@@ -22,5 +22,15 @@ class SnippetSeeder extends Seeder
                 $tags->random(rand(1, 3))->pluck('id')
             );
         });
+
+        foreach(range(1,300) as $index) {
+            $snippet = Snippet::find(rand(1,110));
+            $snippet->streetcred()->updateOrCreate([
+                'user_id' => rand(1, 11),
+            ], [
+                'streetcred' => 1
+            ]);
+        }
+
     }
 }
