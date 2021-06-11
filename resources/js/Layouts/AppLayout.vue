@@ -108,6 +108,17 @@
                                                 </inertia-link>
                                             </MenuItem>
                                         </template>
+                                        <template v-else>
+                                            <MenuItem v-for="item in notAuthed" :key="item.name" v-slot="{ active }">
+                                                <inertia-link
+                                                    :href="item.href"
+                                                    :method="item.method ? item.method : 'GET'"
+                                                    as="span"
+                                                    :class="[active ? 'bg-neutral-100 dark:bg-dark-600' : '', 'block py-2 px-4 text-sm text-neutral-700 dark:text-dark-300']"
+                                                >{{ item.name }}
+                                                </inertia-link>
+                                            </MenuItem>
+                                        </template>
                                     </MenuItems>
                                 </transition>
                             </Menu>
@@ -196,6 +207,11 @@ const userNavigation = [
     {name: 'Sign out', href: '/logout', method: 'post'},
 ]
 
+const notAuthed = [
+    {name: 'Login', href: '/login'},
+    {name: 'Register', href: '/register'},
+]
+
 export default {
     components: {
         SearchInput,
@@ -244,6 +260,7 @@ export default {
         return {
             navigation,
             userNavigation,
+            notAuthed,
             theme,
             toggleDarkMode,
         }
