@@ -198,9 +198,10 @@ import SearchInput from "@/Components/SearchInput";
 import {ref} from "vue";
 
 const navigation = [
-    {name: 'New Snippet', href: '#', current: true},
-    {name: 'Leaderboard', href: '#', current: false},
-    {name: 'About', href: '#', current: false},
+    {name: 'New Snippet', href: '/snippets/create', current: false},
+    // TODO: Add this if useful.
+    // {name: 'Leaderboard', href: '#', current: false},
+    {name: 'About', href: '/about', current: false},
 ]
 const userNavigation = [
     {name: 'Your Profile', href: '/user/profile'},
