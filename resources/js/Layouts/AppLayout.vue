@@ -65,20 +65,18 @@
                             <Menu as="div" class="flex-shrink-0 relative ml-5">
                                 <div>
                                     <MenuButton
-                                        v-if="$page.props.user"
                                         class="bg-white dark:bg-dark-800 rounded-full flex focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500"
                                     >
                                         <span class="sr-only">Open user menu</span>
-                                        <img class="h-8 w-8 rounded-full" :src="$page.props.user.profile_photo_url" alt="" />
+                                        <img
+                                            v-if="$page.props.user" class="h-8 w-8 rounded-full"
+                                            :src="$page.props.user.profile_photo_url" alt=""
+                                        />
+                                        <UserCircleIcon
+                                            v-else class="h-9 w-9 text-neutral-500 hover:text-neutral-600"
+                                            aria-hidden="true"
+                                        />
                                     </MenuButton>
-                                    <inertia-link
-                                        v-else
-                                        :href="route('login')"
-                                        class="bg-white dark:bg-dark-800 rounded-full text-neutral-500 hover:text-neutral-600 "
-                                    >
-                                        <span class="sr-only">Login</span>
-                                        <UserCircleIcon class="h-9 w-9" aria-hidden="true" />
-                                    </inertia-link>
                                 </div>
                                 <transition
                                     enter-active-class="transition ease-out duration-100"
@@ -89,16 +87,27 @@
                                     leave-to-class="transform opacity-0 scale-95"
                                 >
                                     <MenuItems
-                                        class="origin-top-right absolute z-10 right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-dark-700 dark:text-dark-400 ring-1 ring-black ring-opacity-5 py-1 focus:outline-none"
-                                    >
-                                        <MenuItem v-for="item in userNavigation" :key="item.name" v-slot="{ active }">
-                                            <inertia-link
-                                                :href="item.href"
-                                                :method="item.method ? item.method : 'GET'"
-                                                as="span"
-                                                :class="[active ? 'bg-neutral-100 dark:bg-dark-600' : '', 'block py-2 px-4 text-sm text-neutral-700 dark:text-dark-300']"
-                                            >{{ item.name }}</inertia-link>
+                                        class="origin-top-right absolute z-10 right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-dark-700 dark:text-dark-400 ring-1 ring-black ring-opacity-5 py-1 focus:outline-none">
+                                        <MenuItem v-slot="{ active }">
+                                            <button @click="toggleDarkMode" :class="[active ? 'bg-neutral-100 dark:bg-dark-600' : '', 'w-full group flex items-center px-4 py-2 text-sm text-neutral-700 dark:text-dark-300 focus:outline-none']">
+                                                <SunIcon v-if="theme === 'light'" class="mr-3 h-5 w-5 text-neutral-700" aria-hidden="true" />
+                                                <MoonIcon v-else class="mr-3 h-5 w-5 dark:text-dark-400" aria-hidden="true" />
+                                                Mode
+                                            </button>
                                         </MenuItem>
+                                        <template v-if="$page.props.user">
+                                            <MenuItem
+                                                v-for="item in userNavigation" :key="item.name" v-slot="{ active }"
+                                            >
+                                                <inertia-link
+                                                    :href="item.href"
+                                                    :method="item.method ? item.method : 'GET'"
+                                                    as="span"
+                                                    :class="[active ? 'bg-neutral-100 dark:bg-dark-600' : '', 'block py-2 px-4 text-sm text-neutral-700 dark:text-dark-300']"
+                                                >{{ item.name }}
+                                                </inertia-link>
+                                            </MenuItem>
+                                        </template>
                                     </MenuItems>
                                 </transition>
                             </Menu>
@@ -114,6 +123,11 @@
                             :aria-current="item.current ? 'page' : undefined"
                             :class="[item.current ? 'bg-neutral-100 dark:bg-dark-700 text-neutral-900 dark:text-dark-300' : 'hover:bg-neutral-50 dark:hover:bg-dark-600 dark:text-dark-400', 'block rounded-md py-2 px-3 text-base font-medium']"
                         >{{ item.name }}</a>
+                        <button @click="toggleDarkMode" :class="[active ? 'bg-neutral-100 dark:bg-dark-700 text-neutral-900 dark:text-dark-300' : 'hover:bg-neutral-50 dark:hover:bg-dark-600 dark:text-dark-400', 'w-full group flex items-center block rounded-md py-2 px-3 text-base font-medium focus:outline-none']">
+                            <SunIcon v-if="theme === 'light'" class="mr-3 h-5 w-5 group-hover:text-neutral-900" aria-hidden="true" />
+                            <MoonIcon v-else class="mr-3 h-5 w-5 dark:group-hover:text-dark-400" aria-hidden="true" />
+                            Mode
+                        </button>
                     </div>
                     <div v-if="$page.props.user" class="border-t border-neutral-300 pt-4 pb-3">
                         <div class="max-w-3xl mx-auto px-4 flex items-center sm:px-6">
@@ -168,8 +182,9 @@
 <script>
 import {Menu, MenuButton, MenuItem, MenuItems, Popover, PopoverButton, PopoverPanel} from '@headlessui/vue'
 import {QuestionMarkCircleIcon} from '@heroicons/vue/solid'
-import {BellIcon, MenuIcon, XIcon, CubeTransparentIcon, UserCircleIcon} from '@heroicons/vue/outline'
+import {BellIcon, CubeTransparentIcon, MenuIcon, MoonIcon, SunIcon, UserCircleIcon, XIcon} from '@heroicons/vue/outline'
 import SearchInput from "@/Components/SearchInput";
+import {ref} from "vue";
 
 const navigation = [
     {name: 'New Snippet', href: '#', current: true},
@@ -196,14 +211,41 @@ export default {
         XIcon,
         CubeTransparentIcon,
         QuestionMarkCircleIcon,
-        UserCircleIcon
+        UserCircleIcon,
+        MoonIcon,
+        SunIcon,
     },
 
     setup() {
+        const theme = ref('')
+
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+            localStorage.theme = 'dark'
+            theme.value = 'dark'
+        } else {
+            document.documentElement.classList.remove('dark')
+            localStorage.theme = 'light'
+            theme.value = 'light'
+        }
+
+        const toggleDarkMode = function () {
+            if (localStorage.theme === 'dark' ) {
+                document.documentElement.classList.remove('dark')
+                localStorage.theme = 'light'
+                theme.value = 'light'
+            } else {
+                document.documentElement.classList.add('dark')
+                localStorage.theme = 'dark'
+                theme.value = 'dark'
+            }
+        }
 
         return {
             navigation,
             userNavigation,
+            theme,
+            toggleDarkMode,
         }
     },
 }
