@@ -101,10 +101,16 @@
                     </div>
                 </div>
                 <div>
-                    <base-button v-if="can_edit" class="w-full" as="link" :href="route('snippets.edit', snippet.slug)">
-                        <PencilAltIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
-                        Edit
-                    </base-button>
+                    <template v-if="can_edit" >
+                        <base-button class="w-full" as="link" :href="route('snippets.edit', snippet.slug)">
+                            <PencilAltIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+                            Edit
+                        </base-button>
+                        <base-button @click="deleteSnippet" :secondary="true" class="w-full mt-2">
+                            <TrashIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+                            Delete
+                        </base-button>
+                    </template>
                     <base-button v-else-if="snippet.gaveStreetcred" class="w-full" @click="toggleStreetcred"  secondary>
                         <MinusCircleIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
                         Remove Street Cred
@@ -129,7 +135,7 @@ import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-dark.css';
 import AppLayout from "@/Layouts/AppLayout";
 import UserBlock from "@/Components/UserBlock";
-import { CalendarIcon, MinusCircleIcon, PlusCircleIcon, PencilAltIcon } from '@heroicons/vue/outline'
+import { CalendarIcon, MinusCircleIcon, PlusCircleIcon, PencilAltIcon, TrashIcon } from '@heroicons/vue/outline'
 import { FireIcon } from '@heroicons/vue/solid'
 import JetButton from '@/Jetstream/Button'
 import BaseTag from "@/Components/BaseTag";
@@ -147,6 +153,7 @@ export default {
         MinusCircleIcon,
         PencilAltIcon,
         FireIcon,
+        TrashIcon,
         JetButton
     },
 
@@ -176,8 +183,13 @@ export default {
             }
         }
 
+        function deleteSnippet() {
+            Inertia.delete(`/snippets/${snippet.slug}`, )
+        }
+
         return {
             toggleStreetcred,
+            deleteSnippet,
             can_edit,
             snippet
         }

@@ -140,11 +140,15 @@ class SnippetController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Snippet  $snippet
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Snippet $snippet)
     {
-        //
+        $snippet->delete();
+
+        return redirect(
+            route('user.snippets', auth()->user()->name)
+        )->with('success', 'Snippet deleted.');
     }
 
     protected function validateSnippet()

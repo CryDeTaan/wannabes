@@ -40,5 +40,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/snippets/{snippet}/streetcred', [StreetcredController::class, 'store']);
 });
 
-Route::get('/users/{user}/', [UserController::class, 'show']);
+Route::get('/users/{user}/', [UserController::class, 'show'])->name('user.snippets');
 Route::get('/tags/{tag}/', [TagController::class, 'show']);
