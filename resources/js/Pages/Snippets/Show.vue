@@ -37,11 +37,17 @@
                         </div>
                     </div>
                     <div class="flex items-center my-2">
-                        <base-button v-if="can_edit" as="link" :href="route('snippets.edit', snippet.slug)">
-                            <PencilAltIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
-                            Edit
-                        </base-button>
-                        <base-button v-else-if="snippet.gaveStreetcred" @click="toggleStreetcred"  secondary>
+                        <div v-if="can_edit">
+                            <base-button as="link" :href="route('snippets.edit', snippet.slug)">
+                                <PencilAltIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+                                Edit
+                            </base-button>
+                            <base-button @click="confirmSnippetDeletion" :secondary="true" class="ml-2">
+                                <TrashIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+                                Delete
+                            </base-button>
+                        </div>
+                        <base-button v-else-if="snippet.gaveStreetcred" @click="toggleStreetcred" secondary>
                             <MinusCircleIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
                             Remove Street Cred
                         </base-button>
