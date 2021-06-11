@@ -106,7 +106,7 @@
                             <PencilAltIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
                             Edit
                         </base-button>
-                        <base-button @click="deleteSnippet" :secondary="true" class="w-full mt-2">
+                        <base-button @click="confirmSnippetDeletion" :secondary="true" class="w-full mt-2">
                             <TrashIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
                             Delete
                         </base-button>
@@ -123,12 +123,32 @@
             </div>
         </aside>
 
+        <!-- Delete Snippet Confirmation Modal -->
+        <jet-dialog-modal :show="confirmingSnippetDeletion" @close="closeModal">
+            <template #title>
+                Delete Snippet
+            </template>
+
+            <template #content>
+                Are you sure you want to delete this snippet? Once the snippet is deleted, it cannot be undone. Please confirm you would like to permanently delete this snippet.
+            </template>
+
+            <template #footer>
+                <base-button @click="closeModal" :secondary="true">
+                    Cancel
+                </base-button>
+                <base-button class="ml-2" @click="deleteSnippet">
+                   Delete
+                </base-button>
+            </template>
+        </jet-dialog-modal>
+
     </div>
 
 </template>
 
 <script>
-import { computed } from "vue";
+import {computed, ref} from "vue";
 import { Inertia } from '@inertiajs/inertia'
 import { usePage } from '@inertiajs/inertia-vue3'
 import hljs from 'highlight.js';
@@ -139,6 +159,7 @@ import { CalendarIcon, MinusCircleIcon, PlusCircleIcon, PencilAltIcon, TrashIcon
 import { FireIcon } from '@heroicons/vue/solid'
 import JetButton from '@/Jetstream/Button'
 import BaseTag from "@/Components/BaseTag";
+import JetDialogModal from '@/Jetstream/DialogModal'
 
 export default {
     name: "Show",
@@ -154,7 +175,8 @@ export default {
         PencilAltIcon,
         FireIcon,
         TrashIcon,
-        JetButton
+        JetButton,
+        JetDialogModal,
     },
 
     props: {
@@ -183,15 +205,23 @@ export default {
             }
         }
 
+        const confirmingSnippetDeletion = ref(false)
+        const confirmSnippetDeletion = () => { confirmingSnippetDeletion.value = true }
+        const closeModal = () => { confirmingSnippetDeletion.value = false }
+
         function deleteSnippet() {
             Inertia.delete(`/snippets/${snippet.slug}`, )
         }
+
 
         return {
             toggleStreetcred,
             deleteSnippet,
             can_edit,
-            snippet
+            snippet,
+            confirmingSnippetDeletion,
+            confirmSnippetDeletion,
+            closeModal,
         }
     },
 
