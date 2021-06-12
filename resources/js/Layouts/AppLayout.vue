@@ -102,8 +102,8 @@
                                                 <inertia-link
                                                     :href="item.href"
                                                     :method="item.method ? item.method : 'GET'"
-                                                    as="span"
-                                                    :class="[active ? 'bg-neutral-100 dark:bg-dark-600' : '', 'block py-2 px-4 text-sm text-neutral-700 dark:text-dark-300']"
+                                                    as="button"
+                                                    :class="[active ? 'bg-neutral-100 dark:bg-dark-600' : '', 'w-full block py-2 px-4 text-left text-sm text-neutral-700 dark:text-dark-300 focus:outline-none']"
                                                 >{{ item.name }}
                                                 </inertia-link>
                                             </MenuItem>
@@ -113,8 +113,8 @@
                                                 <inertia-link
                                                     :href="item.href"
                                                     :method="item.method ? item.method : 'GET'"
-                                                    as="span"
-                                                    :class="[active ? 'bg-neutral-100 dark:bg-dark-600' : '', 'block py-2 px-4 text-sm text-neutral-700 dark:text-dark-300']"
+                                                    as="button"
+                                                    :class="[active ? 'bg-neutral-100 dark:bg-dark-600' : '', 'w-full block py-2 px-4 text-left text-sm text-neutral-700 dark:text-dark-300 focus:outline-none']"
                                                 >{{ item.name }}
                                                 </inertia-link>
                                             </MenuItem>
