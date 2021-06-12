@@ -44,6 +44,11 @@ class User extends Authenticatable
         'two_factor_secret',
     ];
 
+    protected function defaultProfilePhotoUrl()
+    {
+        return 'https://avatars.dicebear.com/api/bottts/' . urlencode($this->name) . '.svg?background=%2394A3B8';
+    }
+
     /**
      * The attributes that should be cast to native types.
      *
