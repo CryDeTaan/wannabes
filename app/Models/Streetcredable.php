@@ -73,7 +73,7 @@ trait Streetcredable
      */
     public function streetcred()
     {
-        return $this->hasMany(StreetCred::class);
+        return $this->hasMany(Streetcred::class);
     }
 
 }
