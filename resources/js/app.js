@@ -6,7 +6,7 @@ import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-v
 import { InertiaProgress } from '@inertiajs/progress';
 
 // Global components
-import BaseButton from '@/components/UI/BaseButton';
+import BaseButton from '@/Components/UI/BaseButton';
 import BaseInput from "@/Components/UI/BaseInput";
 import BaseTextArea from "@/Components/UI/BaseTextArea";
 
