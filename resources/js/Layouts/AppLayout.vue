@@ -69,7 +69,7 @@
                                     >
                                         <span class="sr-only">Open user menu</span>
                                         <img
-                                            v-if="$page.props.user" class="h-8 w-8 rounded-full"
+                                            v-if="$page.props.user && $page.props.user.email" class="h-8 w-8 rounded-full"
                                             :src="$page.props.user.profile_photo_url" alt=""
                                         />
                                         <UserCircleIcon
