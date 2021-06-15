@@ -17,6 +17,22 @@
                             </div>
                         </div>
                     </div>
+                    <div class="px-4 pt-2 bg-white dark:bg-dark-700 rounded-lg shadow">
+                        <div class="text-gray-700 dark:text-dark-400 text-md font-medium">Tags:</div>
+                        <ul class="mt-2 leading-8">
+                            <li class="inline">
+                                <base-tag
+                                    v-for="tag in tags" :key="tag" :tag="tag"
+                                />
+                            </li>
+                        </ul>
+                        <p class="py-3 text-sm text-neutral-600 dark:text-dark-400">
+                            Let me know if you have any tag suggestions
+                            <a target="_blank" href="https://twitter.com/CryDeTaan" class="underline text-sm text-primary-600 hover:text-primary-900 dark:text-primary-400 dark:hover:text-primary-500">
+                               @CryDeTaan
+                            </a>
+                        </p>
+                    </div>
                 </div>
             </aside>
         </div>
@@ -29,9 +45,11 @@ import CardsGrid from "@/Components/CardsGrid";
 import UserBlock from "@/Components/UserBlock";
 import Pagination from "@/Components/Pagination";
 import {SearchIcon} from '@heroicons/vue/solid'
+import BaseTag from "@/Components/BaseTag";
 
 export default {
     components: {
+        BaseTag,
         Pagination,
         UserBlock,
         CardsGrid,
@@ -42,6 +60,7 @@ export default {
     props: {
         snippets: Object,
         leaderBoard: Array,
+        tags: Array,
         filters: Object,
     },
 

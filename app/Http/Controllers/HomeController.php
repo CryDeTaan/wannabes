@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Snippet;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -29,7 +30,8 @@ class HomeController extends Controller
                 ->where('streetcred', '>', 0)
                 ->sortByDesc('streetcred')
                 ->values()
-                ->take(10)
+                ->take(10),
+            'tags' => Tag::all(['id', 'slug', 'name', 'color']),
         ]);
     }
 }
