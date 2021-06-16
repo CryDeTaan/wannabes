@@ -3,10 +3,9 @@
 Capture, search, and rate snippets for any domain.
 Contributors get streetcred, and we all know it's all about the street cred. 
 
-<p align="center" style="display: flex;">
-<img style="height: 300px; margin-right: 15px; " src="https://user-images.githubusercontent.com/11268952/121777546-a8a14a00-cb8a-11eb-9a91-502df1dbde07.png" alt="light theme">
-<img style="height: 300px;" src="https://user-images.githubusercontent.com/11268952/121777643-0fbefe80-cb8b-11eb-9560-c97e1aebe979.png" alt="dark theme">
-</p>
+![image](https://user-images.githubusercontent.com/11268952/122160447-dd9ded00-ce67-11eb-9877-59e608b4f014.png)
+
+![image](https://user-images.githubusercontent.com/11268952/122160554-0b833180-ce68-11eb-84fb-b0fbc58ec79c.png)
 
 ## Installation
 NOTE: Install process for development environment but similar for production.
