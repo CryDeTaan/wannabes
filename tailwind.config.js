@@ -68,12 +68,13 @@ module.exports = {
                             'figure figcaption': {
                                 color: theme('colors.neutral.400'),
                             },
+                            'pre code': {
+                                color: 'inherit',
+                                backgroundColor: 'inherit',
+                            },
                             code: {
                                 color: theme('colors.primary.200'),
                                 backgroundColor: theme('colors.neutral.700'),
-                            },
-                            'a code': {
-                                color: theme('colors.primary.200'),
                             },
                             'code::before': {
                                 content: '""'
