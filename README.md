@@ -18,6 +18,14 @@ NOTE: Install process for development environment but similar for production.
 7. Migrate:  `php artisan migrate`
 8. Seed (optional): `php artisan db:seed`
 
+### Production
+In production, I update three files:
+
+- Terms and Conditions
+- Privacy Policy
+- About page
+
+
 ## Roadmap
 - Custom/personal tags
 - Comments on snippets
