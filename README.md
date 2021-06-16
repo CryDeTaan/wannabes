@@ -19,6 +19,11 @@ NOTE: Install process for development environment but similar for production.
 7. Migrate:  `php artisan migrate`
 8. Seed (optional): `php artisan db:seed`
 
+## Roadmap
+- Custom/personal tags
+- Comments on snippets
+- Scalable searching
+- ....
 
 ## License
 
