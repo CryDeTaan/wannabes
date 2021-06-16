@@ -24,6 +24,10 @@ NOTE: Install process for development environment but similar for production.
 - Scalable searching
 - ....
 
+## Contributing
+Thank you for considering contributing to Wannabes. The `development` branch is the default branch, and can be used to submit PRs.
+The `main` branch can be used in production :)
+
 ## License
 
 The Wannabes framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
