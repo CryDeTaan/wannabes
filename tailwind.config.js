@@ -68,6 +68,11 @@ module.exports = {
                             'figure figcaption': {
                                 color: theme('colors.neutral.400'),
                             },
+                            pre: {
+                                overflowX: 'auto',
+                                wordWrap: 'break-word',
+                                whiteSpace: 'pre-wrap'
+                            },
                             'pre code': {
                                 color: 'inherit',
                                 backgroundColor: 'inherit',
