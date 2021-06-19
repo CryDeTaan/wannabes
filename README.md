@@ -27,10 +27,11 @@ In production, I update three files:
 
 
 ## Roadmap
-- Custom/personal tags
-- Comments on snippets
-- Scalable searching
-- ....
+- [ ] Dynamically set Tag colour based on hex code
+- [ ] Custom/personal tags
+- [ ] Comments on snippets
+- [ ] Scalable searching
+- [ ] ....
 
 ## Contributing
 Thank you for considering contributing to Wannabes. The `development` branch is the default branch, and can be used to submit PRs.

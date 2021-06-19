@@ -19,20 +19,13 @@
                 <jet-label for="email" value="Email" />
                 <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required />
                 <div class="mt-2 p-1 border dark:border-dark-600 rounded-md shadow-md">
-                    <p class="text-sm text-neutral-600 dark:text-dark-400">
-                        Why share your email address online when you can hide it?
-                    </p>
-                    <div class="relative flex items-center">
-                        <p class="text-sm text-neutral-600 dark:text-dark-400">
-                            Hide it using a Phantom's Mask -
-                            <a target="_blank" href="https://mailphantom.io" class="underline text-sm text-primary-600 hover:text-primary-900 dark:text-primary-400 dark:hover:text-primary-500">
-                                mailphantom.io
-                            </a>
-                        </p>
-                        <ExternalLinkIcon class="ml-1 h-3 w-3 text-gray-400 dark:text-dark-500" aria-hidden="true"  />
-                        <div class="absolute bottom-0 right-0">
-                            <p class="-mb-1.5 text-sm text-neutral-400 dark:text-dark-500">Ad</p>
-                        </div>
+                    <div class="text-sm text-neutral-600 dark:text-dark-400">
+                        Psssst, want to hide your email address?
+                        Use our other service:
+                        <a target="_blank" href="https://mailphantom.io" class="underline text-sm text-primary-600 hover:text-primary-900 dark:text-primary-400 dark:hover:text-primary-500">
+                            mailphantom.io
+                        </a>
+                        <ExternalLinkIcon class="inline-block ml-1 h-3 w-3 text-gray-400 dark:text-dark-500" aria-hidden="true"  />
                     </div>
                 </div>
             </div>
