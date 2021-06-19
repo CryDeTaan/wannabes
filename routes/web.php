@@ -42,3 +42,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 Route::get('/users/{user}/', [UserController::class, 'show'])->name('user.snippets');
 Route::get('/tags/{tag}/', [TagController::class, 'show']);
+Route::post('/tags/request-tag', [TagController::class, 'requestTag'])->name('tags.request')->middleware('auth:sanctum');

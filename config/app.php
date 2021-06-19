@@ -17,6 +17,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Support Email Address
+    |--------------------------------------------------------------------------
+    |
+    | This value is the support email address of your application. This value
+    | is used to send support related emails to, for example requesting of new Tags.
+    |
+    */
+
+    'support_email' => env('SUPPORT_EMAIL', 'support@example.com'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------
     |
