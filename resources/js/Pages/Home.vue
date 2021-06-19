@@ -19,7 +19,7 @@
                     </div>
                     <div class="px-4 py-3 bg-white dark:bg-dark-700 rounded-lg shadow">
                         <div class="text-gray-700 dark:text-dark-400 text-md font-medium">Tags:</div>
-                        <ul class="mt-2 leading-8">
+                        <ul v-if="tags" class="mt-2 leading-8">
                             <li class="inline">
                                 <base-tag
                                     v-for="tag in tags" :key="tag" :tag="tag"
@@ -36,7 +36,7 @@
                             />
                             <base-button @click="submitTagRequest" class="ml-2 mt-1">submit</base-button>
                         </div>
-                        <p v-if="form.errors.name" class="mt-2 text-sm text-red-600" :id="`${id}-error`">{{ form.errors.name }}</p>
+                        <p v-if="form.errors.name" class="mt-2 text-sm text-red-600" id="error`">{{ form.errors.name }}</p>
                     </div>
                 </div>
             </aside>
