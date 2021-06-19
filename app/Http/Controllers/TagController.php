@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Snippet;
+use App\Mail\TagRequest;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Tag;
 use App\Models\User;
 use Inertia\Inertia;
@@ -31,5 +32,20 @@ class TagController extends Controller
                 ->values()
                 ->take(10)
         ]);
+    }
+
+    public function requestTag()
+    {
+        request()->validate([
+            'name' => ['required', 'string', 'max:20', 'unique:tags'],
+        ]);
+
+        Mail::to(config('app.support_email'))
+            ->send(new TagRequest(
+                auth()->user(),
+                request()->name,
+            ));
+
+        return back();
     }
 }
