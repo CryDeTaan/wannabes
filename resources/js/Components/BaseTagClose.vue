@@ -23,6 +23,7 @@ const color = {
     green: 'bg-green-200 dark:bg-green-600 text-green-700 dark:text-green-200 text-green-400 dark:text-green-300 hover:bg-green-200 dark:hover:bg-green-700 hover:text-green-500 dark:hover:text-green-300 focus:bg-green-500',
     pink: 'bg-pink-200 dark:bg-pink-600 text-pink-700 dark:text-pink-200 text-pink-400 dark:text-pink-300 hover:bg-pink-200 dark:hover:bg-pink-700 hover:text-pink-500 dark:hover:text-pink-300 focus:bg-pink-500',
     yellow: 'bg-yellow-200 dark:bg-yellow-600 text-yellow-700 dark:text-yellow-200 text-yellow-400 dark:text-yellow-300 hover:bg-yellow-200 dark:hover:bg-yellow-700 hover:text-yellow-500 dark:hover:text-yellow-300 focus:bg-yellow-500',
+    indigo: 'bg-indigo-200 dark:bg-indigo-600 text-indigo-700 dark:text-indigo-200 text-indigo-400 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-700 hover:text-indigo-500 dark:hover:text-indigo-300 focus:bg-indigo-500',
 }
 export default {
     name: "BaseTagClose",
