@@ -69,13 +69,13 @@ export default {
 
     setup(props) {
         const inputClasses = computed(function() {
-            let inputClasses = "block w-full pr-10 rounded-md shadow-sm sm:text-sm dark:bg-dark-700 dark:text-dark-300 "
+            let inputClasses = "block w-full rounded-md shadow-sm sm:text-sm dark:bg-dark-700 dark:text-dark-300 "
 
             if (!props.error) {
                 inputClasses += "border-gray-300 dark:border-dark-600 " +
                     "focus:ring-primary-500 focus:border-primary-500 dark:focus:text-neutral-300"
             } else {
-                inputClasses += "border-red-300 dark:border-red-600 dark:bg-dark-700 " +
+                inputClasses += "pr-10 border-red-300 dark:border-red-600 dark:bg-dark-700 " +
                     "focus:outline-none focus:ring-red-500 focus:border-red-500"
             }
 
