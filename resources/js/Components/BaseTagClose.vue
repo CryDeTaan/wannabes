@@ -24,6 +24,8 @@ const color = {
     pink: 'bg-pink-200 dark:bg-pink-600 text-pink-700 dark:text-pink-200 text-pink-400 dark:text-pink-300 hover:bg-pink-200 dark:hover:bg-pink-700 hover:text-pink-500 dark:hover:text-pink-300 focus:bg-pink-500',
     yellow: 'bg-yellow-200 dark:bg-yellow-600 text-yellow-700 dark:text-yellow-200 text-yellow-400 dark:text-yellow-300 hover:bg-yellow-200 dark:hover:bg-yellow-700 hover:text-yellow-500 dark:hover:text-yellow-300 focus:bg-yellow-500',
     indigo: 'bg-indigo-200 dark:bg-indigo-600 text-indigo-700 dark:text-indigo-200 text-indigo-400 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-700 hover:text-indigo-500 dark:hover:text-indigo-300 focus:bg-indigo-500',
+    lime: 'bg-lime-200 dark:bg-lime-600 text-lime-700 dark:text-lime-200 text-lime-400 dark:text-lime-300 hover:bg-lime-200 dark:hover:bg-lime-700 hover:text-lime-500 dark:hover:text-lime-300 focus:bg-lime-500',
+    purple: 'bg-purple-200 dark:bg-purple-600 text-purple-700 dark:text-purple-200 text-purple-400 dark:text-purple-300 hover:bg-purple-200 dark:hover:bg-purple-700 hover:text-purple-500 dark:hover:text-purple-300 focus:bg-purple-500',
 }
 export default {
     name: "BaseTagClose",
