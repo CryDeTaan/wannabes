@@ -15,7 +15,7 @@
             id="tag"
             type="text"
         />
-        <base-button @click="submitTagRequest" class="ml-2 mt-1">submit</base-button>
+        <base-button @click="submitTagRequest" :secondary="true" class="ml-2 mt-1">Submit</base-button>
     </div>
     <p v-if="form.errors.name" class="mt-2 text-sm text-red-600" id="error`">{{ form.errors.name }}</p>
 </template>
