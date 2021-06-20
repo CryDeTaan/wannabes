@@ -19,5 +19,8 @@ class TagSeeder extends Seeder
         Tag::create(['name' => 'Tag Three', 'color' => 'green']);
         Tag::create(['name' => 'Tag Four', 'color' => 'pink']);
         Tag::create(['name' => 'Tag five', 'color' => 'yellow']);
+        Tag::create(['name' => 'Tag six', 'color' => 'indigo']);
+        Tag::create(['name' => 'Tag seven', 'color' => 'purple']);
+        Tag::create(['name' => 'Tag eight', 'color' => 'lime']);
     }
 }
