@@ -1,10 +1,10 @@
 <template>
     <div class="max-w-3xl mx-auto px-6 md:max-w-7xl md:px-8 md:grid md:grid-cols-12 lg:gap-8">
         <aside class="sticky top-0 z-30 lg:hidden col-span-12">
-            <div class="pb-4 w-full max-w-3xl mx-auto px-6 md:max-w-4xl md:px-8">
+            <div class="pb-4 w-full max-w-3xl mx-auto px-2 md:max-w-4xl md:px-8 bg-dark-800">
                 <h2 class="sr-only">Details</h2>
                 <div class="flex justify-between w-full pb-2 border-b border-neutral-200 dark:border-dark-500">
-                    <div class="space-y-2">
+                    <div class="space-y-2 pr-2">
                         <div class="items-center">
                             <span class="text-primary-600 text-sm font-medium">{{ snippet.title }}</span>
                         </div>
@@ -13,10 +13,10 @@
                         </div>
                     </div>
 
-                    <div class="flex-col">
-                        <p class="ml-1 inline-block align-middle text-sm font-medium text-neutral-500">Tagged:</p>
+                    <div class="flex-col flex justify-end">
+                        <p class="ml-1 inline-block text-right align-middle text-sm font-medium text-neutral-500">Tagged:</p>
                         <ul class="leading-8">
-                            <li class="inline">
+                            <li class="flex flex-wrap justify-end inline">
                                 <base-tag
                                     v-for="tag in snippet.tags" :key="tag" :tag="tag"
                                 />
@@ -24,11 +24,11 @@
                         </ul>
                     </div>
                 </div>
-                <div class="flex justify-between items-center">
+                <div class="flex-col sm:flex-row sm:flex justify-between items-center">
                     <div class="flex flex-col sm:flex-row sm:space-x-2 max-w-2xl">
-                        <div class="flex items-center pt-2">
+                        <div class="flex items-center pt-2 sm:pt-0">
                             <CalendarIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
-                            <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">Drafting on <time
+                            <span class="ml-2 text-gray-900 dark:text-dark-400 text-sm font-medium">Drafting on <time
                                 datetime="2020-12-02"
                             >{{ snippet.created_at}}</time> by:</span>
                         </div>
@@ -37,12 +37,12 @@
                         </div>
                     </div>
                     <div class="flex items-center my-2">
-                        <div v-if="can_edit">
+                        <div class="flex sm:flex-col justify-end" v-if="can_edit">
                             <base-button as="link" :href="route('snippets.edit', snippet.slug)">
                                 <PencilAltIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
                                 Edit
                             </base-button>
-                            <base-button @click="confirmSnippetDeletion" :secondary="true" class="ml-2">
+                            <base-button @click="confirmSnippetDeletion" :secondary="true" class="ml-2 sm:ml-0 sm:mt-2">
                                 <TrashIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
                                 Delete
                             </base-button>
@@ -166,12 +166,14 @@ import { FireIcon } from '@heroicons/vue/solid'
 import JetButton from '@/Jetstream/Button'
 import BaseTag from "@/Components/BaseTag";
 import JetDialogModal from '@/Jetstream/DialogModal'
+import BaseTagSmall from "@/Components/BaseTagSmall";
 
 export default {
     name: "Show",
     layout: AppLayout,
 
     components: {
+        BaseTagSmall,
         BaseTag,
         hljs,
         UserBlock,
