@@ -123,7 +123,7 @@
                         <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">{{ snippet.excerpt }}</span>
                     </div>
                 </div>
-                <div class="mt-6 border-t border-b border-gray-200 dark:border-dark-500 py-7 space-y-8">
+                <div class="mt-6 border-t border-b border-gray-200 dark:border-dark-500 py-4 space-y-8">
                     <div>
                         <div class="flex items-center space-x-2">
                             <CalendarIcon class="h-6 w-6 text-gray-400" aria-hidden="true" />
@@ -142,14 +142,13 @@
                             </li>
                         </ul>
                     </div>
-                </div>
-                <div>
                     <base-button @click="submitForm" class="w-full">
                         <SaveIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
                         Save
                     </base-button>
                 </div>
             </div>
+            <tag-request />
         </aside>
 
     </div>
@@ -164,12 +163,14 @@ import JetButton from '@/Jetstream/Button'
 import {reactive, ref} from "vue";
 import BaseTagClose from "@/Components/BaseTagClose";
 import {useForm} from "@inertiajs/inertia-vue3";
+import TagRequest from "@/Components/TagRequest";
 
 export default {
     name: "Edit",
     layout: AppLayout,
 
     components: {
+        TagRequest,
         BaseTagClose,
         UserBlock,
         TagSelect,

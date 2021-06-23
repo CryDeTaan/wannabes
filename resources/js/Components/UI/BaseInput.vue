@@ -22,6 +22,7 @@ Usage:
                    :value="modelValue"
                    :name="id"
                    :id="id"
+                   :placeholder="placeholder"
                    :class="inputClasses"
                    aria-invalid="true" :aria-describedby="id"
                    :ref="id"
@@ -52,6 +53,10 @@ export default {
         label: {
             type: String,
             required: true,
+        },
+        placeholder: {
+            type: String,
+            required: false,
         },
         id: {
             type: String,
