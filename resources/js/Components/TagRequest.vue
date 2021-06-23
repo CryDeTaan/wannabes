@@ -1,7 +1,8 @@
 <template>
-    <p class="block mt-3 text-sm font-medium text-gray-700 dark:text-dark-400">Suggest a tag:</p>
+    <p class="block mt-3 text-sm font-medium text-gray-700 dark:text-dark-400">Tag missing you'd like to see?</p>
     <div class="flex items-center">
         <base-input
+            placeholder="Suggest a tag..."
             label=""
             v-model="form.name"
             id="tag"
