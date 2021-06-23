@@ -126,7 +126,7 @@
                         <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">{{ form.excerpt }}</span>
                     </div>
                 </div>
-                <div class="mt-6 border-t border-b border-gray-200 dark:border-dark-500 py-7 space-y-8">
+                <div class="border-t border-b border-gray-200 dark:border-dark-500 py-4 space-y-8">
                     <div>
                         <div class="flex items-center space-x-2">
                             <CalendarIcon class="h-6 w-6 text-gray-400" aria-hidden="true" />
@@ -149,14 +149,13 @@
                             </li>
                         </ul>
                     </div>
-                </div>
-                <div>
                     <base-button @click="submitForm" class="w-full">
                         <SaveIcon class="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
                         Save
                     </base-button>
                 </div>
             </div>
+            <tag-request />
         </aside>
 
     </div>
@@ -170,12 +169,14 @@ import TagSelect from "@/Pages/Snippets/TagSelect";
 import UserBlock from "@/Components/UserBlock";
 import {CalendarIcon, SaveIcon} from '@heroicons/vue/outline'
 import BaseTagClose from "@/Components/BaseTagClose";
+import TagRequest from "@/Components/TagRequest";
 
 export default {
     name: "Create",
     layout: AppLayout,
 
     components: {
+        TagRequest,
         BaseTagClose,
         UserBlock,
         TagSelect,

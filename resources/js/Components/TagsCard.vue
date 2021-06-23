@@ -7,16 +7,14 @@
             />
         </li>
     </ul>
-    <tag-request />
 </template>
 
 <script>
 import BaseTag from "@/Components/BaseTag";
-import TagRequest from "@/Components/TagRequest";
 
 export default {
     name: "TagsCard",
-    components: {TagRequest, BaseTag},
+    components: {BaseTag},
     props: {
         tags: Array,
     },
