@@ -39,7 +39,6 @@ trait Streetcredable
     {
         $this->streetcred()->updateOrCreate([
             'user_id' => auth()->id(),
-        ], [
             'streetcred' => 1
         ]);
     }
