@@ -18,14 +18,14 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $snippets = Snippet::search($request->search)->paginate();
+        $snippets->load(
+            'user:id,name,profile_photo_path',
+            'tags:id,name,slug,color'
+        );
+
         return Inertia::render('Home',[
-            'snippets' => Snippet::filter($request->all(['search']))
-                ->withStreetcred()
-                ->orderBy('streetcred', 'DESC')
-                ->with('user:id,name,profile_photo_path')
-                ->with('tags:id,name,slug,color')
-                ->select(['id', 'user_id', 'slug', 'title', 'excerpt', 'streetcred'])
-                ->paginate(),
+            'snippets' => $snippets,
             'leaderBoard' => User::all('id', 'name', 'profile_photo_path')
                 ->where('streetcred', '>', 0)
                 ->sortByDesc('streetcred')
