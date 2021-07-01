@@ -66,8 +66,6 @@ trait Streetcredable
             'user_id', auth()->id()
         )->delete();
 
-        dd($this);
-
         // Force persist the changes to the search index:
         // https://laravel.com/docs/8.x/scout#updating-records
         $this->save();
