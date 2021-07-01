@@ -18,11 +18,12 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $snippets = Snippet::search($request->search)->paginate();
+        $snippets = Snippet::search($request->search)->paginate()->withQueryString();
         $snippets->load(
             'user:id,name,profile_photo_path',
             'tags:id,name,slug,color'
         );
+        $snippets->appends('query', null);;
 
         return Inertia::render('Home',[
             'snippets' => $snippets,
