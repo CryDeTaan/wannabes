@@ -23,7 +23,7 @@ class HomeController extends Controller
             'user:id,name,profile_photo_path',
             'tags:id,name,slug,color'
         );
-        $snippets->appends('query', null);;
+        $snippets->appends('query', null);
 
         return Inertia::render('Home',[
             'snippets' => $snippets,
