@@ -88,8 +88,8 @@
                                 >
                                     <MenuItems
                                         class="origin-top-right absolute z-10 right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-dark-700 dark:text-dark-400 ring-1 ring-black ring-opacity-5 py-1 focus:outline-none">
-                                        <MenuItem v-slot="{ active }" className="w-full group flex items-center px-4 py-2 text-sm text-neutral-700 dark:text-dark-300 focus:outline-none">
-                                            <button @click="toggleDarkMode" type="button" :class="active ? 'bg-neutral-100 dark:bg-dark-600' : ''">
+                                        <MenuItem v-slot="{ active }">
+                                            <button @click="toggleDarkMode" type="button" :class="[active ? 'bg-neutral-100 dark:bg-dark-600' : '', 'w-full group flex items-center px-4 py-2 text-sm text-neutral-700 dark:text-dark-300 focus:outline-none']">
                                                 <SunIcon v-if="theme === 'light'" class="mr-3 h-5 w-5 text-neutral-700" aria-hidden="true" />
                                                 <MoonIcon v-else class="mr-3 h-5 w-5 dark:text-dark-400" aria-hidden="true" />
                                                 Mode
