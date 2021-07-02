@@ -48,7 +48,7 @@
                             class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 dark:text-dark-400 font-medium border border-transparent rounded-br-lg"
                         >
                             <FireIcon class="w-5 h-5 text-gray-400" aria-hidden="true" />
-                            <span class="ml-3">{{ snippet.streetcred ? snippet.streetcred : 0}}</span>
+                            <span class="ml-3">{{ snippet.streetcredCount ? snippet.streetcredCount : 0}}</span>
                         </div>
                     </div>
                 </div>

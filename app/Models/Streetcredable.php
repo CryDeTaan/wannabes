@@ -33,15 +33,28 @@ trait Streetcredable
     }
 
     /**
+     * Determine if the user gave the snippet streetcred.
+     *
+     * @return bool
+     */
+    public function getStreetcredCountAttribute()
+    {
+        return $this->streetcred()->count();
+    }
+
+    /**
      * Add streetcred to a snippet from user
      */
     public function giveStreetcred()
     {
         $this->streetcred()->updateOrCreate([
             'user_id' => auth()->id(),
-        ], [
             'streetcred' => 1
         ]);
+
+        // Force persist the changes to the search index:
+        // https://laravel.com/docs/8.x/scout#updating-records
+        $this->save();
     }
 
     /**
@@ -52,6 +65,10 @@ trait Streetcredable
         $this->streetcred()->where(
             'user_id', auth()->id()
         )->delete();
+
+        // Force persist the changes to the search index:
+        // https://laravel.com/docs/8.x/scout#updating-records
+        $this->save();
     }
 
     /**

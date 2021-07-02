@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Laravel\Scout\Searchable;
 
 /**
  * @mixin IdeHelperSnippet
  */
 class Snippet extends Model
 {
-    use Streetcredable, HasFactory, HasSlug;
+    use Searchable, Streetcredable, HasFactory, HasSlug;
 
     /**
      * The attributes that are mass assignable.
@@ -31,7 +32,7 @@ class Snippet extends Model
      *
      * @var array
      */
-    protected $appends = ['gaveStreetcred'];
+    protected $appends = ['gaveStreetcred', 'streetcredCount'];
 
     /**
      * Options for generating a slug for this model.
