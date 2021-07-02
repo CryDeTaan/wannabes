@@ -63,7 +63,7 @@ class User extends Authenticatable
      *
      * @return string
      */
-    public function getStreetcredAttribute()
+    public function getStreetcredCountAttribute()
     {
         return $this->snippets()->withStreetcred()->whereNotNull('streetcred')->sum('streetcred') ;
     }
@@ -75,7 +75,6 @@ class User extends Authenticatable
      */
     protected $appends = [
         'profile_photo_url',
-        'streetcred'
     ];
 
     /**
