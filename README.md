@@ -30,7 +30,7 @@ In production, I update three files:
 - [ ] Dynamically set Tag colour based on hex code
 - [ ] Custom/personal tags
 - [ ] Comments on snippets
-- [ ] Scalable searching
+- [x] Scalable searching
 - [ ] ....
 
 ## Contributing
