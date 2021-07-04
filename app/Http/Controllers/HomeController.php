@@ -20,14 +20,14 @@ class HomeController extends Controller
     {
         $snippets = Snippet::search($request->search)->paginate()->withQueryString();
         $snippets->load(
-            'user:id,name,profile_photo_path',
+            'user:id,name,streetcred,profile_photo_path',
             'tags:id,name,slug,color'
         );
         $snippets->appends('query', null);
 
         return Inertia::render('Home',[
             'snippets' => $snippets,
-            'leaderBoard' => User::all('id', 'name', 'profile_photo_path')
+            'leaderBoard' => User::all('id', 'name', 'streetcred', 'profile_photo_path')
                 ->where('streetcred', '>', 0)
                 ->sortByDesc('streetcred')
                 ->values()
