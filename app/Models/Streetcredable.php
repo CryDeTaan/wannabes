@@ -29,7 +29,12 @@ trait Streetcredable
      */
     public function getGaveStreetcredAttribute(): bool
     {
-        return $this->gotStreetcredFromUser();
+        if ($user = auth()->user()) {
+            return (bool)$this->streetcred()
+                ->firstWhere('user_id', $user->id);
+        }
+
+        return false;
     }
 
     /**
@@ -75,20 +80,6 @@ trait Streetcredable
 
         // We also need to update the user's streetcred
         $this->user()->decrement('streetcred');
-    }
-
-    /**
-     * Check if a user gave a specific snippet some streetcred
-     * @return bool
-     */
-    public function gotStreetcredFromUser()
-    {
-        if ($user = auth()->user()) {
-            return (bool)$user->gaveStreetcred
-                ->firstWhere('snippet_id', $this->id);
-        }
-
-        return false;
     }
 
     /**
