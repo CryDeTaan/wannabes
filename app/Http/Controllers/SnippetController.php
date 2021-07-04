@@ -86,7 +86,7 @@ class SnippetController extends Controller
                 'tags'       => $snippet->tags,
                 'created_at' => $snippet->created_at->toFormattedDateString(),
                 'markdown'   => $markdown,
-                'gaveStreetcred' => $snippet->gotStreetcredFromUser(),
+                'gaveStreetcred' => $snippet->gaveStreetcred,
                 'streetcred' => $snippet->streetcred->count(),
                 'user'       => $snippet->user->only('name', 'profile_photo_url', 'streetcred'),
             ],
