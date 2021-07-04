@@ -32,14 +32,7 @@ class Snippet extends Model
      *
      * @var array
      */
-    protected $appends = ['gaveStreetcred'];
-
-    /**
-     * The relationship count to append to the model's array.
-     *
-     * @var array
-     */
-    protected $withCount = ['streetcred'];
+    protected $appends = ['gaveStreetcred', 'streetcred_count'];
 
     /**
      * Options for generating a slug for this model.
