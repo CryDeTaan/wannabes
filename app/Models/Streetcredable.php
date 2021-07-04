@@ -3,24 +3,8 @@
 
 namespace App\Models;
 
-
-use Illuminate\Database\Eloquent\Builder;
 trait Streetcredable
 {
-
-    /**
-     * Scoped Query to include streetcred for the snippet:
-     * Snippet::withStreetcred->get()
-     * @param Builder $query
-     */
-    public function scopeWithStreetcred(Builder $query)
-    {
-        $query->leftJoinSub(
-            'SELECT snippet_id, SUM(streetcred) streetcred from streetcreds GROUP BY snippet_id',
-            'streetcreds',
-            'streetcreds.snippet_id', 'snippets.id'
-        );
-    }
 
     /**
      * Determine if the user gave the snippet streetcred.
@@ -35,16 +19,6 @@ trait Streetcredable
         }
 
         return false;
-    }
-
-    /**
-     * Determine if the user gave the snippet streetcred.
-     *
-     * @return bool
-     */
-    public function getStreetcredCountAttribute()
-    {
-        return $this->streetcred()->count();
     }
 
     /**
