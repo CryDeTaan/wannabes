@@ -55,6 +55,9 @@ trait Streetcredable
         // Force persist the changes to the search index:
         // https://laravel.com/docs/8.x/scout#updating-records
         $this->save();
+
+        // We also need to update the user's streetcred
+        $this->user()->increment('streetcred');
     }
 
     /**
@@ -69,6 +72,9 @@ trait Streetcredable
         // Force persist the changes to the search index:
         // https://laravel.com/docs/8.x/scout#updating-records
         $this->save();
+
+        // We also need to update the user's streetcred
+        $this->user()->decrement('streetcred');
     }
 
     /**
