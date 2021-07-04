@@ -50,7 +50,7 @@ class ConfigureMeiliSearch extends Command
             "attribute",
             "wordsPosition",
             "exactness",
-            "desc(streetcredCount)"
+            "desc(streetcred_count)"
         ]);
 
         $update['status'] = 'enqueued';

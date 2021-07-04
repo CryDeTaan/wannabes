@@ -51,11 +51,11 @@ class UserController extends Controller
         return Inertia::render('Snippets/User/Show',[
             'user'      => $user->only('name', 'profile_photo_url', 'streetcred'),
             'snippets' => Snippet::where('user_id', $user->id)
-                ->withStreetcred()
-                ->orderBy('streetcred', 'DESC')
                 ->with('user:id,name,profile_photo_path')
                 ->with('tags:id,name,slug,color')
-                ->select(['id', 'user_id', 'slug', 'title', 'excerpt', 'streetcred'])
+                ->select(['id', 'user_id', 'slug', 'title', 'excerpt'])
+                ->withCount('streetcred')
+                ->orderBy('streetcred_count', 'desc')
                 ->paginate()
         ]);
     }
