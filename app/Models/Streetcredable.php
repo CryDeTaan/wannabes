@@ -6,6 +6,10 @@ namespace App\Models;
 trait Streetcredable
 {
 
+    public function getStreetcredCountAttribute()
+    {
+        return $this->streetcred()->count();
+    }
     /**
      * Determine if the user gave the snippet streetcred.
      *
