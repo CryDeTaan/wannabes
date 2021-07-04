@@ -20,17 +20,17 @@ class TagController extends Controller
     {
         return Inertia::render('Snippets/Tag/Show',[
             'snippets' => $tag->snippets()
-                ->withStreetcred()
-                ->orderBy('streetcred', 'DESC')
                 ->with('user:id,name,profile_photo_path')
                 ->with('tags:id,name,slug,color')
-                ->select(['user_id', 'slug', 'title', 'excerpt', 'streetcred'])
+                ->select(['user_id', 'slug', 'title', 'excerpt'])
+                ->withCount('streetcred')
+                ->orderBy('streetcred_count', 'desc')
                 ->paginate(),
-            'leaderBoard' => User::all('id', 'name', 'profile_photo_path')
+            'leaderBoard' => User::all('id', 'name', 'streetcred', 'profile_photo_path')
                 ->where('streetcred', '>', 0)
                 ->sortByDesc('streetcred')
                 ->values()
-                ->take(10)
+                ->take(10),
         ]);
     }
 

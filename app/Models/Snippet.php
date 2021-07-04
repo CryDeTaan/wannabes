@@ -28,11 +28,18 @@ class Snippet extends Model
     ];
 
     /**
-     * The accessors to append to the model's array form.
+     * The accessors to append to the model's array.
      *
      * @var array
      */
-    protected $appends = ['gaveStreetcred', 'streetcredCount'];
+    protected $appends = ['gaveStreetcred'];
+
+    /**
+     * The relationship count to append to the model's array.
+     *
+     * @var array
+     */
+    protected $withCount = ['streetcred'];
 
     /**
      * Options for generating a slug for this model.
@@ -53,15 +60,6 @@ class Snippet extends Model
     public function getRouteKeyName()
     {
         return 'slug';
-    }
-
-    public function scopeFilter($query, array $filters)
-    {
-        if ($filters['search'] ?? false) {
-            $query
-                ->where('title', 'like', '%' . $filters['search'] . '%')
-                ->orWhere('excerpt', 'like', '%' . $filters['search'] . '%');
-        }
     }
 
     /**
