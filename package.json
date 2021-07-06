@@ -10,11 +10,11 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "@inertiajs/inertia": "^0.8.4",
-        "@inertiajs/inertia-vue3": "^0.3.5",
+        "@inertiajs/inertia": "^0.9.2",
+        "@inertiajs/inertia-vue3": "^0.4.7",
         "@inertiajs/progress": "^0.2.4",
-        "@tailwindcss/forms": "^0.2.1",
-        "@tailwindcss/typography": "^0.3.0",
+        "@tailwindcss/forms": "^0.3.3",
+        "@tailwindcss/typography": "^0.4.1",
         "@vue/compiler-sfc": "^3.0.5",
         "axios": "^0.21",
         "laravel-mix": "^6.0.6",
@@ -28,6 +28,6 @@
     "dependencies": {
         "@headlessui/vue": "^1.1.1",
         "@heroicons/vue": "^1.0.1",
-        "highlight.js": "^10.7.2"
+        "highlight.js": "^11.0.0"
     }
 }
