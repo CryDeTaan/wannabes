@@ -144,6 +144,8 @@ class SnippetController extends Controller
      */
     public function destroy(Snippet $snippet)
     {
+        $snippet->user()->decrement('streetcred', $snippet->streetcred_count);
+
         $snippet->delete();
 
         return redirect(
