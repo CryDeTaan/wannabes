@@ -93,4 +93,14 @@ class User extends Authenticatable
         return $this->hasMany(Streetcred::class);
     }
 
+    /**
+     * Make sure the user's streetcred aligns with
+     * the streetcred from the snippets.
+     */
+    public function syncStreetcred()
+    {
+        $this->streetcred = $this->snippets()->get()->sum('streetcred_count');
+        $this->save();
+    }
+
 }
