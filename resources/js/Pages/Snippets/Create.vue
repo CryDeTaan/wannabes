@@ -64,52 +64,8 @@
                         </p>
                     </div>
 
-                    <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                        <div class="sm:col-span-3">
-                            <base-input
-                                v-model="form.title"
-                                label="Title"
-                                id="title"
-                                :error="form.errors.title"
-                            />
-                        </div>
+                    <snippet-form  :form="form" :tags="tags"/>
 
-                        <div class="sm:col-span-3">
-                            <!--<tag-select />-->
-                            <div>
-                                <label for="tags" class="block text-sm font-medium text-gray-700 dark:text-dark-400">Tags</label>
-                                <select
-                                    id="tags" name="tags" @change="addTag"
-                                    class="mt-1 block w-full pl-3 pr-10 py-2 shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm border-gray-300 dark:border-dark-600 dark:bg-dark-700 rounded-md dark:text-dark-300 dark:focus:text-neutral-300"
-                                >
-                                    <option selected>Select tags...</option>
-                                    <option
-                                        v-for="tag in tags" :key="tag.slug" :value="tag.slug"
-                                    >{{ tag.name }}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="sm:col-span-6">
-                            <base-input
-                                v-model="form.excerpt"
-                                label="Excerpt"
-                                id="excerpt"
-                                :error="form.errors.excerpt"
-                            />
-                        </div>
-                        <div class="sm:col-span-6">
-                            <base-text-area
-                                v-model="form.markdown"
-                                label="Snippet"
-                                id="snippet"
-                                rows="35"
-                                :error="form.errors.markdown"
-                            />
-                            <p v-if="!form.errors.markdown" class="mt-2 text-sm text-gray-500 dark:text-dark-400">Write
-                                your snippet in markdown.</p>
-                        </div>
-                    </div>
                 </div>
 
             </form>
@@ -162,24 +118,24 @@
 </template>
 
 <script>
-import {computed, reactive} from 'vue'
+import {computed, reactive, ref} from 'vue'
 import {useForm} from '@inertiajs/inertia-vue3'
 import AppLayout from "@/Layouts/AppLayout";
-import TagSelect from "@/Pages/Snippets/TagSelect";
 import UserBlock from "@/Components/UserBlock";
 import {CalendarIcon, SaveIcon} from '@heroicons/vue/outline'
 import BaseTagClose from "@/Components/BaseTagClose";
 import TagRequest from "@/Components/TagRequest";
+import SnippetForm from "@/Pages/Snippets/SnippetForm";
 
 export default {
     name: "Create",
     layout: AppLayout,
 
     components: {
+        SnippetForm,
         TagRequest,
         BaseTagClose,
         UserBlock,
-        TagSelect,
         CalendarIcon,
         SaveIcon,
     },
@@ -207,21 +163,15 @@ export default {
                 })
         }
 
-        const tags = reactive(props.tags);
+        const tags = ref(props.tags);
         const selectedTags = reactive([])
-
-        function addTag(event) {
-            const index = tags.findIndex((tag) => tag.slug === event.target.value);
-            const selectedTag = tags.splice(index, 1);
-
-            form.tags.push(selectedTag[0])
-        }
 
         function removeTag(slug) {
             const index = form.tags.findIndex((tag) => tag.slug === slug);
             const selectedTag = form.tags.splice(index, 1);
 
-            tags.push(selectedTag[0])
+            tags.value.push(selectedTag[0])
+            tags.value = _.orderBy(tags.value, 'id')
         }
 
         const now = computed(() => {
@@ -235,7 +185,6 @@ export default {
         })
 
         return {
-            addTag,
             removeTag,
             submitForm,
             form,
