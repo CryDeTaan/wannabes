@@ -30,7 +30,7 @@
                     <div class="flex flex-col sm:flex-row sm:space-x-2 max-w-2xl">
                         <div class="flex items-center pt-2 sm:pt-0">
                             <CalendarIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
-                            <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">Drafting on <time datetime="2020-12-02">{{ snippet.create_at }}</time> by:</span>
+                            <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">Drafting on <time :datetime="now">{{ now }}</time> by:</span>
                         </div>
                         <div class="sm:w-40">
                             <user-block :user="snippet.user" />
@@ -82,7 +82,7 @@
                     <div>
                         <div class="flex items-center space-x-2">
                             <CalendarIcon class="h-6 w-6 text-gray-400" aria-hidden="true" />
-                            <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">Drafting on <time datetime="2020-12-02">{{ snippet.create_at }}</time> by:</span>
+                            <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">Drafting on <time :datetime="now">{{ now }}</time> by:</span>
                         </div>
                         <user-block :user="snippet.user" />
                     </div>
@@ -114,7 +114,7 @@ import AppLayout from "@/Layouts/AppLayout";
 import UserBlock from "@/Components/UserBlock";
 import { CalendarIcon, SaveIcon } from '@heroicons/vue/outline'
 import JetButton from '@/Jetstream/Button'
-import {reactive, ref} from "vue";
+import {computed, reactive, ref} from "vue";
 import BaseTagClose from "@/Components/BaseTagClose";
 import {useForm} from "@inertiajs/inertia-vue3";
 import TagRequest from "@/Components/TagRequest";
@@ -175,11 +175,22 @@ export default {
             availableTags.value = _.orderBy(availableTags.value, 'id')
         }
 
+        const now = computed(() => {
+            return new Date().toLocaleDateString(
+                'en-us',
+                {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                })
+        })
+
         return {
             availableTags,
             form,
             submitForm,
             removeTag,
+            now,
         }
     }
 
