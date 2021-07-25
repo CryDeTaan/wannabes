@@ -71,4 +71,12 @@ class Snippet extends Model
         return $this->belongsToMany(Tag::class)->withTimestamps();
     }
 
+    /**
+     * Get the comments for the snippet.
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
 }
