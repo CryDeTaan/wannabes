@@ -67,7 +67,7 @@
                 v-html="snippet.markdown"
             ></div>
             <div class="max-w-3xl mx-auto mt-6 md:max-w-4xl md:px-8">
-                <comment-layout />
+                <comment-layout :comments="snippet.comments"/>
             </div>
         </main>
 
