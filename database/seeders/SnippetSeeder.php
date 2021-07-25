@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Snippet;
+use App\Models\User;
 use App\Models\Tag;
 
 class SnippetSeeder extends Seeder
@@ -23,13 +24,18 @@ class SnippetSeeder extends Seeder
             );
         });
 
+        $userCount = User::count();
+        $snippetCount = Snippet::count();
+
         foreach(range(1,300) as $index) {
-            $snippet = Snippet::find(rand(1,110));
+            $user = User::find(rand(1, $userCount));
+            $snippet = Snippet::find(rand(1, $snippetCount));
             $snippet->streetcred()->updateOrCreate([
-                'user_id' => rand(1, 11),
+                'user_id' => $user->id,
             ], [
                 'streetcred' => 1
             ]);
+            $user->increment('streetcred');
         }
 
     }
