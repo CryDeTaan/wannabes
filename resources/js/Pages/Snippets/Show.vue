@@ -29,7 +29,7 @@
                         <div class="flex items-center pt-2 sm:pt-0">
                             <CalendarIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
                             <span class="ml-2 text-gray-900 dark:text-dark-400 text-sm font-medium">Drafting on <time
-                                datetime="2020-12-02"
+                                :datetime="snippet.created"
                             >{{ snippet.created_at}}</time> by:</span>
                         </div>
                         <div class="sm:w-40">
@@ -91,7 +91,7 @@
                     <div>
                         <div class="flex items-center space-x-2">
                             <CalendarIcon class="h-6 w-6 text-gray-400" aria-hidden="true" />
-                            <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">Created on <time datetime="2020-12-02">{{ snippet.created_at}}</time> by:</span>
+                            <span class="text-gray-900 dark:text-dark-400 text-sm font-medium">Created on <time :datetime="snippet.created_at">{{ snippet.created_at}}</time> by:</span>
                         </div>
                         <user-block :user="snippet.user" />
                     </div>
