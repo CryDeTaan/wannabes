@@ -66,6 +66,9 @@
                 class="max-w-3xl mx-auto px-6 md:max-w-4xl md:px-8 prose dark:prose-dark"
                 v-html="snippet.markdown"
             ></div>
+            <div class="max-w-3xl mx-auto mt-6 md:max-w-4xl md:px-8">
+                <comment-layout />
+            </div>
         </main>
 
         <aside class="hidden lg:block lg:col-span-3">
@@ -167,12 +170,14 @@ import JetButton from '@/Jetstream/Button'
 import BaseTag from "@/Components/BaseTag";
 import JetDialogModal from '@/Jetstream/DialogModal'
 import BaseTagSmall from "@/Components/BaseTagSmall";
+import CommentLayout from "@/Pages/Snippets/Comments/CommentLayout";
 
 export default {
     name: "Show",
     layout: AppLayout,
 
     components: {
+        CommentLayout,
         BaseTagSmall,
         BaseTag,
         hljs,
