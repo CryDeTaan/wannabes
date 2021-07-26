@@ -18,11 +18,13 @@
                         >{{ getDifferenceInDays(comment.updated_at) }}</span>
                         <div v-if="$page.props.user.id === comment.user_id" class="flex space-x-4 items-center">
                             <button
+                                @click="editComment(comment.id)"
                                 class="text-gray-500 hover:text-gray-600 dark:text-dark-500 dark:hover:text-dark-400"
                             >
                                 <PencilAltIcon class="h-4 w-4" aria-hidden="true" />
                             </button>
                             <button
+                                @click="deleteComment(comment.id)"
                                 class="text-gray-500 hover:text-gray-600 dark:text-dark-500 dark:hover:text-dark-400"
                             >
                                 <TrashIcon class="h-4 w-4" aria-hidden="true" />
@@ -62,8 +64,18 @@ export default {
             return diffForHumans.format(-diffInDays, 'day');
         }
 
+        function editComment(id) {
+            console.log(id)
+        }
+
+        function deleteComment(id) {
+            console.log(id)
+        }
+
         return {
             getDifferenceInDays,
+            editComment,
+            deleteComment,
         }
     }
 }
