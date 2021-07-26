@@ -12,10 +12,23 @@
                     <div class="mt-1 text-sm text-gray-700 dark:text-dark-400">
                         <p>{{ comment.body }}</p>
                     </div>
-                    <div class="mt-2 text-sm space-x-2">
+                    <div class="flex justify-between mt-2 text-sm">
                         <span
                             class="text-gray-500 dark:text-dark-500 font-medium"
                         >{{ getDifferenceInDays(comment.updated_at) }}</span>
+                        <div v-if="$page.props.user.id === comment.user_id" class="flex space-x-4 items-center">
+                            <button
+                                class="text-gray-500 hover:text-gray-600 dark:text-dark-500 dark:hover:text-dark-400"
+                            >
+                                <PencilAltIcon class="h-4 w-4" aria-hidden="true" />
+                            </button>
+                            <button
+                                class="text-gray-500 hover:text-gray-600 dark:text-dark-500 dark:hover:text-dark-400"
+                            >
+                                <TrashIcon class="h-4 w-4" aria-hidden="true" />
+                            </button>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -24,8 +37,14 @@
 </template>
 
 <script>
+import {PencilAltIcon, TrashIcon,} from '@heroicons/vue/outline'
+
 export default {
     name: "CommentList",
+    components: {
+        PencilAltIcon,
+        TrashIcon,
+    },
     props: {
         comments: Array,
     },
