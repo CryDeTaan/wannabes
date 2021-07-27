@@ -5,32 +5,55 @@
                 <div class="flex-shrink-0">
                     <img class="h-10 w-10 rounded-full" :src="comment.user.profile_photo_url" alt="" />
                 </div>
-                <div>
-                    <div class="text-sm">
-                        <a href="#" class="font-medium text-gray-900 dark:text-dark-300">{{ comment.user.name }}</a>
-                    </div>
-                    <div class="mt-1 text-sm text-gray-700 dark:text-dark-400">
-                        <p>{{ comment.body }}</p>
-                    </div>
-                    <div class="flex justify-between mt-2 text-sm">
+                <div class="w-full">
+                    <div v-if="editCommentId !== comment.id">
+                        <div class="text-sm">
+                            <a href="#" class="font-medium text-gray-900 dark:text-dark-300">{{ comment.user.name }}</a>
+                        </div>
+                        <div class="mt-1 text-sm text-gray-700 dark:text-dark-400">
+                            <p>{{ comment.body }}</p>
+                        </div>
+                        <div class="flex justify-between mt-2 text-sm">
                         <span
                             class="text-gray-500 dark:text-dark-500 font-medium"
                         >{{ getDifferenceInDays(comment.updated_at) }}</span>
-                        <div v-if="$page.props.user.id === comment.user_id" class="flex space-x-4 items-center">
-                            <button
-                                @click="editComment(comment.id)"
-                                class="text-gray-500 hover:text-gray-600 dark:text-dark-500 dark:hover:text-dark-400"
-                            >
-                                <PencilAltIcon class="h-4 w-4" aria-hidden="true" />
-                            </button>
-                            <button
-                                @click="deleteComment(comment.id)"
-                                class="text-gray-500 hover:text-gray-600 dark:text-dark-500 dark:hover:text-dark-400"
-                            >
-                                <TrashIcon class="h-4 w-4" aria-hidden="true" />
-                            </button>
+                            <div v-if="$page.props.user.id === comment.user_id" class="flex space-x-4 items-center">
+                                <button
+                                    @click="toggleEditComment(comment.id)"
+                                    class="text-gray-500 hover:text-gray-600 dark:text-dark-500 dark:hover:text-dark-400"
+                                >
+                                    <PencilAltIcon class="h-4 w-4" aria-hidden="true" />
+                                </button>
+                                <button
+                                    @click="deleteComment(comment.id)"
+                                    class="text-gray-500 hover:text-gray-600 dark:text-dark-500 dark:hover:text-dark-400"
+                                >
+                                    <TrashIcon class="h-4 w-4" aria-hidden="true" />
+                                </button>
+                            </div>
                         </div>
-
+                    </div>
+                    <div v-else>
+                        <base-text-area
+                            :modelValue="comment.body"
+                            label="Comment"
+                            :label-src-only="true"
+                            id="text"
+                            rows="3"
+                        />
+                        <div class="mt-3 flex justify-end space-x-2">
+                            <base-button
+                                :secondary="true"
+                                @click="toggleEditComment"
+                            >
+                                Cancel
+                            </base-button>
+                            <base-button
+                                @click="updateComment(comment.id)"
+                            >
+                                Update
+                            </base-button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -40,10 +63,13 @@
 
 <script>
 import {PencilAltIcon, TrashIcon,} from '@heroicons/vue/outline'
+import {ref} from "vue";
+import BaseButton from "@/Components/UI/BaseButton";
 
 export default {
     name: "CommentList",
     components: {
+        BaseButton,
         PencilAltIcon,
         TrashIcon,
     },
@@ -64,7 +90,17 @@ export default {
             return diffForHumans.format(-diffInDays, 'day');
         }
 
-        function editComment(id) {
+        // Edit/Update comment
+        const editCommentId = ref(null);
+        function toggleEditComment(id) {
+            if (id == null) {
+                editCommentId.value = null
+                return
+            }
+            editCommentId.value = id
+        }
+
+        function updateComment(id) {
             console.log(id)
         }
 
@@ -74,7 +110,9 @@ export default {
 
         return {
             getDifferenceInDays,
-            editComment,
+            editCommentId,
+            toggleEditComment,
+            updateComment,
             deleteComment,
         }
     }
