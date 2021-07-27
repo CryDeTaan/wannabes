@@ -75,11 +75,20 @@ class CommentController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Routing\Redirector
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request, Snippet $snippet, Comment $comment)
     {
-        //
+        $this->validateComment();
+
+        $comment->update([
+            'body' => $request->body,
+        ]);
+
+        return redirect(
+            route('snippets.show', $snippet->slug)
+        )->with('success', 'Comment added.');
+
     }
 
     /**
