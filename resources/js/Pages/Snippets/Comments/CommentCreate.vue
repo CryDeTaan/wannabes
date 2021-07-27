@@ -8,6 +8,7 @@
                 <form action="#">
                     <div>
                         <base-text-area
+                            v-model="form.body"
                             label="Comment"
                             :label-src-only="true"
                             id="text"
@@ -16,7 +17,7 @@
                         />
                     </div>
                     <div class="mt-3 flex justify-end">
-                        <base-button>Comment</base-button>
+                        <base-button @click="submitForm">Comment</base-button>
                     </div>
                 </form>
             </div>
@@ -25,8 +26,33 @@
 </template>
 
 <script>
+import { useForm } from "@inertiajs/inertia-vue3";
+
 export default {
-    name: "CreateComment"
+    name: "CreateComment",
+
+    setup() {
+
+        // Get part after last / of the URI, in this case representing the snippet slug.
+        // https://stackoverflow.com/a/6165408/15658552
+        let snippetSlug = location.pathname.substring(location.pathname.lastIndexOf("/") + 1)
+
+        const form = useForm({
+            body: null,
+        })
+
+        function submitForm() {
+            form.post(route('snippets.comments.store', { snippet: snippetSlug }), {
+                preserveScroll: true,
+                onSuccess: () => form.reset(),
+            })
+        }
+
+        return {
+            form,
+            submitForm,
+        }
+    }
 }
 </script>
 

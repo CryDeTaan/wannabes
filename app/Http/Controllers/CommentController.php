@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
 use Illuminate\Http\Request;
+use App\Models\Comment;
+use App\Models\Snippet;
 
 class CommentController extends Controller
 {
@@ -31,11 +32,20 @@ class CommentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
+    public function store(Request $request, Snippet $snippet)
     {
-        //
+        $this->validateComment();
+
+        $snippet->comments()->create([
+            'body' => $request->body,
+            'user_id' => auth()->id()
+        ]);
+
+        return redirect(
+            route('snippets.show', $snippet->slug)
+        )->with('success', 'Comment added.');
     }
 
     /**
@@ -81,5 +91,12 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         //
+    }
+
+    protected function validateComment()
+    {
+        return request()->validate([
+            'body'     => ['required', 'string', 'max:255'],
+        ]);
     }
 }
