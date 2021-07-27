@@ -95,11 +95,15 @@ class CommentController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Routing\Redirector
      */
-    public function destroy(Comment $comment)
+    public function destroy(Snippet $snippet, Comment $comment)
     {
-        //
+        $comment->delete();
+
+        return redirect(
+            route('snippets.show', $snippet->slug)
+        )->with('success', 'Comment added.');
     }
 
     protected function validateComment()

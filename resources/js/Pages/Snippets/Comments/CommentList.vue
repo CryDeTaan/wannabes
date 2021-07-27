@@ -66,6 +66,7 @@ import {PencilAltIcon, TrashIcon,} from '@heroicons/vue/outline'
 import {ref} from "vue";
 import BaseButton from "@/Components/UI/BaseButton";
 import {useForm} from "@inertiajs/inertia-vue3";
+import {Inertia} from "@inertiajs/inertia";
 
 export default {
     name: "CommentList",
@@ -123,7 +124,7 @@ export default {
         }
 
         function deleteComment(id) {
-            console.log(id)
+            Inertia.delete(`/snippets/${snippetSlug}/comments/${id}`, )
         }
 
         return {
