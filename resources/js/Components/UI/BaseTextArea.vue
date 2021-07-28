@@ -3,14 +3,20 @@ Usage:
 <base-text-area
     v-model="form.text"
     label="Text Area"
+    :label-src-only="true"
     id="text"
     rows="30"
     :error="errors.text"
+    :placeholder="placeholder"
 />
 --
 <template>
     <div>
-        <label :for="id" class="block text-sm font-medium text-gray-700 dark:text-dark-400">
+        <label
+            :for="id"
+            class="block text-sm font-medium text-gray-700 dark:text-dark-400"
+            :class="labelSrcOnly ? 'sr-only' : ''"
+        >
             {{ label }}
         </label>
         <div class="mt-1 relative rounded-md shadow-sm">
@@ -21,6 +27,7 @@ Usage:
                 @input="$emit('update:modelValue', $event.target.value)"
                 :value="modelValue"
                 :class="inputClasses"
+                :placeholder="placeholder"
             />
             <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                 <ExclamationCircleIcon v-if="error" class="h-5 w-5 text-red-600" aria-hidden="true" />
@@ -52,6 +59,10 @@ export default {
             type: String,
             required: true,
         },
+        labelSrcOnly: {
+            type: Boolean,
+            default: false
+        },
         id: {
             type: String,
             required: true,
@@ -63,6 +74,10 @@ export default {
         rows: {
             type: String,
             default: 15,
+        },
+        placeholder: {
+            type: String,
+            required: false,
         }
     },
 
