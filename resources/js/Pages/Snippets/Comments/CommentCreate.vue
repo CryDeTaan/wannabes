@@ -13,6 +13,7 @@
                         id="text"
                         rows="3"
                         placeholder="Add a comment"
+                        :error="form.errors.body"
                     />
                 </div>
                 <div class="mt-3 flex justify-end">

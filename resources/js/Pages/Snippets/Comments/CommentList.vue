@@ -40,6 +40,7 @@
                             :label-src-only="true"
                             id="text"
                             rows="3"
+                            :error="form.errors.body"
                         />
                         <div class="mt-3 flex justify-end space-x-2">
                             <base-button
