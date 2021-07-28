@@ -17,7 +17,7 @@
                         <span
                             class="text-gray-500 dark:text-dark-500 font-medium"
                         >{{ getDifferenceInDays(comment.updated_at) }}</span>
-                            <div v-if="$page.props.user.id === comment.user_id" class="flex space-x-4 items-center">
+                            <div v-if="$page.props.user && $page.props.user.id === comment.user_id" class="flex space-x-4 items-center">
                                 <button
                                     @click="toggleEditComment(comment)"
                                     class="text-gray-500 hover:text-gray-600 dark:text-dark-500 dark:hover:text-dark-400"
