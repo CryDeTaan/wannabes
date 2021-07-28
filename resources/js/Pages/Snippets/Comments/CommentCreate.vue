@@ -2,7 +2,15 @@
     <div class="px-4 py-6 sm:px-6">
         <div class="flex space-x-3">
             <div class="flex-shrink-0">
-                <img class="h-10 w-10 rounded-full" :src="$page.props.user.profile_photo_url" alt="" />
+                <img
+                    v-if="$page.props.user"
+                     class="h-10 w-10 rounded-full"
+                     :src="$page.props.user.profile_photo_url" alt=""
+                />
+                <UserCircleIcon
+                    v-else class="h-9 w-9 text-neutral-500 hover:text-neutral-600"
+                    aria-hidden="true"
+                />
             </div>
             <div class="min-w-0 flex-1">
                 <div>
@@ -26,9 +34,13 @@
 
 <script>
 import { useForm } from "@inertiajs/inertia-vue3";
+import { UserCircleIcon } from '@heroicons/vue/outline';
 
 export default {
     name: "CreateComment",
+    components: {
+        UserCircleIcon
+    },
 
     setup() {
 
