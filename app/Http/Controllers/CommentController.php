@@ -116,7 +116,7 @@ class CommentController extends Controller
     protected function validateComment()
     {
         return request()->validate([
-            'body'     => ['required', 'string', 'max:255'],
+            'body'     => ['required', 'string'],
         ]);
     }
 }
