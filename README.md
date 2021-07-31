@@ -34,10 +34,10 @@ In production, I update three files:
 
 
 ## Roadmap
+- [x] Scalable searching
+- [x] Comments on snippets
 - [ ] Dynamically set Tag colour based on hex code
 - [ ] Custom/personal tags
-- [ ] Comments on snippets
-- [x] Scalable searching
 - [ ] ....
 
 ## Contributing

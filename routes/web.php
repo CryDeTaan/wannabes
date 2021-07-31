@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\SnippetController;
 use App\Http\Controllers\StreetcredController;
-use App\Http\Controllers\TagController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\SnippetController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -22,6 +23,7 @@ use Inertia\Inertia;
 Route::get('/', HomeController::class)->name('home')->middleware('remember');
 
 Route::resource('snippets', SnippetController::class);
+Route::resource('snippets.comments', CommentController::class);
 
 Route::get('about', function () {
 
