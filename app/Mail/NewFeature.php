@@ -12,15 +12,17 @@ class NewFeature extends Mailable
     use Queueable, SerializesModels;
 
     public String $pathToFile;
+    public String $name;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($name)
     {
-        $this->pathToFile= asset('storage/comments.jpg');
+        $this->pathToFile = resource_path('views/emails/new-feature/comments.png');
+        $this->name = $name;
     }
 
     /**
