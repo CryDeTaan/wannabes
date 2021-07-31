@@ -90,7 +90,7 @@ class SnippetController extends Controller
                 'streetcred' => $snippet->streetcred()->count(),
                 'user'       => $snippet->user->only('name', 'profile_photo_url', 'streetcred'),
             ],
-            'comments'   => $snippet->comments()->with('user:id,name')->select('id', 'body', 'user_id', 'updated_at')->get(),
+            'comments'   => $snippet->comments()->with('user:id,name,profile_photo_path')->select('id', 'body', 'user_id', 'updated_at')->get(),
         ]);
     }
 
