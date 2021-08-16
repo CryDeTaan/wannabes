@@ -6,14 +6,14 @@
         >
 
             <div class="flex-1 flex flex-col p-4">
-                <inertia-link :href="route('snippets.show', snippet.slug)">
+                <Link :href="route('snippets.show', snippet.slug)">
                     <h3 class="text-gray-900 dark:text-dark-300 text-sm font-medium">{{ snippet.title }}</h3>
-                </inertia-link>
+                </Link>
                 <dl class="mt-1 flex-grow flex flex-col justify-between">
                     <dt class="sr-only">Excerpt</dt>
-                    <inertia-link :href="route('snippets.show', snippet.slug)">
+                    <Link :href="route('snippets.show', snippet.slug)">
                         <dd class="text-gray-500 dark:text-dark-400 text-sm">{{ snippet.excerpt }}</dd>
-                    </inertia-link>
+                    </Link>
                     <dt class="sr-only">Tags</dt>
                     <dd class="flex flex-wrap justify-center place-content-start mt-3">
                         <base-tag-small
@@ -59,6 +59,7 @@
 
 <script>
 import { Inertia } from '@inertiajs/inertia'
+import { Link } from '@inertiajs/inertia-vue3'
 
 import { PlusCircleIcon } from '@heroicons/vue/outline'
 import { FireIcon } from '@heroicons/vue/solid'
@@ -69,8 +70,9 @@ export default {
     name: "CardsGrid",
 
     components: {
-        BaseTagSmall,
         Inertia,
+        Link,
+        BaseTagSmall,
         UserBlock,
         PlusCircleIcon,
         FireIcon,

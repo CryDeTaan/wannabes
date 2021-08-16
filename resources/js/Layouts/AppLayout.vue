@@ -9,9 +9,9 @@
                     <div class="relative flex justify-between xl:grid xl:grid-cols-12 lg:gap-8">
                         <div class="flex md:absolute md:left-0 md:inset-y-0 lg:static xl:col-span-2">
                             <div class="flex-shrink-0 flex items-center">
-                                <inertia-link :href="route('home')">
+                                <Link :href="route('home')">
                                     <CubeTransparentIcon class="h-12 w-12 text-primary-600" aria-hidden="true" />
-                                </inertia-link>
+                                </Link>
                             </div>
                         </div>
                         <div class="min-w-0 flex-1 md:px-8 lg:px-0 xl:col-span-5">
@@ -27,13 +27,13 @@
                             <div
                                 class="flex items-center py-4 md:max-w-3xl md:mx-auto lg:max-w-none lg:mx-0 xl:px-0"
                             >
-                                <inertia-link
+                                <Link
                                     :href="route('about')"
                                     class="flex-shrink-0 bg-white dark:bg-dark-800 rounded-full text-neutral-400 hover:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-primary-500"
                                 >
                                     <span class="sr-only">Help</span>
                                     <QuestionMarkCircleIcon class="h-6 w-6" aria-hidden="true" />
-                                </inertia-link>
+                                </Link>
                             </div>
                         </div>
                         <div class="flex items-center md:absolute md:right-0 md:inset-y-0 lg:hidden">
@@ -99,24 +99,24 @@
                                             <MenuItem
                                                 v-for="item in userNavigation" :key="item.name" v-slot="{ active }"
                                             >
-                                                <inertia-link
+                                                <Link
                                                     :href="item.href"
                                                     :method="item.method ? item.method : 'GET'"
                                                     as="button"
                                                     :class="[active ? 'bg-neutral-100 dark:bg-dark-600' : '', 'w-full block py-2 px-4 text-left text-sm text-neutral-700 dark:text-dark-300 focus:outline-none']"
                                                 >{{ item.name }}
-                                                </inertia-link>
+                                                </Link>
                                             </MenuItem>
                                         </template>
                                         <template v-else>
                                             <MenuItem v-for="item in notAuthed" :key="item.name" v-slot="{ active }">
-                                                <inertia-link
+                                                <Link
                                                     :href="item.href"
                                                     :method="item.method ? item.method : 'GET'"
                                                     as="button"
                                                     :class="[active ? 'bg-neutral-100 dark:bg-dark-600' : '', 'w-full block py-2 px-4 text-left text-sm text-neutral-700 dark:text-dark-300 focus:outline-none']"
                                                 >{{ item.name }}
-                                                </inertia-link>
+                                                </Link>
                                             </MenuItem>
                                         </template>
                                     </MenuItems>
@@ -161,24 +161,24 @@
                             -->
                         </div>
                         <div class="mt-3 max-w-3xl mx-auto px-2 space-y-1 sm:px-4">
-                            <inertia-link
+                            <Link
                                 v-for="item in userNavigation" :key="item.name" :href="item.href"
                                 :method="item.method ? item.method : 'GET'"
                                 as="span"
                                 class="block rounded-md py-2 px-3 text-base font-medium text-neutral-500 hover:bg-neutral-50 dark:hover:bg-dark-600 hover:text-neutral-900 dark:hover:text-dark-400"
-                            >{{ item.name }}</inertia-link>
+                            >{{ item.name }}</Link>
                         </div>
                     </div>
                     <div v-else class="border-t border-neutral-300 pt-4 pb-3">
                         <div class="mt-3 max-w-3xl mx-auto px-2 space-y-1 sm:px-4">
-                            <inertia-link
+                            <Link
                                 :href="route('login')"
                                 class="block rounded-md py-2 px-3 text-base font-medium text-neutral-500 hover:bg-neutral-50 dark:hover:bg-dark-600 hover:text-neutral-900 dark:hover:text-dark-400"
-                            >Login</inertia-link>
-                            <inertia-link
+                            >Login</Link>
+                            <Link
                                 :href="route('register')"
                                 class="block rounded-md py-2 px-3 text-base font-medium text-neutral-500 hover:bg-neutral-50 dark:hover:bg-dark-600 hover:text-neutral-900 dark:hover:text-dark-400"
-                            >Register</inertia-link>
+                            >Register</Link>
                         </div>
                     </div>
                 </PopoverPanel>
@@ -196,6 +196,7 @@ import {QuestionMarkCircleIcon} from '@heroicons/vue/solid'
 import {BellIcon, CubeTransparentIcon, MenuIcon, MoonIcon, SunIcon, UserCircleIcon, XIcon} from '@heroicons/vue/outline'
 import SearchInput from "@/Components/SearchInput";
 import {ref} from "vue";
+import { Link } from '@inertiajs/inertia-vue3'
 
 const navigation = [
     {name: 'New Snippet', href: '/snippets/create', current: false},
@@ -215,6 +216,7 @@ const notAuthed = [
 
 export default {
     components: {
+        Link,
         SearchInput,
         Menu,
         MenuButton,

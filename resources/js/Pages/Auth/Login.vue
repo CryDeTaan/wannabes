@@ -7,9 +7,9 @@
             </h2>
             <p class="mt-2 text-center text-sm text-gray-600 dark:text-dark-500">
                 Or
-                <inertia-link :href="route('register')" class="font-medium text-primary-600 hover:text-primary-500">
+                <Link :href="route('register')" class="font-medium text-primary-600 hover:text-primary-500">
                     register an account here
-                </inertia-link>
+                </Link>
             </p>
         </template>
 
@@ -38,9 +38,9 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <inertia-link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 dark:text-dark-300 hover:text-gray-900 dark:hover:text-dark-400">
+                <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 dark:text-dark-300 hover:text-gray-900 dark:hover:text-dark-400">
                     Forgot your password?
-                </inertia-link>
+                </Link>
 
                 <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Log in
@@ -51,6 +51,7 @@
 </template>
 
 <script>
+    import { Link } from '@inertiajs/inertia-vue3'
     import JetAuthenticationCard from '@/Jetstream/AuthenticationCard'
     import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo'
     import JetButton from '@/Jetstream/Button'
@@ -61,6 +62,7 @@
 
     export default {
         components: {
+            Link,
             JetAuthenticationCard,
             JetAuthenticationCardLogo,
             JetButton,

@@ -1,7 +1,7 @@
 <template>
-    <inertia-link v-if="as === 'link'" :href="href" :class="classes">
+    <Link v-if="as === 'link'" :href="href" :class="classes">
         <slot></slot>
-    </inertia-link>
+    </Link>
     <button v-else-if="as === 'button'" type="button" :class="classes">
         <slot></slot>
     </button>
@@ -10,9 +10,15 @@
 <script>
 
 import { computed } from 'vue';
+import { Link } from '@inertiajs/inertia-vue3'
 
 export default {
     name: "BaseButton",
+
+   components: {
+        Link
+   },
+
     props: {
         secondary: {
             type: Boolean,

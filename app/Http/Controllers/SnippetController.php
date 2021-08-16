@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Snippet;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
-use League\CommonMark\CommonMarkConverter;
-use League\CommonMark\Environment;
+use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\GithubFlavoredMarkdownExtension;
+use League\CommonMark\MarkdownConverter;
 
 class SnippetController extends Controller
 {
@@ -71,12 +72,11 @@ class SnippetController extends Controller
     public function show(Snippet $snippet)
     {
         // Convert markdown to HTML
-        $environment = Environment::createCommonMarkEnvironment();
-        $environment->addExtension(new GithubFlavoredMarkdownExtension());
-        $markdown = (new CommonMarkConverter([
+        $markdown = Str::markdown($snippet->markdown, [
             'html_input' => 'escape',
-            'allow_unsafe_links' => false
-        ], $environment))->convertToHtml($snippet->markdown);
+            'allow_unsafe_links' => false,
+            'max_nesting_level' => 100,
+        ]);
 
         return Inertia::render('Snippets/Show', [
             'snippet' => [
