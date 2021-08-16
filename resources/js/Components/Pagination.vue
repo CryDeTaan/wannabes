@@ -1,14 +1,14 @@
 <template>
     <nav class="border-t border-gray-200 dark:border-dark-500 px-4 flex items-center justify-between sm:px-0">
         <div class="-mt-px w-0 flex-1 flex">
-            <inertia-link
+            <Link
                 v-if="prev_page !== null"
                 :href="prev_page"
                 :class="arrowClasses"
             >
                 <ArrowNarrowLeftIcon class="mr-3 h-5 w-5 text-gray-400 dark:text-dark-500" aria-hidden="true" />
                 Previous
-            </inertia-link>
+            </Link>
         </div>
         <div class="hidden md:-mt-px md:flex">
 
@@ -18,37 +18,39 @@
                     class="border-transparent text-gray-500 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
                 >{{ link.label }}
                 </span>
-                <inertia-link
+                <Link
                     v-else
                     :href="link.url ? link.url : ''"
                     class="border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
                     :class="activeClasses(link.active)"
                 >
                     {{ link.label }}
-                </inertia-link>
+                </Link>
             </template>
         </div>
         <div class="-mt-px w-0 flex-1 flex justify-end">
-            <inertia-link
+            <Link
                 v-if="next_page !== null"
                 :href="next_page"
                 :class="arrowClasses"
             >
                 Next
                 <ArrowNarrowRightIcon class="ml-3 h-5 w-5 text-gray-400 dark:text-dark-500" aria-hidden="true" />
-            </inertia-link>
+            </Link>
         </div>
     </nav>
 </template>
 
 <script>
 import { computed } from 'vue'
+import { Link } from '@inertiajs/inertia-vue3'
 import { ArrowNarrowLeftIcon, ArrowNarrowRightIcon } from '@heroicons/vue/solid'
 
 export default {
     name: "Pagination",
 
     components: {
+        Link,
         ArrowNarrowLeftIcon,
         ArrowNarrowRightIcon,
     },
