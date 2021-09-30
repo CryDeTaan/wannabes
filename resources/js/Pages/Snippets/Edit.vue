@@ -102,8 +102,8 @@
                         Save
                     </base-button>
                 </div>
+                <tag-request />
             </div>
-            <tag-request />
         </aside>
 
     </div>
