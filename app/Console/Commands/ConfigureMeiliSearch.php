@@ -62,7 +62,7 @@ class ConfigureMeiliSearch extends Command
             return 0;
         }
 
-        $this->info('The command was successful!');
+        $this->info('The "' . $this->description . '" command was successful!');
 
     }
 }
