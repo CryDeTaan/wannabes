@@ -31,7 +31,9 @@ Route::get('about', function () {
     $aboutMarkdown = Laravel\Jetstream\Jetstream::localizedMarkdownPath('about.md');
 
     $markdown = Str::markdown(file_get_contents($aboutMarkdown), [
-        'html_input' => 'escape',
+        // Be careful with the setting below, in this case
+        // it's not processing user controlled content
+        //'html_input' => 'escape',
         'allow_unsafe_links' => false,
         'max_nesting_level' => 100,
     ]);
