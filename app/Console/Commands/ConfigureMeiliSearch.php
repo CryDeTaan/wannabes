@@ -44,13 +44,12 @@ class ConfigureMeiliSearch extends Command
 
         $index = $config['prefix'] . 'snippets';
         $response = $client->index($index)->updateRankingRules([
-            "typo",
             "words",
+            "typo",
             "proximity",
             "attribute",
-            "wordsPosition",
             "exactness",
-            "desc(streetcred_count)"
+            "streetcred_count:desc"
         ]);
 
         $update['status'] = 'enqueued';
@@ -59,7 +58,8 @@ class ConfigureMeiliSearch extends Command
         }
 
         if ($update['status'] === 'failed') {
-            $this->error('Something went wrong: ' . $update['error']);
+            $this->error('Something went wrong: ' . $update['message']);
+            return 0;
         }
 
         $this->info('The command was successful!');
