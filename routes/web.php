@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 /*
@@ -29,11 +30,14 @@ Route::get('about', function () {
 
     $aboutMarkdown = Laravel\Jetstream\Jetstream::localizedMarkdownPath('about.md');
 
-    $environment = League\CommonMark\Environment::createCommonMarkEnvironment();
-    $environment->addExtension(new League\CommonMark\Extension\GithubFlavoredMarkdownExtension());
+    $markdown = Str::markdown(file_get_contents($aboutMarkdown), [
+        'html_input' => 'escape',
+        'allow_unsafe_links' => false,
+        'max_nesting_level' => 100,
+    ]);
 
     return Inertia::render('About', [
-        'aboutMarkdown' => (new League\CommonMark\CommonMarkConverter([], $environment))->convertToHtml(file_get_contents($aboutMarkdown)),
+        'aboutMarkdown' => $markdown
     ]);
 })->name('about');
 
