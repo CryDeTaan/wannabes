@@ -54,7 +54,7 @@ class ConfigureMeiliSearch extends Command
 
         $update['status'] = 'enqueued';
         while ($update['status'] === 'enqueued' || $update['status'] === 'processing') {
-            $update = $client->index($index)->getUpdateStatus($response['updateId']);
+            $update = $client->index($index)->getTask($response['uid']);
         }
 
         if ($update['status'] === 'failed') {
