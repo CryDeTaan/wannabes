@@ -16,7 +16,7 @@
         "laravel/sanctum": "^2.6",
         "laravel/scout": "^9.1",
         "laravel/tinker": "^2.5",
-        "meilisearch/meilisearch-php": "^0.18.2",
+        "meilisearch/meilisearch-php": "^0.23.0",
         "reinink/remember-query-strings": "^0.1.0",
         "spatie/laravel-sluggable": "^3.0",
         "tightenco/ziggy": "^1.0"
